@@ -75,27 +75,43 @@ class KohaTranslator:
         }
 
     def load_or_create_glossary(self, phrases_file):
-        """Load existing glossary or create a new one from phrases.csv"""
+        """Load existing glossary or create a new one from phrases.csv, or update an existing one"""
         try:
-            # Try to find existing glossary
-            glossaries = self.translator.list_glossaries()  
-            for glossary in glossaries:
-                if glossary.name == self.glossary_name:
-                    print(f"Using existing glossary: {self.glossary_name}")
-                    self.glossary = glossary
-                    return
-            
-            # No existing glossary found, create new one from phrases.csv
-            print(f"Creating new glossary from {phrases_file}")
+            # Load entries from phrases.csv
             entries = {}
-            
             with open(phrases_file, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
                 for row in reader:
                     if row['EN'] and row['SV']:  # Only add if both translations exist
                         entries[row['EN']] = row['SV']
             
-            if entries:
+            if not entries:
+                print("No valid entries found in phrases.csv")
+                return
+                
+            # Try to find existing glossary
+            existing_glossary = None
+            glossaries = self.translator.list_glossaries()  
+            for glossary in glossaries:
+                if glossary.name == self.glossary_name:
+                    existing_glossary = glossary
+                    break
+            
+            if existing_glossary:
+                print(f"Found existing glossary: {self.glossary_name}")
+                # Delete the existing glossary and recreate it with updated entries
+                print(f"Updating glossary with new entries from {phrases_file}")
+                self.translator.delete_glossary(existing_glossary)
+                self.glossary = self.translator.create_glossary(
+                    self.glossary_name,
+                    source_lang="EN",
+                    target_lang="SV",
+                    entries=entries
+                )
+                print(f"Updated glossary with {len(entries)} entries")
+            else:
+                # No existing glossary found, create new one from phrases.csv
+                print(f"Creating new glossary from {phrases_file}")
                 self.glossary = self.translator.create_glossary(
                     self.glossary_name,
                     source_lang="EN",
@@ -103,11 +119,9 @@ class KohaTranslator:
                     entries=entries
                 )
                 print(f"Created glossary with {len(entries)} entries")
-            else:
-                print("No valid entries found in phrases.csv")
                 
         except Exception as e:
-            print(f"Error loading/creating glossary: {e}")
+            print(f"Error loading/creating/updating glossary: {e}")
             if hasattr(e, 'response'):
                 print(f"API Response: {e.response.text if hasattr(e.response, 'text') else e.response}")
     
@@ -610,7 +624,7 @@ def main():
     
     # Update these paths to point to the correct directories
     manual_source = "repos/koha-manual/source"  # RST files location
-    po_dir = "repos/koha-manual-l10n"  # PO files location
+    po_dir = "repos/koha-manual/locales"  # PO files location (inside koha-manual as 'locales')
     
     translator = KohaTranslator(manual_source, po_dir)
     

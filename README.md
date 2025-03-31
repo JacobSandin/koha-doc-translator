@@ -59,7 +59,7 @@ The KOHA Manual Translator is designed to facilitate the translation of the KOHA
    ```
    This will clone the necessary KOHA repositories into the `repos` directory:
    - koha-manual (source RST files)
-   - koha-manual-l10n (localization files)
+   - koha-manual-l10n (cloned inside koha-manual as "locales" directory)
 
 4. Copy the example environment file and add your DeepL API key:
    ```bash
@@ -131,7 +131,7 @@ python translator.py --translate --all --translate-all
 
 ## Output
 
-The translated files will be created in the KOHA manual localization repository structure under `repos/koha-manual-l10n`. The translation process generates and updates PO files that can be used with the official KOHA manual build system.
+The translated files will be created in the KOHA manual localization repository structure under `repos/koha-manual/locales`. The translation process generates and updates PO files that can be used with the official KOHA manual build system.
 
 ## Technical Details
 
@@ -149,8 +149,9 @@ koha-doc-translator/
 ├── setup_repos.py        # Repository setup script
 ├── translator.py         # Main translation script
 └── repos/                # Contains cloned repositories
-    ├── koha-manual/      # Source RST files
-    └── koha-manual-l10n/ # Localization files
+    └── koha-manual/      # Source RST files
+        ├── source/       # Original RST files
+        └── locales/      # Localization files (koha-manual-l10n)
 ```
 
 ### Translation Process

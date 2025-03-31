@@ -4,7 +4,7 @@ Setup script for Koha-doc-translator repositories
 
 This script clones the required repositories for the Koha manual translator:
 1. koha-manual from GitLab
-2. koha-manual-l10n from GitLab
+2. koha-manual-l10n from GitLab (cloned into koha-manual/locales)
 
 If the repositories already exist, it updates them to the latest version.
 With the --reset flag, it will remove existing repositories and clone them fresh.
@@ -25,7 +25,7 @@ KOHA_MANUAL_L10N_REPO = "https://gitlab.com/koha-community/koha-manual-l10n.git"
 BASE_DIR = Path(__file__).parent
 REPOS_DIR = BASE_DIR / "repos"
 KOHA_MANUAL_DIR = REPOS_DIR / "koha-manual"
-KOHA_MANUAL_L10N_DIR = REPOS_DIR / "koha-manual-l10n"
+KOHA_MANUAL_L10N_DIR = KOHA_MANUAL_DIR / "locales"
 
 def run_command(command, cwd=None):
     """Run a shell command and return the output"""
@@ -113,12 +113,15 @@ def main():
         "koha-manual"
     )
     
-    # Setup koha-manual-l10n repository
-    koha_manual_l10n_success = setup_repo(
-        KOHA_MANUAL_L10N_REPO, 
-        KOHA_MANUAL_L10N_DIR,
-        "koha-manual-l10n"
-    )
+    # Setup koha-manual-l10n repository inside koha-manual as 'locales'
+    # Only proceed if koha-manual was successfully set up
+    koha_manual_l10n_success = False
+    if koha_manual_success:
+        koha_manual_l10n_success = setup_repo(
+            KOHA_MANUAL_L10N_REPO, 
+            KOHA_MANUAL_L10N_DIR,
+            "koha-manual-l10n (as locales)"
+        )
     
     # Check if all setups were successful
     if koha_manual_success and koha_manual_l10n_success:
