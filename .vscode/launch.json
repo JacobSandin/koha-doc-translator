@@ -1,0 +1,55 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Run Translator Status",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/translator.py",
+            "args": ["--status"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Run Translator Update",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/translator.py",
+            "args": ["--update"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Translate Intro File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/translator.py",
+            "args": ["--translate", "--file", "intro", "--lang", "sv"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Check Intro Translation Status",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/translator.py",
+            "args": ["--status", "--file", "intro", "--lang", "sv"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Run Translator with Custom Args",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/translator.py",
+            "args": ["${input:translatorArgs}"],
+            "console": "integratedTerminal"
+        }
+    ]
+}
