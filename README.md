@@ -2,7 +2,7 @@
 
 A Python application to translate the KOHA manual from English to Swedish using DeepL API. This tool works directly with the RST source files from the official KOHA manual repository and preserves all formatting, directives, and technical terminology while creating a parallel directory structure for the translated content.
 
-![KOHA Logo](https://koha.se/wp-content/uploads/2016/12/cropped-koha-logga-green-only-logo-768x461.jpg)
+<img src="https://koha.se/wp-content/uploads/2016/12/cropped-koha-logga-green-only-logo-768x461.jpg" alt="KOHA Logo" width="300">
 
 ## Table of Contents
 
