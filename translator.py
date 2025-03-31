@@ -9,9 +9,56 @@ from typing import Dict, Tuple
 import time
 from tenacity import retry, stop_after_attempt, wait_exponential
 import csv
+import logging
+import datetime
 
 # Load environment variables
 load_dotenv()
+
+# Set up logging
+def setup_logging(debug_mode=False):
+    """Set up logging to both console and file"""
+    # Create log directory if it doesn't exist
+    log_dir = Path('log')
+    try:
+        log_dir.mkdir(exist_ok=True)
+    except Exception as e:
+        print(f"Warning: Could not create log directory: {e}")
+        # Fall back to current directory if log dir can't be created
+        log_dir = Path('.')
+    
+    # Create a timestamp for the log filename
+    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+    log_file = log_dir / f'translation_{timestamp}.log'
+    
+    # Set up root logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG if debug_mode else logging.INFO)
+    
+    # Clear any existing handlers
+    for handler in logger.handlers[::]:
+        logger.removeHandler(handler)
+    
+    # Create file handler which logs even debug messages
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler.setLevel(logging.DEBUG)  # Always log everything to file
+    
+    # Create console handler with a potentially higher log level
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG if debug_mode else logging.INFO)
+    
+    # Create formatter and add it to the handlers
+    file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    console_formatter = logging.Formatter('%(message)s')  # Simpler format for console
+    file_handler.setFormatter(file_formatter)
+    console_handler.setFormatter(console_formatter)
+    
+    # Add the handlers to the logger
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+    
+    logging.info(f"Logging to {log_file}")
+    return log_file
 
 class KohaTranslator:
     def __init__(self, source_dir, po_dir):
@@ -337,7 +384,7 @@ class KohaTranslator:
         # Save the file
         po.save(str(po_path))
     
-    def process_manual(self, specific_file=None, translate_all=False):
+    def process_manual(self, specific_file=None, translate_all=False, debug=False):
         """Process RST files and update PO translations"""
         try:
             if specific_file:
@@ -354,7 +401,9 @@ class KohaTranslator:
             print(f"\nStarting translation process for sv...")
             
             for rst_file in rst_files:
-                print(f"\nProcessing {rst_file}")
+                file_info = f"\nProcessing {rst_file}"
+                logging.info(file_info)
+                print(file_info)
                 
                 try:
                     # Determine corresponding PO file path
@@ -385,17 +434,49 @@ class KohaTranslator:
                             try:
                                 translated = self.translate_text(entry.msgid, source_lang='en', target_lang='sv')
                                 if translated:
+                                    # If translate_all is enabled and there's an existing translation, log it
+                                    if translate_all and entry.msgstr:
+                                        logging.info(f"\nReplacing translation [{success_count + 1}] in {rst_file.stem}")
+                                        # Always log full text to file
+                                        logging.debug(f"Original: {entry.msgid}")
+                                        logging.debug(f"Old translation: {entry.msgstr}")
+                                        logging.debug(f"New translation: {translated}")
+                                        
+                                        # For console output, respect debug flag
+                                        if debug:
+                                            # Show full text in debug mode (already logged above)
+                                            pass
+                                        else:
+                                            # Limit to 50 chars in normal mode for console only
+                                            print(f"Original: {entry.msgid[:50]}..." if len(entry.msgid) > 50 else f"Original: {entry.msgid}")
+                                            print(f"Old translation: {entry.msgstr[:50]}..." if len(entry.msgstr) > 50 else f"Old translation: {entry.msgstr}")
+                                            print(f"New translation: {translated[:50]}..." if len(translated) > 50 else f"New translation: {translated}")
+                                    else:
+                                        # Always log full text to file
+                                        logging.info(f"\nTranslated [{success_count + 1}] in {rst_file.stem}")
+                                        logging.debug(f"Original: {entry.msgid}")
+                                        logging.debug(f"Translation: {translated}")
+                                        
+                                        # For console output, respect debug flag
+                                        if debug:
+                                            # Show full text in debug mode (already logged above)
+                                            pass
+                                        else:
+                                            # Limit to 50 chars in normal mode for console only
+                                            print(f"\nTranslated [{success_count + 1}]: {entry.msgid[:50]}..." if len(entry.msgid) > 50 else f"\nTranslated [{success_count + 1}]: {entry.msgid}")
+                                            print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
+                                    
                                     translations[entry.msgid] = translated
                                     success_count += 1
-                                    print(f"\nTranslated [{success_count}]: {entry.msgid}...")
-                                    print(f"To: {translated}...")
                             except Exception as e:
                                 fail_count += 1
+                                logging.error(f"\nFailed to translate in {rst_file.stem}: {entry.msgid}")
+                                logging.error(f"Error: {str(e)}")
                                 print(f"\nFailed to translate: {entry.msgid[:50]}...")
-                                print(f"Error: {str(e)}")
                         else:
                             translations[entry.msgid] = entry.msgstr
                             skip_count += 1
+                            logging.info(f"\nSkipping already translated in {rst_file.stem}: {entry.msgid}")
                             print(f"\nSkipping already translated: {entry.msgid[:50]}...")
                     
                     # Then process any new content from RST
@@ -409,38 +490,89 @@ class KohaTranslator:
                             if normalized_text in existing_translations and not translate_all:
                                 translations[text] = existing_translations[normalized_text]
                                 skip_count += 1
+                                logging.info(f"\nSkipping already translated in {rst_file.stem}: {text}")
                                 print(f"\nSkipping already translated: {text[:50]}...")
                                 continue
                                 
                             try:
                                 translated = self.translate_text(text, source_lang='en', target_lang='sv')
                                 if translated:
+                                    # If translate_all is enabled and there's an existing translation, log it
+                                    if translate_all and normalized_text in existing_translations:
+                                        logging.info(f"\nReplacing translation [{success_count + 1}] in {rst_file.stem}")
+                                        # Always log full text to file
+                                        logging.debug(f"Original: {text}")
+                                        logging.debug(f"Old translation: {existing_translations[normalized_text]}")
+                                        logging.debug(f"New translation: {translated}")
+                                        
+                                        # For console output, respect debug flag
+                                        if debug:
+                                            # Show full text in debug mode (already logged above)
+                                            pass
+                                        else:
+                                            # Limit to 50 chars in normal mode for console only
+                                            print(f"Original: {text[:50]}..." if len(text) > 50 else f"Original: {text}")
+                                            old_trans = existing_translations[normalized_text]
+                                            print(f"Old translation: {old_trans[:50]}..." if len(old_trans) > 50 else f"Old translation: {old_trans}")
+                                            print(f"New translation: {translated[:50]}..." if len(translated) > 50 else f"New translation: {translated}")
+                                    else:
+                                        # Always log full text to file
+                                        logging.info(f"\nTranslated [{success_count + 1}] in {rst_file.stem}")
+                                        logging.debug(f"Original: {text}")
+                                        logging.debug(f"Translation: {translated}")
+                                        
+                                        # For console output, respect debug flag
+                                        if debug:
+                                            # Show full text in debug mode (already logged above)
+                                            pass
+                                        else:
+                                            # Limit to 50 chars in normal mode for console only
+                                            print(f"\nTranslated [{success_count + 1}]: {text[:50]}..." if len(text) > 50 else f"\nTranslated [{success_count + 1}]: {text}")
+                                            print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
+                                    
                                     translations[text] = translated
                                     success_count += 1
-                                    print(f"\nTranslated [{success_count}]: {text[:50]}...")
-                                    print(f"To: {translated[:50]}...")
                             except Exception as e:
                                 fail_count += 1
+                                logging.error(f"\nFailed to translate in {rst_file.stem}: {text}")
+                                logging.error(f"Error: {str(e)}")
                                 print(f"\nFailed to translate: {text[:50]}...")
-                                print(f"Error: {str(e)}")
                     
                     # Update PO file
                     if translations:
-                        print(f"\nUpdating translations in {po_path}")
+                        update_msg = f"\nUpdating translations in {po_path}"
+                        logging.info(update_msg)
+                        print(update_msg)
                         self.update_po_file(po_path, translations)
+                        logging.info(f"Successfully translated in {rst_file.stem}: {success_count} strings")
+                        logging.info(f"Skipped already translated in {rst_file.stem}: {skip_count} strings")
+                        if fail_count > 0:
+                            logging.info(f"Failed to translate in {rst_file.stem}: {fail_count} strings")
+                        if translate_all:
+                            logging.info("Note: --translate-all was enabled, existing translations were replaced with new ones")
+                            
+                        # Also print to console
                         print(f"Successfully translated: {success_count} strings")
                         print(f"Skipped already translated: {skip_count} strings")
                         if fail_count > 0:
                             print(f"Failed to translate: {fail_count} strings")
+                        if translate_all:
+                            print("Note: --translate-all was enabled, existing translations were replaced with new ones")
                         
                 except Exception as e:
-                    print(f"Error processing {rst_file}: {e}")
+                    error_msg = f"Error processing {rst_file}: {e}"
+                    logging.error(error_msg)
+                    print(error_msg)
                     continue
             
-            print("\nTranslation process completed successfully")
+            completion_msg = "\nTranslation process completed successfully"
+            logging.info(completion_msg)
+            print(completion_msg)
             
         except Exception as e:
-            print(f"Error: {e}")
+            error_msg = f"Error: {e}"
+            logging.error(error_msg)
+            print(error_msg)
 
 def main():
     import argparse
@@ -453,7 +585,28 @@ def main():
     parser.add_argument('--all', action='store_true', help='Process all files (required for bulk translation)')
     parser.add_argument('--phrases', default='phrases.csv', help='Path to phrases CSV file (default: phrases.csv)')
     parser.add_argument('--translate-all', action='store_true', help='Translate all strings, even if they already exist in PO file')
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode with full text output')
+    parser.add_argument('--log-file', help='Specify custom log file path (default: log/translation_TIMESTAMP.log)')
     args = parser.parse_args()
+    
+    # Set up logging
+    log_file = setup_logging(args.debug)
+    if args.log_file:
+        # If custom log file specified, update the file handler
+        custom_log_file = Path(args.log_file)
+        for handler in logging.getLogger().handlers:
+            if isinstance(handler, logging.FileHandler):
+                handler.close()
+                logging.getLogger().removeHandler(handler)
+                new_handler = logging.FileHandler(custom_log_file, encoding='utf-8')
+                new_handler.setLevel(logging.DEBUG)
+                new_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+                logging.getLogger().addHandler(new_handler)
+                log_file = custom_log_file
+                break
+    
+    logging.info(f"Koha Manual Translation Tool started")
+    logging.info(f"Debug mode: {'enabled' if args.debug else 'disabled'}")
     
     # Update these paths to point to the correct directories
     manual_source = "repos/koha-manual/source"  # RST files location
@@ -470,16 +623,23 @@ def main():
                 return
             
             if not args.file and not args.all:
-                print("Error: You must specify either --file <filename> or --all when using --translate")
+                error_msg = "Error: You must specify either --file <filename> or --all when using --translate"
+                logging.error(error_msg)
+                print(error_msg)
                 return
                 
-            print(f"\nStarting translation process for {args.lang}...")
-            translator.process_manual(args.file, args.translate_all)
+            start_msg = f"\nStarting translation process for {args.lang}..."
+            logging.info(start_msg)
+            print(start_msg)
+            translator.process_manual(args.file, args.translate_all, args.debug)
         except Exception as e:
-            print(f"Error during translation process: {e}")
+            error_msg = f"Error during translation process: {e}"
+            logging.error(error_msg)
+            print(error_msg)
             return
     elif args.status or not args.translate:
         # Just show status if no translation requested
+        logging.info(f"Checking translation status for {args.lang}" + (f" file: {args.file}" if args.file else ""))
         translator.print_translation_status(args.lang, args.file)
 
 if __name__ == "__main__":

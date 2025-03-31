@@ -1,6 +1,7 @@
 # Project specific
 repos/
 repos*/
+log/
 
 # Environment variables
 .env

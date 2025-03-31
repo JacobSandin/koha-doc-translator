@@ -7,11 +7,14 @@ This script clones the required repositories for the Koha manual translator:
 2. koha-manual-l10n from GitLab
 
 If the repositories already exist, it updates them to the latest version.
+With the --reset flag, it will remove existing repositories and clone them fresh.
 """
 
 import os
 import subprocess
 import sys
+import shutil
+import argparse
 from pathlib import Path
 
 # Repository URLs
@@ -70,9 +73,33 @@ def setup_repo(repo_url, repo_dir, repo_name):
             return False
     return True
 
+def remove_repos_directory():
+    """Remove the repos directory if it exists"""
+    if REPOS_DIR.exists():
+        print(f"Removing existing repos directory at {REPOS_DIR}...")
+        try:
+            shutil.rmtree(REPOS_DIR)
+            print("✅ Successfully removed repos directory")
+            return True
+        except Exception as e:
+            print(f"❌ Failed to remove repos directory: {e}")
+            return False
+    return True  # Nothing to remove
+
 def main():
     """Main function to setup repositories"""
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Setup repositories for Koha Manual Translator')
+    parser.add_argument('--reset', action='store_true', help='Remove existing repositories and clone them fresh')
+    args = parser.parse_args()
+    
     print("Setting up repositories for Koha Manual Translator...")
+    
+    # If reset flag is provided, remove the repos directory
+    if args.reset:
+        if not remove_repos_directory():
+            print("❌ Reset failed. Exiting.")
+            return 1
     
     # Create repos directory if it doesn't exist
     if not REPOS_DIR.exists():
@@ -98,6 +125,8 @@ def main():
         print("\n✅ All repositories have been set up successfully!")
         print("\nYou can now run the translator with:")
         print("python translator.py --translate --all")
+        if args.reset:
+            print("\nNote: Repositories were reset to a clean state.")
     else:
         print("\n❌ Repository setup failed")
         print("Please check the error messages above and try again.")
