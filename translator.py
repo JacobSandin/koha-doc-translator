@@ -222,12 +222,71 @@ class KohaTranslator:
     @retry(stop=stop_after_attempt(3), 
            wait=wait_exponential(multiplier=1, min=4, max=10),
            retry=lambda retry_state: isinstance(retry_state.outcome.exception(), deepl.exceptions.DeepLException))
+    def fix_rst_formatting(self, text):
+        """Fix common RST formatting issues in translated text"""
+        if not text:
+            return text
+            
+        # Fix italic/emphasis markers (* *)
+        # Replace "* text*" with "*text*" (remove space after opening *)
+        text = re.sub(r'\*\s+([^\*]+\*)', r'*\1', text)
+        # Replace "*text *" with "*text*" (remove space before closing *)
+        text = re.sub(r'(\*[^\*]+)\s+\*', r'\1*', text)
+        
+        # Fix bold markers (** **)
+        # Replace "** text**" with "**text**" (remove space after opening **)
+        text = re.sub(r'\*\*\s+([^\*]+\*\*)', r'**\1', text)
+        # Replace "**text **" with "**text**" (remove space before closing **)
+        text = re.sub(r'(\*\*[^\*]+)\s+\*\*', r'\1**', text)
+        
+        # Fix RST references (:ref:)
+        # Find all :ref:`label-name` patterns and ensure they're properly formatted
+        text = re.sub(r':ref:\s*`([^`]+)`', r':ref:`\1`', text)
+        
+        return text
+        
+    def preserve_rst_references(self, text):
+        """Preserve RST references during translation by replacing them with placeholders"""
+        if not text:
+            return text, {}
+            
+        # Find all :ref:`label-name` patterns
+        ref_pattern = r':ref:`([^`]+)`'
+        refs = re.findall(ref_pattern, text)
+        
+        # Create a dictionary of placeholders
+        placeholders = {}
+        for i, ref in enumerate(refs):
+            placeholder = f"REF_PLACEHOLDER_{i}"
+            placeholders[placeholder] = f":ref:`{ref}`"
+            
+        # Replace references with placeholders
+        preserved_text = text
+        for placeholder, ref in placeholders.items():
+            preserved_text = preserved_text.replace(ref, placeholder)
+            
+        return preserved_text, placeholders
+        
+    def restore_rst_references(self, text, placeholders):
+        """Restore RST references from placeholders after translation"""
+        if not text or not placeholders:
+            return text
+            
+        restored_text = text
+        for placeholder, ref in placeholders.items():
+            restored_text = restored_text.replace(placeholder, ref)
+            
+        return restored_text
+        
     def translate_text(self, text, source_lang='en', target_lang='sv'):
         """Translate a chunk of text using DeepL with retry logic"""
         if not text or text.strip() == '' or text.strip() == '=':
             return None  # Skip empty lines or separator lines
             
         try:
+            # Preserve RST references before translation
+            preserved_text, placeholders = self.preserve_rst_references(text)
+            
             # Add a small delay between requests to avoid rate limiting
             time.sleep(1)  # Increased delay to avoid rate limits
             
@@ -238,7 +297,7 @@ class KohaTranslator:
             # Use glossary if available
             if self.glossary:
                 result = self.translator.translate_text(
-                    text,
+                    preserved_text,
                     source_lang=deepl_source,
                     target_lang=deepl_target,
                     preserve_formatting=True,
@@ -246,12 +305,21 @@ class KohaTranslator:
                 )
             else:
                 result = self.translator.translate_text(
-                    text,
+                    preserved_text,
                     source_lang=deepl_source,
                     target_lang=deepl_target,
                     preserve_formatting=True
                 )
-            return result.text if result else None
+                
+            translated_text = result.text if result else None
+            
+            # Restore RST references after translation
+            if translated_text:
+                translated_text = self.restore_rst_references(translated_text, placeholders)
+                # Apply RST formatting fixes to the translated text
+                translated_text = self.fix_rst_formatting(translated_text)
+                
+            return translated_text
             
         except (KeyboardInterrupt, SystemExit):
             print("\nTranslation interrupted by user")
@@ -588,12 +656,15 @@ class KohaTranslator:
             logging.error(error_msg)
             print(error_msg)
 
+
+
 def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Koha Manual Translation Tool')
     parser.add_argument('--status', action='store_true', help='Show translation status')
     parser.add_argument('--translate', action='store_true', help='Run the translation process')
+
     parser.add_argument('--lang', default='sv', help='Language code (default: sv)')
     parser.add_argument('--file', help='Process specific file (without .rst extension)')
     parser.add_argument('--all', action='store_true', help='Process all files (required for bulk translation)')
@@ -652,7 +723,7 @@ def main():
             print(error_msg)
             return
     elif args.status or not args.translate:
-        # Just show status if no translation requested
+        # Just show status if no other action requested
         logging.info(f"Checking translation status for {args.lang}" + (f" file: {args.file}" if args.file else ""))
         translator.print_translation_status(args.lang, args.file)
 
