@@ -1,0 +1,2416 @@
+EN,SV,PL
+ThingISBN,ThingISBN,ThingISBN
+OPACFRBRizeEditions,OPACFRBRizeEditions,OPACFRBRizeEditions
+FRBRizeEditions,FRBRizeEditions,FRBRizeEditions
+BakerTaylorUsername and BakerTaylorPassword,BakerTaylorUsername and BakerTaylorPassword,BakerTaylorUsername and BakerTaylorPassword
+BakerTaylorBookstoreURL,BakerTaylorBookstoreURL,BakerTaylorBookstoreURL
+BakerTaylorEnabled,BakerTaylorEnabled,BakerTaylorEnabled
+HTML5MediaEnabled,HTML5MediaEnabled,HTML5MediaEnabled
+LibraryThingForLibrariesID,LibraryThingForLibrariesID,LibraryThingForLibrariesID
+LocalCoverImages,LocalCoverImages,LocalCoverImages
+OPACLocalCoverImages,OPACLocalCoverImages,OPACLocalCoverImages
+CustomCoverImagesURL,CustomCoverImagesURL,CustomCoverImagesURL
+OPACCustomCoverImages,OPACCustomCoverImages,OPACCustomCoverImages
+CustomCoverImages,CustomCoverImages,CustomCoverImages
+AllowMultipleCovers,AllowMultipleCovers,AllowMultipleCovers
+staffClientBaseURL,staffClientBaseURL,staffClientBaseURL
+Baker & Taylor Content Cafe,Baker & Taylor Content Cafe,Baker & Taylor Content Cafe
+NovelistSelectProfile and NovelistSelectPassword,NovelistSelectProfile and NovelistSelectPassword,NovelistSelectProfile and NovelistSelectPassword
+OverDriveLibraryID,OverDriveLibraryID,OverDriveLibraryID
+OverDriveClientKey and OverDriveClientSecret,OverDriveClientKey and OverDriveClientSecret,OverDriveClientKey and OverDriveClientSecret
+SyndeticsClientCode,SyndeticsClientCode,SyndeticsClientCode
+SyndeticsEnabled,SyndeticsEnabled,SyndeticsEnabled
+SyndeticsEditions,SyndeticsEditions,SyndeticsEditions
+Tags,Tags,Tags
+loggedinlibrary permission,loggedinlibrary permission,loggedinlibrary permission
+superlibrarian permission,superlibrarian permission,superlibrarian permission
+StaffLoginLibraryBasedOnIP,StaffLoginLibraryBasedOnIP,StaffLoginLibraryBasedOnIP
+StaffLoginRestrictLibraryByIP,StaffLoginRestrictLibraryByIP,StaffLoginRestrictLibraryByIP
+implementation checklist,implementation checklist,implementation checklist
+system preferences,system preferences,system preferences
+serials permission,serials permission,serials permission
+creating a new subscription,creating a new subscription,creating a new subscription
+creating a new serial subscription,creating a new serial subscription,creating a new serial subscription
+numbering patterns table (see above),numbering patterns table (see above),numbering patterns table (see above)
+create\_subscription permission,create\_subscription permission,create\_subscription permission
+Acquisitions module,Acquisitions module,Acquisitions module
+'Notices and slips' tool,'Notices and slips' tool,'Notices and slips' tool
+makePreviousSerialAvailable,makePreviousSerialAvailable,makePreviousSerialAvailable
+SerialsUpdate.pl cron job,SerialsUpdate.pl cron job,SerialsUpdate.pl cron job
+StaffSerialIssueDisplayCount,StaffSerialIssueDisplayCount,StaffSerialIssueDisplayCount
+OPACSerialIssueDisplayCount,OPACSerialIssueDisplayCount,OPACSerialIssueDisplayCount
+manage frequencies,manage frequencies,manage frequencies
+add a custom frequency,add a custom frequency,add a custom frequency
+manage numbering patterns,manage numbering patterns,manage numbering patterns
+adding a numbering pattern,adding a numbering pattern,adding a numbering pattern
+custom fields,custom fields,custom fields
+edit\_subscription permission,edit\_subscription permission,edit\_subscription permission
+receive\_serials permission,receive\_serials permission,receive\_serials permission
+item add form,item add form,item add form
+receiving issues,receiving issues,receiving issues
+routing permission,routing permission,routing permission
+RoutingSerials,RoutingSerials,RoutingSerials
+RoutingListNote,RoutingListNote,RoutingListNote
+RoutingListAddReserves,RoutingListAddReserves,RoutingListAddReserves
+routing lists tab,routing lists tab,routing lists tab
+your routing lists,your routing lists,your routing lists
+acquisitions,acquisitions,acquisitions
+serial subscriptions,serial subscriptions,serial subscriptions
+'Table settings','Table settings','Table settings'
+opacSerialDefaultTab,opacSerialDefaultTab,opacSerialDefaultTab
+setting up the subscription,setting up the subscription,setting up the subscription
+SubscriptionHistory,SubscriptionHistory,SubscriptionHistory
+creating the subscription,creating the subscription,creating the subscription
+claim\_serials permission,claim\_serials permission,claim\_serials permission
+Notices and slips tool,Notices and slips tool,Notices and slips tool
+CSV profile,CSV profile,CSV profile
+check\_expiration permission,check\_expiration permission,check\_expiration permission
+renew\_subscription permission,renew\_subscription permission,renew\_subscription permission
+RenewSerialAddsSuggestion,RenewSerialAddsSuggestion,RenewSerialAddsSuggestion
+acquisitions module,acquisitions module,acquisitions module
+additional fields,additional fields,additional fields
+SerialsSearchResultsLimit,SerialsSearchResultsLimit,SerialsSearchResultsLimit
+receiving an issue,receiving an issue,receiving an issue
+Serials table in the FAQ section,Serials table in the FAQ section,Serials table in the FAQ section
+routing list,routing list,routing list
+preservation module,preservation module,preservation module
+subscription,subscription,subscription
+Serial collection,Serial collection,Serial collection
+lost status,lost status,lost status
+claim was sent to the vendor,claim was sent to the vendor,claim was sent to the vendor
+guided reports wizard,guided reports wizard,guided reports wizard
+SQL query,SQL query,SQL query
+create\_reports permission,create\_reports permission,create\_reports permission
+guided report wizard,guided report wizard,guided report wizard
+directly with SQL,directly with SQL,directly with SQL
+JSON reports services,JSON reports services,JSON reports services
+REPORT\_GROUP authorized value category,REPORT\_GROUP authorized value category,REPORT\_GROUP authorized value category
+REPORT\_SUBGROUP authorized value category,REPORT\_SUBGROUP authorized value category,REPORT\_SUBGROUP authorized value category
+report writing tips,report writing tips,report writing tips
+edit it,edit it,edit it
+duplicate it,duplicate it,duplicate it
+make edits,make edits,make edits
+run the report,run the report,run the report
+authorized value category,authorized value category,authorized value category
+MARC bibliographic frameworks,MARC bibliographic frameworks,MARC bibliographic frameworks
+classification sources,classification sources,classification sources
+item types,item types,item types
+libraries,libraries,libraries
+patron categories,patron categories,patron categories
+cash registers,cash registers,cash registers
+debit types,debit types,debit types
+credit types,credit types,credit types
+send to batch modification tools,send to batch modification tools,send to batch modification tools
+automatic hyperlinks to,automatic hyperlinks to,automatic hyperlinks to
+Column names,Column names,Column names
+configured Mana KB,configured Mana KB,configured Mana KB
+execute\_reports permission,execute\_reports permission,execute\_reports permission
+create from SQL,create from SQL,create from SQL
+Mana is set up,Mana is set up,Mana is set up
+search Mana for an existing SQL report,search Mana for an existing SQL report,search Mana for an existing SQL report
+edit the current report,edit the current report,edit the current report
+create a new report from the existing one,create a new report from the existing one,create a new report from the existing one
+notices and slips tool,notices and slips tool,notices and slips tool
+Tools > Notices and slips,Tools > Notices and slips,Tools > Notices and slips
+New notice,New notice,New notice
+task scheduler tool,task scheduler tool,task scheduler tool
+custom reports,custom reports,custom reports
+reports permissions,reports permissions,reports permissions
+report permission,report permission,report permission
+managing plugins section,managing plugins section,managing plugins section
+Circulating ILL materials,Circulating ILL materials,Circulating ILL materials
+View ILL requests list,View ILL requests list,View ILL requests list
+authorized value,authorized value,authorized value
+ILL module,ILL module,ILL module
+HTML customization location,HTML customization location,HTML customization location
+creating an ILL request from the OPAC,creating an ILL request from the OPAC,creating an ILL request from the OPAC
+ILL requests placed by patrons on the OPAC,ILL requests placed by patrons on the OPAC,ILL requests placed by patrons on the OPAC
+manage all ILL requests,manage all ILL requests,manage all ILL requests
+send requests to partners,send requests to partners,send requests to partners
+library's,library's,library's
+ILL email notifications,ILL email notifications,ILL email notifications
+letter codes,letter codes,letter codes
+OPAC requests,OPAC requests,OPAC requests
+plugins,plugins,plugins
+submits an ILL request,submits an ILL request,submits an ILL request
+manual invoicing,manual invoicing,manual invoicing
+EnablePointOfSale,EnablePointOfSale,EnablePointOfSale
+UseCashRegisters,UseCashRegisters,UseCashRegisters
+configure your cash registers,configure your cash registers,configure your cash registers
+takepayment permission,takepayment permission,takepayment permission
+PAYMENT\_TYPE authorized value,PAYMENT\_TYPE authorized value,PAYMENT\_TYPE authorized value
+OPACXSLTDetailsDisplay,OPACXSLTDetailsDisplay,OPACXSLTDetailsDisplay
+OPACXSLTListsDisplay,OPACXSLTListsDisplay,OPACXSLTListsDisplay
+OPACXSLTResultsDisplay,OPACXSLTResultsDisplay,OPACXSLTResultsDisplay
+XSLTDetailsDisplay,XSLTDetailsDisplay,XSLTDetailsDisplay
+XSLTListsDisplay,XSLTListsDisplay,XSLTListsDisplay
+XSLTResultsDisplay,XSLTResultsDisplay,XSLTResultsDisplay
+ISBD,ISBD,ISBD
+BiblioDefaultView,BiblioDefaultView,BiblioDefaultView
+IntranetUserCSS,IntranetUserCSS,IntranetUserCSS
+HTML customizations tool,HTML customizations tool,HTML customizations tool
+HTML customizations,HTML customizations,HTML customizations
+UseControlNumber,UseControlNumber,UseControlNumber
+EasyAnalyticalRecords,EasyAnalyticalRecords,EasyAnalyticalRecords
+ComponentSortOrder,ComponentSortOrder,ComponentSortOrder
+ComponentSortField,ComponentSortField,ComponentSortField
+autoControlNumber,autoControlNumber,autoControlNumber
+record overlay rules,record overlay rules,record overlay rules
+concern reporting feature in the staff interface,concern reporting feature in the staff interface,concern reporting feature in the staff interface
+CatalogerEmails,CatalogerEmails,CatalogerEmails
+OpacCatalogConcerns,OpacCatalogConcerns,OpacCatalogConcerns
+CatalogConcerns,CatalogConcerns,CatalogConcerns
+easy way of linking analytic entries to the host records,easy way of linking analytic entries to the host records,easy way of linking analytic entries to the host records
+basic editor,basic editor,basic editor
+advanced editor,advanced editor,advanced editor
+authority frameworks,authority frameworks,authority frameworks
+MARC Bibliographic Frameworks,MARC Bibliographic Frameworks,MARC Bibliographic Frameworks
+add the field in the MARC bibliographic framework,add the field in the MARC bibliographic framework,add the field in the MARC bibliographic framework
+circulation preferences > holds policy,circulation preferences > holds policy,circulation preferences > holds policy
+EnableItemGroupHolds,EnableItemGroupHolds,EnableItemGroupHolds
+LOC authorized value category,LOC authorized value category,LOC authorized value category
+UpdateItemLocationOnCheckin,UpdateItemLocationOnCheckin,UpdateItemLocationOnCheckin
+UpdateItemLocationOnCheckout,UpdateItemLocationOnCheckout,UpdateItemLocationOnCheckout
+SubfieldsToUseWhenPrefill,SubfieldsToUseWhenPrefill,SubfieldsToUseWhenPrefill
+cataloging bibliographic records,cataloging bibliographic records,cataloging bibliographic records
+cataloging authority records,cataloging authority records,cataloging authority records
+items\_batchmod\_restricted permission,items\_batchmod\_restricted permission,items\_batchmod\_restricted permission
+batch item modification tool,batch item modification tool,batch item modification tool
+edit\_items\_restricted permission,edit\_items\_restricted permission,edit\_items\_restricted permission
+PrefillItem,PrefillItem,PrefillItem
+Quick spine label creator tool,Quick spine label creator tool,Quick spine label creator tool
+plugins section in the administration chapter,plugins section in the administration chapter,plugins section in the administration chapter
+StaffInterfaceLanguages,StaffInterfaceLanguages,StaffInterfaceLanguages
+StaffLangSelectorMode,StaffLangSelectorMode,StaffLangSelectorMode
+TranslateNotices,TranslateNotices,TranslateNotices
+News,News,News
+Pages,Pages,Pages
+opaclanguagesdisplay,opaclanguagesdisplay,opaclanguagesdisplay
+OpacLangSelectorMode,OpacLangSelectorMode,OpacLangSelectorMode
+language,language,language
+"""Notices and Slips"" interface","""Notices and Slips"" interface","""Notices and Slips"" interface"
+creating a new patron account in the staff interface,creating a new patron account in the staff interface,creating a new patron account in the staff interface
+messaging options,messaging options,messaging options
+registers online on the OPAC,registers online on the OPAC,registers online on the OPAC
+PatronSelfRegistrationBorrowerUnwantedField,PatronSelfRegistrationBorrowerUnwantedField,PatronSelfRegistrationBorrowerUnwantedField
+OAI-PMH,OAI-PMH,OAI-PMH
+OAI-PMH:ConfFile,OAI-PMH:ConfFile,OAI-PMH:ConfFile
+ILS-DI system preferences,ILS-DI system preferences,ILS-DI system preferences
+Guided reports wizard,Guided reports wizard,Guided reports wizard
+Report from SQL,Report from SQL,Report from SQL
+RESTOAuth2ClientCredentials,RESTOAuth2ClientCredentials,RESTOAuth2ClientCredentials
+Marc Modification Templates,Marc Modification Templates,Marc Modification Templates
+OCLC Connexion Daemon,OCLC Connexion Daemon,OCLC Connexion Daemon
+above,above,above
+staged for import,staged for import,staged for import
+TalkingTechItivaPhoneNotification,TalkingTechItivaPhoneNotification,TalkingTechItivaPhoneNotification
+EnhancedMessagingPreferences,EnhancedMessagingPreferences,EnhancedMessagingPreferences
+Overdue notice/status triggers,Overdue notice/status triggers,Overdue notice/status triggers
+TalkingTech\_itiva\_outbound.pl,TalkingTech\_itiva\_outbound.pl,TalkingTech\_itiva\_outbound.pl
+TalkingTech\_itiva\_inbound.pl,TalkingTech\_itiva\_inbound.pl,TalkingTech\_itiva\_inbound.pl
+manage\_libraries permission,manage\_libraries permission,manage\_libraries permission
+notices,notices,notices
+'Libraries' page of the OPAC,'Libraries' page of the OPAC,'Libraries' page of the OPAC
+KohaAdminEmailAddress,KohaAdminEmailAddress,KohaAdminEmailAddress
+ILLDefaultStaffEmail,ILLDefaultStaffEmail,ILLDefaultStaffEmail
+ReplytoDefault,ReplytoDefault,ReplytoDefault
+ReturnpathDefault,ReturnpathDefault,ReturnpathDefault
+SMTP server,SMTP server,SMTP server
+HTML customization,HTML customization,HTML customization
+'Libraries' page in the OPAC,'Libraries' page in the OPAC,'Libraries' page in the OPAC
+MARCOrgCode,MARCOrgCode,MARCOrgCode
+'Libraries' page on the OPAC,'Libraries' page on the OPAC,'Libraries' page on the OPAC
+ConsiderLibraryHoursInCirculation,ConsiderLibraryHoursInCirculation,ConsiderLibraryHoursInCirculation
+OPACUserJS,OPACUserJS,OPACUserJS
+OPACUserCSS,OPACUserCSS,OPACUserCSS
+advanced search limit dropdown,advanced search limit dropdown,advanced search limit dropdown
+view\_borrower\_infos\_from\_any\_libraries permission,view\_borrower\_infos\_from\_any\_libraries permission,view\_borrower\_infos\_from\_any\_libraries permission
+edit\_any\_item permission,edit\_any\_item permission,edit\_any\_item permission
+OpacAddMastheadLibraryPulldown,OpacAddMastheadLibraryPulldown,OpacAddMastheadLibraryPulldown
+advanced search page,advanced search page,advanced search page
+hold policies in the circulation rules,hold policies in the circulation rules,hold policies in the circulation rules
+return policy,return policy,return policy
+hold policy,hold policy,hold policy
+UseCirculationDesks,UseCirculationDesks,UseCirculationDesks
+manage\_itemtypes permission,manage\_itemtypes permission,manage\_itemtypes permission
+circulation rules,circulation rules,circulation rules
+circulation rule,circulation rule,circulation rule
+ITEMTYPECAT authorized value category,ITEMTYPECAT authorized value category,ITEMTYPECAT authorized value category
+item-level\_itypes,item-level\_itypes,item-level\_itypes
+noItemTypeImages,noItemTypeImages,noItemTypeImages
+OPACNoItemTypeImages,OPACNoItemTypeImages,OPACNoItemTypeImages
+OPACnoItemTypeImages,OPACnoItemTypeImages,OPACnoItemTypeImages
+OpacHiddenItems,OpacHiddenItems,OpacHiddenItems
+cronjob misc/cronjobs/automatic_checkin.pl,cronjob misc/cronjobs/automatic_checkin.pl,cronjob misc/cronjobs/automatic_checkin.pl
+bookings,bookings,bookings
+calendar,calendar,calendar
+replacement cost,replacement cost,replacement cost
+Adding item types,Adding item types,Adding item types
+manage\_auth\_values permission,manage\_auth\_values permission,manage\_auth\_values permission
+article request,article request,article request
+creating a fund,creating a fund,creating a fund
+patron messages,patron messages,patron messages
+circulation messages,circulation messages,circulation messages
+patron's sort 1 field,patron's sort 1 field,patron's sort 1 field
+patron's sort 2 field,patron's sort 2 field,patron's sort 2 field
+cataloging and working with items,cataloging and working with items,cataloging and working with items
+advanced cataloging editor,advanced cataloging editor,advanced cataloging editor
+course reserves,course reserves,course reserves
+agreement record,agreement record,agreement record
+e-resource management module,e-resource management module,e-resource management module
+reporting,reporting,reporting
+license record,license record,license record
+license,license,license
+agreement,agreement,agreement
+cancelling holds,cancelling holds,cancelling holds
+housebound tab,housebound tab,housebound tab
+item type settings,item type settings,item type settings
+adding or editing an item,adding or editing an item,adding or editing an item
+NewItemsDefaultLocation,NewItemsDefaultLocation,NewItemsDefaultLocation
+suggestion form,suggestion form,suggestion form
+patron attributes,patron attributes,patron attributes
+patron add and edit form,patron add and edit form,patron add and edit form
+paying fines,paying fines,paying fines
+add new values,add new values,add new values
+MARC bibliographic framework,MARC bibliographic framework,MARC bibliographic framework
+saved reports page,saved reports page,saved reports page
+REPORT\_GROUP,REPORT\_GROUP,REPORT\_GROUP
+return claim has been resolved,return claim has been resolved,return claim has been resolved
+patron form,patron form,patron form
+creating,creating,creating
+editing,editing,editing
+managing suggestions,managing suggestions,managing suggestions
+suggestions,suggestions,suggestions
+course reserves module,course reserves module,course reserves module
+adding a new course,adding a new course,adding a new course
+catalog concerns,catalog concerns,catalog concerns
+file uploads,file uploads,file uploads
+vendor,vendor,vendor
+adding an issue,adding an issue,adding an issue
+vendors,vendors,vendors
+add a new authorized value to the category,add a new authorized value to the category,add a new authorized value to the category
+SUGGEST\_STATUS,SUGGEST\_STATUS,SUGGEST\_STATUS
+existing authorized values categories,existing authorized values categories,existing authorized values categories
+manage\_patron\_categories permission,manage\_patron\_categories permission,manage\_patron\_categories permission
+update\_patrons\_category.pl,update\_patrons\_category.pl,update\_patrons\_category.pl
+FeeOnChangePatronCategory,FeeOnChangePatronCategory,FeeOnChangePatronCategory
+overdue notice triggers,overdue notice triggers,overdue notice triggers
+Tools module,Tools module,Tools module
+OpacResetPassword,OpacResetPassword,OpacResetPassword
+OpacPasswordChange,OpacPasswordChange,OpacPasswordChange
+minPasswordLength,minPasswordLength,minPasswordLength
+RequireStrongPassword,RequireStrongPassword,RequireStrongPassword
+ForcePasswordResetWhenSetByStaff,ForcePasswordResetWhenSetByStaff,ForcePasswordResetWhenSetByStaff
+BlockExpiredPatronOpacActions,BlockExpiredPatronOpacActions,BlockExpiredPatronOpacActions
+Placing a hold on an item,Placing a hold on an item,Placing a hold on an item
+Placing ILL requests,Placing ILL requests,Placing ILL requests
+Renewing an item,Renewing an item,Renewing an item
+CheckPrevCheckout,CheckPrevCheckout,CheckPrevCheckout
+ILLModule,ILLModule,ILLModule
+batch\_anonymize.pl script,batch\_anonymize.pl script,batch\_anonymize.pl script
+batch anonymization,batch anonymization,batch anonymization
+OPACPrivacy,OPACPrivacy,OPACPrivacy
+LocalHoldsPriority,LocalHoldsPriority,LocalHoldsPriority
+noissuescharge,noissuescharge,noissuescharge
+NoIssuesChargeGuarantees,NoIssuesChargeGuarantees,NoIssuesChargeGuarantees
+NoIssuesChargeGuarantorsWithGuarantees,NoIssuesChargeGuarantorsWithGuarantees,NoIssuesChargeGuarantorsWithGuarantees
+advanced messaging preferences,advanced messaging preferences,advanced messaging preferences
+changed on an individual basis,changed on an individual basis,changed on an individual basis
+borrowers-force-messaging-defaults script,borrowers-force-messaging-defaults script,borrowers-force-messaging-defaults script
+manage\_circ\_rules permission,manage\_circ\_rules permission,manage\_circ\_rules permission
+CircControl,CircControl,CircControl
+HomeOrHoldingBranch,HomeOrHoldingBranch,HomeOrHoldingBranch
+IndependentBranches,IndependentBranches,IndependentBranches
+on-site checkouts,on-site checkouts,on-site checkouts
+ConsiderOnSiteCheckoutsAsNormalCheckouts,ConsiderOnSiteCheckoutsAsNormalCheckouts,ConsiderOnSiteCheckoutsAsNormalCheckouts
+useDaysMode,useDaysMode,useDaysMode
+library,library,library
+finesCalendar,finesCalendar,finesCalendar
+FinesIncludeGracePeriod,FinesIncludeGracePeriod,FinesIncludeGracePeriod
+MaxFine,MaxFine,MaxFine
+UnseenRenewals,UnseenRenewals,UnseenRenewals
+NoRenewalBeforePrecision,NoRenewalBeforePrecision,NoRenewalBeforePrecision
+automatic renewal cron job,automatic renewal cron job,automatic renewal cron job
+default checkout and hold policy by patron category,default checkout and hold policy by patron category,default checkout and hold policy by patron category
+"Default checkout, hold, and return policy","Default checkout, hold, and return policy","Default checkout, hold, and return policy"
+maxreserves,maxreserves,maxreserves
+staff interface,staff interface,staff interface
+Holds awaiting pickup,Holds awaiting pickup,Holds awaiting pickup
+ReservesMaxPickUpDelay,ReservesMaxPickUpDelay,ReservesMaxPickUpDelay
+ArticleRequests,ArticleRequests,ArticleRequests
+charge a rental fee for the item type,charge a rental fee for the item type,charge a rental fee for the item type
+UseRecalls,UseRecalls,UseRecalls
+RecallsMaxPickUpDelay,RecallsMaxPickUpDelay,RecallsMaxPickUpDelay
+OnSiteCheckouts,OnSiteCheckouts,OnSiteCheckouts
+library groups,library groups,library groups
+when the request is placed,when the request is placed,when the request is placed
+RefundLostOnReturnControl,RefundLostOnReturnControl,RefundLostOnReturnControl
+NoRefundOnLostReturnedItemsAge,NoRefundOnLostReturnedItemsAge,NoRefundOnLostReturnedItemsAge
+AllowHoldPolicyOverride,AllowHoldPolicyOverride,AllowHoldPolicyOverride
+AutomaticItemReturn,AutomaticItemReturn,AutomaticItemReturn
+CircControlReturnsBranch,CircControlReturnsBranch,CircControlReturnsBranch
+manage\_patron\_attributes permission,manage\_patron\_attributes permission,manage\_patron\_attributes permission
+ExtendedPatronAttributes,ExtendedPatronAttributes,ExtendedPatronAttributes
+patron import tool,patron import tool,patron import tool
+patron search,patron search,patron search
+add an authorized value list,add an authorized value list,add an authorized value list
+batch patron import,batch patron import,batch patron import
+patron record add/edit form,patron record add/edit form,patron record add/edit form
+manage\_transfers permission,manage\_transfers permission,manage\_transfers permission
+UseBranchTransferLimits,UseBranchTransferLimits,UseBranchTransferLimits
+Authorized values,Authorized values,Authorized values
+UseTransportCostMatrix,UseTransportCostMatrix,UseTransportCostMatrix
+StaticHoldsQueueWeight,StaticHoldsQueueWeight,StaticHoldsQueueWeight
+manage\_item\_circ\_alerts permission,manage\_item\_circ\_alerts permission,manage\_item\_circ\_alerts permission
+manage\_cities permission,manage\_cities permission,manage\_cities permission
+CurbsidePickup,CurbsidePickup,CurbsidePickup
+manage\_curbside\_pickups permission,manage\_curbside\_pickups permission,manage\_curbside\_pickups permission
+PatronRestrictionTypes,PatronRestrictionTypes,PatronRestrictionTypes
+manage\_patron\_restrictions permission,manage\_patron\_restrictions permission,manage\_patron\_restrictions permission
+manage\_accounts permission,manage\_accounts permission,manage\_accounts permission
+patron category settings,patron category settings,patron category settings
+item's 'replacement cost' field,item's 'replacement cost' field,item's 'replacement cost' field
+item type's default replacement cost,item type's default replacement cost,item type's default replacement cost
+manual invoices,manual invoices,manual invoices
+circulation and fines rules,circulation and fines rules,circulation and fines rules
+item type,item type,item type
+patron's category,patron's category,patron's category
+ExpireReservesMaxPickUpDelay,ExpireReservesMaxPickUpDelay,ExpireReservesMaxPickUpDelay
+ExpireReservesMaxPickUpDelayCharge,ExpireReservesMaxPickUpDelayCharge,ExpireReservesMaxPickUpDelayCharge
+adding a new charge to a patron's account,adding a new charge to a patron's account,adding a new charge to a patron's account
+point of sale,point of sale,point of sale
+transaction history,transaction history,transaction history
+cancelling a charge in a patron's account,cancelling a charge in a patron's account,cancelling a charge in a patron's account
+manual credits,manual credits,manual credits
+discount fines and charges,discount fines and charges,discount fines and charges
+Default lost item fee refund on return policy,Default lost item fee refund on return policy,Default lost item fee refund on return policy
+fee payments,fee payments,fee payments
+point of sale module,point of sale module,point of sale module
+refunding the payment of a fine or charge,refunding the payment of a fine or charge,refunding the payment of a fine or charge
+writing off a fine or charge,writing off a fine or charge,writing off a fine or charge
+manual credit,manual credit,manual credit
+AutoCreditNumber,AutoCreditNumber,AutoCreditNumber
+manage\_cash\_registers permission,manage\_cash\_registers permission,manage\_cash\_registers permission
+entering a payment,entering a payment,entering a payment
+they are enabled in the configuration file,they are enabled in the configuration file,they are enabled in the configuration file
+manage permission,manage permission,manage permission
+configure permission,configure permission,configure permission
+admin permission,admin permission,admin permission
+tool plugins,tool plugins,tool plugins
+report plugins,report plugins,report plugins
+configured external plugin repositories,configured external plugin repositories,configured external plugin repositories
+batch record modification,batch record modification,batch record modification
+manage\_background\_jobs permission,manage\_background\_jobs permission,manage\_background\_jobs permission
+Batch bibliographic record modification,Batch bibliographic record modification,Batch bibliographic record modification
+Batch bibliographic record deletion,Batch bibliographic record deletion,Batch bibliographic record deletion
+Batch authority record modification,Batch authority record modification,Batch authority record modification
+Batch authority record deletion,Batch authority record deletion,Batch authority record deletion
+Batch item record modification,Batch item record modification,Batch item record modification
+Batch item record deletion,Batch item record deletion,Batch item record deletion
+cancelled,cancelled,cancelled
+created from a list,created from a list,created from a list
+RealTimeHoldsQueue,RealTimeHoldsQueue,RealTimeHoldsQueue
+holds queue,holds queue,holds queue
+Staged MARC records for import,Staged MARC records for import,Staged MARC records for import
+Import MARC records,Import MARC records,Import MARC records
+manage\_marc\_frameworks permission,manage\_marc\_frameworks permission,manage\_marc\_frameworks permission
+editing fields and subfields,editing fields and subfields,editing fields and subfields
+MARC bibliographic framework test,MARC bibliographic framework test,MARC bibliographic framework test
+advancedMARCeditor,advancedMARCeditor,advancedMARCeditor
+importing records,importing records,importing records
+ApplyFrameworkDefaults,ApplyFrameworkDefaults,ApplyFrameworkDefaults
+Koha to MARC mapping,Koha to MARC mapping,Koha to MARC mapping
+authority catalog,authority catalog,authority catalog
+Authority types,Authority types,Authority types
+cataloguing plugin,cataloguing plugin,cataloguing plugin
+cataloging section,cataloging section,cataloging section
+upload files to Koha to link to your records,upload files to Koha to link to your records,upload files to Koha to link to your records
+cataloging with the basic editor,cataloging with the basic editor,cataloging with the basic editor
+editing fields and subfields in frameworks,editing fields and subfields in frameworks,editing fields and subfields in frameworks
+using the instructions above,using the instructions above,using the instructions above
+a new framework,a new framework,a new framework
+make any changes,make any changes,make any changes
+MARC bibliographic frameworks,MARC bibliographic frameworks,MARC bibliographic frameworks
+manage\_classifications permission,manage\_classifications permission,manage\_classifications permission
+filing rule,filing rule,filing rule
+splitting rule,splitting rule,splitting rule
+Classification sources,Classification sources,Classification sources
+creating or editing a classification source,creating or editing a classification source,creating or editing a classification source
+label layout,label layout,label layout
+manage\_matching\_rules permission,manage\_matching\_rules permission,manage\_matching\_rules permission
+Stage MARC records for import,Stage MARC records for import,Stage MARC records for import
+Koha search indexes,Koha search indexes,Koha search indexes
+manage\_record\_sources permission,manage\_record\_sources permission,manage\_record\_sources permission
+edit\_locked\_records permission,edit\_locked\_records permission,edit\_locked\_records permission
+manage\_marc\_overlay\_rules permission,manage\_marc\_overlay\_rules permission,manage\_marc\_overlay\_rules permission
+manage\_oai\_sets permission,manage\_oai\_sets permission,manage\_oai\_sets permission
+item search,item search,item search
+manage\_item\_search\_fields permission,manage\_item\_search\_fields permission,manage\_item\_search\_fields permission
+SavedSearchFilters,SavedSearchFilters,SavedSearchFilters
+manage\_search\_filters permission,manage\_search\_filters permission,manage\_search\_filters permission
+searching the catalog through the staff interface,searching the catalog through the staff interface,searching the catalog through the staff interface
+advanced search form,advanced search form,advanced search form
+manage\_search\_engine\_config permission,manage\_search\_engine\_config permission,manage\_search\_engine\_config permission
+Elasticsearch indexes,Elasticsearch indexes,Elasticsearch indexes
+Searching,Searching,Searching
+search fields tab,search fields tab,search fields tab
+browse search,browse search,browse search
+facets,facets,facets
+add the search field,add the search field,add the search field
+add mappings to that search field,add mappings to that search field,add mappings to that search field
+add mappings,add mappings,add mappings
+delete mappings,delete mappings,delete mappings
+currencies\_manage permission,currencies\_manage permission,currencies\_manage permission
+staging tools,staging tools,staging tools
+funds,funds,funds
+period\_manage permission,period\_manage permission,period\_manage permission
+budget\_add\_del,budget\_add\_del,budget\_add\_del
+budget\_manage,budget\_manage,budget\_manage
+budget\_modify,budget\_modify,budget\_modify
+period\_manage,period\_manage,period\_manage
+from scratch,from scratch,from scratch
+duplicating the previous year's budget,duplicating the previous year's budget,duplicating the previous year's budget
+add funds,add funds,add funds
+add sub funds,add sub funds,add sub funds
+plan spending,plan spending,plan spending
+edit the budget,edit the budget,edit the budget
+close the previous budget,close the previous budget,close the previous budget
+duplicate the previous year's budget,duplicate the previous year's budget,duplicate the previous year's budget
+deleting the funds,deleting the funds,deleting the funds
+make it inactive,make it inactive,make it inactive
+close it,close it,close it
+add a budget,add a budget,add a budget
+budget\_modify permission,budget\_modify permission,budget\_modify permission
+order\_manage\_all permission,order\_manage\_all permission,order\_manage\_all permission
+report,report,report
+Planning category FAQ,Planning category FAQ,Planning category FAQ
+adding a new fund,adding a new fund,adding a new fund
+planning\_manage permission,planning\_manage permission,planning\_manage permission
+budget\_manage permission,budget\_manage permission,budget\_manage permission
+EDIFACT,EDIFACT,EDIFACT
+edi\_manage permission,edi\_manage permission,edi\_manage permission
+vendor set up in acquisitions,vendor set up in acquisitions,vendor set up in acquisitions
+EDI questions for vendors,EDI questions for vendors,EDI questions for vendors
+acquisitions module chapter,acquisitions module chapter,acquisitions module chapter
+manage\_identity\_providers permission,manage\_identity\_providers permission,manage\_identity\_providers permission
+add more domains to this provider,add more domains to this provider,add more domains to this provider
+patron category,patron category,patron category
+creating a new identity provider,creating a new identity provider,creating a new identity provider
+identity provider,identity provider,identity provider
+manage\_search\_targets permission,manage\_search\_targets permission,manage\_search\_targets permission
+manage\_smtp\_servers permission,manage\_smtp\_servers permission,manage\_smtp\_servers permission
+library's details,library's details,library's details
+manage\_didyoumean permission,manage\_didyoumean permission,manage\_didyoumean permission
+authorities,authorities,authorities
+manage\_column\_config permission,manage\_column\_config permission,manage\_column\_config permission
+Funds table on the main acquisition page,Funds table on the main acquisition page,Funds table on the main acquisition page
+Basket summary,Basket summary,Basket summary
+Order search results,Order search results,Order search results
+Late orders,Late orders,Late orders
+Suggestions,Suggestions,Suggestions
+Patron categories,Patron categories,Patron categories
+Cities,Cities,Cities
+Currencies,Currencies,Currencies
+Item types,Item types,Item types
+Libraries,Libraries,Libraries
+Item bundles,Item bundles,Item bundles
+SeparateHoldings,SeparateHoldings,SeparateHoldings
+Item table above edit item form,Item table above edit item form,Item table above edit item form
+Catalog concern management,Catalog concern management,Catalog concern management
+Z39.50 search results,Z39.50 search results,Z39.50 search results
+Checkouts,Checkouts,Checkouts
+Patron search results,Patron search results,Patron search results
+List of holds on a bibliographic record,List of holds on a bibliographic record,List of holds on a bibliographic record
+Holds awaiting pickup (holds with cancellation requests),Holds awaiting pickup (holds with cancellation requests),Holds awaiting pickup (holds with cancellation requests)
+Holds awaiting pickup (holds waiting over X days),Holds awaiting pickup (holds waiting over X days),Holds awaiting pickup (holds waiting over X days)
+Holds awaiting pickup (holds waiting),Holds awaiting pickup (holds waiting),Holds awaiting pickup (holds waiting)
+Hold ratios,Hold ratios,Hold ratios
+Overdues report,Overdues report,Overdues report
+printing the summary,printing the summary,printing the summary
+Checkins,Checkins,Checkins
+Holds queue,Holds queue,Holds queue
+Courses,Courses,Courses
+Reserves,Reserves,Reserves
+Agreements,Agreements,Agreements
+E-holdings packages,E-holdings packages,E-holdings packages
+E-holdings titles,E-holdings titles,E-holdings titles
+Licenses,Licenses,Licenses
+Requests,Requests,Requests
+Patron checkout history,Patron checkout history,Patron checkout history
+Accounting > Transactions,Accounting > Transactions,Accounting > Transactions
+Holds history,Holds history,Holds history
+Details > Holds,Details > Holds,Details > Holds
+Details > Checkouts,Details > Checkouts,Details > Checkouts
+Details > Relatives' checkouts,Details > Relatives' checkouts,Details > Relatives' checkouts
+Patron lists,Patron lists,Patron lists
+Accounting > Make a payment,Accounting > Make a payment,Accounting > Make a payment
+Point of sale,Point of sale,Point of sale
+Batch patron modification tool,Batch patron modification tool,Batch patron modification tool
+Log viewer,Log viewer,Log viewer
+MARC modification templates,MARC modification templates,MARC modification templates
+Notices and slips,Notices and slips,Notices and slips
+Stock rotation rotas,Stock rotation rotas,Stock rotation rotas
+Stock rotation items,Stock rotation items,Stock rotation items
+List of files in upload tool,List of files in upload tool,List of files in upload tool
+Course reserves,Course reserves,Course reserves
+Holdings/Items,Holdings/Items,Holdings/Items
+Serials issues on subscription tab,Serials issues on subscription tab,Serials issues on subscription tab
+Items lost,Items lost,Items lost
+Orders by fund,Orders by fund,Orders by fund
+Saved SQL reports,Saved SQL reports,Saved SQL reports
+Acquisition details,Acquisition details,Acquisition details
+AudioAlerts,AudioAlerts,AudioAlerts
+manage\_audio\_alerts permission,manage\_audio\_alerts permission,manage\_audio\_alerts permission
+smssenddriver-label,smssenddriver-label,smssenddriver-label
+manage\_sms\_providers permission,manage\_sms\_providers permission,manage\_sms\_providers permission
+messaging tab,messaging tab,messaging tab
+manage\_usage\_stats permission,manage\_usage\_stats permission,manage\_usage\_stats permission
+manage\_mana permission,manage\_mana permission,manage\_mana permission
+manage\_additional\_fields permission,manage\_additional\_fields permission,manage\_additional\_fields permission
+creation of a new order basket,creation of a new order basket,creation of a new order basket
+adding orders to a basket,adding orders to a basket,adding orders to a basket
+invoice in the acquisitions module,invoice in the acquisitions module,invoice in the acquisitions module
+editing an existing subscription,editing an existing subscription,editing an existing subscription
+paying or writing off charges in a patron's account,paying or writing off charges in a patron's account,paying or writing off charges in a patron's account
+creating manual credits,creating manual credits,creating manual credits
+creating a manual invoice,creating a manual invoice,creating a manual invoice
+create a new authorized value category,create a new authorized value category,create a new authorized value category
+orders advanced search,orders advanced search,orders advanced search
+invoice search,invoice search,invoice search
+subscription advanced search,subscription advanced search,subscription advanced search
+authorized values,authorized values,authorized values
+adding a subscription,adding a subscription,adding a subscription
+cataloging module,cataloging module,cataloging module
+viewing the invoice,viewing the invoice,viewing the invoice
+EnableAdvancedCatalogingEditor,EnableAdvancedCatalogingEditor,EnableAdvancedCatalogingEditor
+manage\_keyboard\_shortcuts permission,manage\_keyboard\_shortcuts permission,manage\_keyboard\_shortcuts permission
+OpacBrowseSearch system preference,OpacBrowseSearch system preference,OpacBrowseSearch system preference
+Browse search,Browse search,Browse search
+OPACdefaultSortField and OPACdefaultSortOrder,OPACdefaultSortField and OPACdefaultSortOrder,OPACdefaultSortField and OPACdefaultSortOrder
+DisplayOPACiconsXSLT,DisplayOPACiconsXSLT,DisplayOPACiconsXSLT
+enhanced content system preferences,enhanced content system preferences,enhanced content system preferences
+Did you mean?,Did you mean?,Did you mean?
+search results facets,search results facets,search results facets
+XSLT material type icons,XSLT material type icons,XSLT material type icons
+Serials module,Serials module,Serials module
+adding the subscription,adding the subscription,adding the subscription
+OPACAuthorIdentifiers system preference,OPACAuthorIdentifiers system preference,OPACAuthorIdentifiers system preference
+suggestion,suggestion,suggestion
+purchase suggestion form,purchase suggestion form,purchase suggestion form
+OPACSearchForTitleIn,OPACSearchForTitleIn,OPACSearchForTitleIn
+OpacExportOptions,OpacExportOptions,OpacExportOptions
+problem report feature,problem report feature,problem report feature
+OpacAuthorities,OpacAuthorities,OpacAuthorities
+Lists and cart,Lists and cart,Lists and cart
+OpacAllowPublicListCreation,OpacAllowPublicListCreation,OpacAllowPublicListCreation
+cart,cart,cart
+View the content of a list,View the content of a list,View the content of a list
+adding items to it,adding items to it,adding items to it
+'Lists' tab,'Lists' tab,'Lists' tab
+OpacAllowSharingPrivateLists,OpacAllowSharingPrivateLists,OpacAllowSharingPrivateLists
+TagsInputOnDetail,TagsInputOnDetail,TagsInputOnDetail
+adding tags to titles,adding tags to titles,adding tags to titles
+list,list,list
+place a hold,place a hold,place a hold
+add tags to selected titles,add tags to selected titles,add tags to selected titles
+OPACHoldRequests,OPACHoldRequests,OPACHoldRequests
+DisplayMultiPlaceHold,DisplayMultiPlaceHold,DisplayMultiPlaceHold
+OPACShowHoldQueueDetails,OPACShowHoldQueueDetails,OPACShowHoldQueueDetails
+OPACAllowUserToChooseBranch,OPACAllowUserToChooseBranch,OPACAllowUserToChooseBranch
+library configuration,library configuration,library configuration
+OPACAllowHoldDateInFuture,OPACAllowHoldDateInFuture,OPACAllowHoldDateInFuture
+cancel\_expired\_holds.pl cronjob,cancel\_expired\_holds.pl cronjob,cancel\_expired\_holds.pl cronjob
+AllowHoldItemTypeSelection,AllowHoldItemTypeSelection,AllowHoldItemTypeSelection
+item groups,item groups,item groups
+OpacHoldNotes,OpacHoldNotes,OpacHoldNotes
+account page,account page,account page
+setting up recalls,setting up recalls,setting up recalls
+expire\_recalls.pl cronjob,expire\_recalls.pl cronjob,expire\_recalls.pl cronjob
+TagsEnabled,TagsEnabled,TagsEnabled
+TagsInputOnList,TagsInputOnList,TagsInputOnList
+OPACComments,OPACComments,OPACComments
+ShowReviewerPhoto,ShowReviewerPhoto,ShowReviewerPhoto
+ShowReviewer,ShowReviewer,ShowReviewer
+OpacShowRecentComments,OpacShowRecentComments,OpacShowRecentComments
+RSS feeds cron job,RSS feeds cron job,RSS feeds cron job
+RSS cron job,RSS cron job,RSS cron job
+OpacUserJS system preference,OpacUserJS system preference,OpacUserJS system preference
+CookieConsentedJS system preference,CookieConsentedJS system preference,CookieConsentedJS system preference
+CookieConsent system preference,CookieConsent system preference,CookieConsent system preference
+PatronSelfRegistration,PatronSelfRegistration,PatronSelfRegistration
+PatronSelfRegistrationBorrowerMandatoryField,PatronSelfRegistrationBorrowerMandatoryField,PatronSelfRegistrationBorrowerMandatoryField
+PatronSelfRegistrationVerifyByEmail,PatronSelfRegistrationVerifyByEmail,PatronSelfRegistrationVerifyByEmail
+PatronSelfRegistrationPrefillForm,PatronSelfRegistrationPrefillForm,PatronSelfRegistrationPrefillForm
+EmailPatronRegistrations,EmailPatronRegistrations,EmailPatronRegistrations
+PatronSelfRegistrationDefaultCategory,PatronSelfRegistrationDefaultCategory,PatronSelfRegistrationDefaultCategory
+opacuserlogin,opacuserlogin,opacuserlogin
+account summary,account summary,account summary
+OPACUserSummary,OPACUserSummary,OPACUserSummary
+OPACShowSavings,OPACShowSavings,OPACShowSavings
+NotifyPasswordChange,NotifyPasswordChange,NotifyPasswordChange
+OPAC messages,OPAC messages,OPAC messages
+OPAC notes,OPAC notes,OPAC notes
+OpacMySummaryNote HTML customization location,OpacMySummaryNote HTML customization location,OpacMySummaryNote HTML customization location
+OpacRenewalAllowed,OpacRenewalAllowed,OpacRenewalAllowed
+OPACFineNoRenewals,OPACFineNoRenewals,OPACFineNoRenewals
+maxoutstanding,maxoutstanding,maxoutstanding
+AllowPatronToControlAutoRenewal,AllowPatronToControlAutoRenewal,AllowPatronToControlAutoRenewal
+OPACMySummaryHTML,OPACMySummaryHTML,OPACMySummaryHTML
+patron attribute,patron attribute,patron attribute
+patron's record set the value,patron's record set the value,patron's record set the value
+AllowCheckoutNotes,AllowCheckoutNotes,AllowCheckoutNotes
+see and manage checkout notes,see and manage checkout notes,see and manage checkout notes
+their privacy,their privacy,their privacy
+AllowStaffToSetCheckoutsVisibilityForGuarantor,AllowStaffToSetCheckoutsVisibilityForGuarantor,AllowStaffToSetCheckoutsVisibilityForGuarantor
+OPACFinesTab,OPACFinesTab,OPACFinesTab
+AllowStaffToSetFinesVisibilityForGuarantor,AllowStaffToSetFinesVisibilityForGuarantor,AllowStaffToSetFinesVisibilityForGuarantor
+clubs,clubs,clubs
+enroll in clubs,enroll in clubs,enroll in clubs
+SuspendHoldsOpac,SuspendHoldsOpac,SuspendHoldsOpac
+AutoResumeSuspendedHolds,AutoResumeSuspendedHolds,AutoResumeSuspendedHolds
+waiting hold cancellation policy,waiting hold cancellation policy,waiting hold cancellation policy
+OPACAllowUserToChangeBranch,OPACAllowUserToChangeBranch,OPACAllowUserToChangeBranch
+allows recalls,allows recalls,allows recalls
+flagged your patron's account,flagged your patron's account,flagged your patron's account
+OPACPatronDetails,OPACPatronDetails,OPACPatronDetails
+EnablePayPalOpacPayments,EnablePayPalOpacPayments,EnablePayPalOpacPayments
+PatronSelfModificationBorrowerUnwantedField,PatronSelfModificationBorrowerUnwantedField,PatronSelfModificationBorrowerUnwantedField
+PatronSelfModificationMandatoryField,PatronSelfModificationMandatoryField,PatronSelfModificationMandatoryField
+AutoApprovePatronProfileSettings,AutoApprovePatronProfileSettings,AutoApprovePatronProfileSettings
+PrivacyPolicyConsent,PrivacyPolicyConsent,PrivacyPolicyConsent
+PrivacyPolicyURL,PrivacyPolicyURL,PrivacyPolicyURL
+EnableOpacSearchHistory,EnableOpacSearchHistory,EnableOpacSearchHistory
+opacreadinghistory,opacreadinghistory,opacreadinghistory
+'Privacy' tab,'Privacy' tab,'Privacy' tab
+Your reading history,Your reading history,Your reading history
+Circulation History,Circulation History,Circulation History
+AnonymousPatron,AnonymousPatron,AnonymousPatron
+AllowPatronToSetCheckoutsVisibilityForGuarantor,AllowPatronToSetCheckoutsVisibilityForGuarantor,AllowPatronToSetCheckoutsVisibilityForGuarantor
+OPACHoldsHistory,OPACHoldsHistory,OPACHoldsHistory
+OPACViewOthersSuggestions,OPACViewOthersSuggestions,OPACViewOthersSuggestions
+EnhancedMessagingPreferencesOPAC,EnhancedMessagingPreferencesOPAC,EnhancedMessagingPreferencesOPAC
+SMSSendDriver,SMSSendDriver,SMSSendDriver
+cellular providers entered in administration,cellular providers entered in administration,cellular providers entered in administration
+i-tiva Talking Tech,i-tiva Talking Tech,i-tiva Talking Tech
+AutoRenewalNotices,AutoRenewalNotices,AutoRenewalNotices
+virtualshelves,virtualshelves,virtualshelves
+create or edit their own private lists,create or edit their own private lists,create or edit their own private lists
+bibliographic record,bibliographic record,bibliographic record
+useDischarge,useDischarge,useDischarge
+discharge is approved by library staff,discharge is approved by library staff,discharge is approved by library staff
+serial routing lists,serial routing lists,serial routing lists
+HTML customization display location,HTML customization display location,HTML customization display location
+curbside pickup,curbside pickup,curbside pickup
+curbside pickup configuration,curbside pickup configuration,curbside pickup configuration
+Your purchase suggestions,Your purchase suggestions,Your purchase suggestions
+OPACSuggestionMandatoryFields,OPACSuggestionMandatoryFields,OPACSuggestionMandatoryFields
+OPACSuggestionUnwantedFields,OPACSuggestionUnwantedFields,OPACSuggestionUnwantedFields
+OPACSuggestionAutoFill,OPACSuggestionAutoFill,OPACSuggestionAutoFill
+authorized value list,authorized value list,authorized value list
+'OpacLibraryInfo' HTML customizations,'OpacLibraryInfo' HTML customizations,'OpacLibraryInfo' HTML customizations
+OPACReportProblem,OPACReportProblem,OPACReportProblem
+OPAC problem reports tool,OPAC problem reports tool,OPAC problem reports tool
+self checkout module,self checkout module,self checkout module
+OpacTrustedCheckout,OpacTrustedCheckout,OpacTrustedCheckout
+summary,summary,summary
+UseCourseReserves,UseCourseReserves,UseCourseReserves
+added as patrons,added as patrons,added as patrons
+authorized values,authorized values,authorized values
+collection codes (CCODE),collection codes (CCODE),collection codes (CCODE)
+shelving locations (LOC),shelving locations (LOC),shelving locations (LOC)
+circulation and fine rules,circulation and fine rules,circulation and fine rules
+manage\_courses permission,manage\_courses permission,manage\_courses permission
+add\_reserves permission,add\_reserves permission,add\_reserves permission
+PreservationModule system preference,PreservationModule system preference,PreservationModule system preference
+add the statuses,add the statuses,add the statuses
+preservation permission,preservation permission,preservation permission
+PreservationNotForLoanWaitingListIn,PreservationNotForLoanWaitingListIn,PreservationNotForLoanWaitingListIn
+PreservationNotForLoanDefaultTrainIn,PreservationNotForLoanDefaultTrainIn,PreservationNotForLoanDefaultTrainIn
+create a new notice,create a new notice,create a new notice
+copying the PRES_TRAIN_ITEM notice,copying the PRES_TRAIN_ITEM notice,copying the PRES_TRAIN_ITEM notice
+preservation settings,preservation settings,preservation settings
+add your items to a train,add your items to a train,add your items to a train
+Preservation module settings,Preservation module settings,Preservation module settings
+from the Trains page,from the Trains page,from the Trains page
+from the Waiting list page,from the Waiting list page,from the Waiting list page
+add your items to the waiting list,add your items to the waiting list,add your items to the waiting list
+adding them to the waiting list,adding them to the waiting list,adding them to the waiting list
+Add item,Add item,Add item
+create the train,create the train,create the train
+processing,processing,processing
+processing's default settings,processing's default settings,processing's default settings
+edit\_public\_list\_contents permission,edit\_public\_list\_contents permission,edit\_public\_list\_contents permission
+catalogue permission,catalogue permission,catalogue permission
+edit\_public\_lists permission,edit\_public\_lists permission,edit\_public\_lists permission
+delete\_public\_lists permission,delete\_public\_lists permission,delete\_public\_lists permission
+CSV profiles,CSV profiles,CSV profiles
+opacbookbag,opacbookbag,opacbookbag
+intranetbookbag,intranetbookbag,intranetbookbag
+modify via Cataloging,modify via Cataloging,modify via Cataloging
+Preservation module setting,Preservation module setting,Preservation module setting
+AdvancedSearchTypes,AdvancedSearchTypes,AdvancedSearchTypes
+AuthorityXSLTOpacResultsDisplay,AuthorityXSLTOpacResultsDisplay,AuthorityXSLTOpacResultsDisplay
+AuthorityXSLTResultsDisplay,AuthorityXSLTResultsDisplay,AuthorityXSLTResultsDisplay
+XSLT material type icons,XSLT material type icons,XSLT material type icons
+DisplayIconsXSLT,DisplayIconsXSLT,DisplayIconsXSLT
+news tool,news tool,news tool
+library limit on the advanced search page,library limit on the advanced search page,library limit on the advanced search page
+OPACURLOpenInNewWindow,OPACURLOpenInNewWindow,OPACURLOpenInNewWindow
+Display856uAsImage,Display856uAsImage,Display856uAsImage
+OpacMaintenance,OpacMaintenance,OpacMaintenance
+OPACShowMusicalInscripts,OPACShowMusicalInscripts,OPACShowMusicalInscripts
+OpacItemLocation,OpacItemLocation,OpacItemLocation
+Reference_NFL_Statuses,Reference_NFL_Statuses,Reference_NFL_Statuses
+OPACResultsMaxItemsUnavailable,OPACResultsMaxItemsUnavailable,OPACResultsMaxItemsUnavailable
+OPACResultsUnavailableGroupingBy,OPACResultsUnavailableGroupingBy,OPACResultsUnavailableGroupingBy
+OPACPlayMusicalInscripts,OPACPlayMusicalInscripts,OPACPlayMusicalInscripts
+OpacAdditionalStylesheet,OpacAdditionalStylesheet,OpacAdditionalStylesheet
+opaclayoutstylesheet,opaclayoutstylesheet,opaclayoutstylesheet
+library form,library form,library form
+PassItemMarcToXSLT,PassItemMarcToXSLT,PassItemMarcToXSLT
+search results,search results,search results
+NOT\_LOAN authorized value category,NOT\_LOAN authorized value category,NOT\_LOAN authorized value category
+basket is closed,basket is closed,basket is closed
+OPACAuthorIdentifiersAndInformation,OPACAuthorIdentifiersAndInformation,OPACAuthorIdentifiersAndInformation
+OPACAuthorIdentifiers,OPACAuthorIdentifiers,OPACAuthorIdentifiers
+authority search,authority search,authority search
+authorities browser cron job,authorities browser cron job,authorities browser cron job
+SearchEngine system preference,SearchEngine system preference,SearchEngine system preference
+concern reporting feature in the OPAC,concern reporting feature in the OPAC,concern reporting feature in the OPAC
+Table setting,Table setting,Table setting
+patronimages,patronimages,patronimages
+'Report a problem' feature on the OPAC,'Report a problem' feature on the OPAC,'Report a problem' feature on the OPAC
+OPAC section,OPAC section,OPAC section
+summary box on OPAC homepage,summary box on OPAC homepage,summary box on OPAC homepage
+'your summary' page,'your summary' page,'your summary' page
+checkout history page,checkout history page,checkout history page
+checkout histories are anonymized,checkout histories are anonymized,checkout histories are anonymized
+cleanup\_database script,cleanup\_database script,cleanup\_database script
+quote of the day editor,quote of the day editor,quote of the day editor
+comments tool,comments tool,comments tool
+OPACBaseURL,OPACBaseURL,OPACBaseURL
+individual patron categories,individual patron categories,individual patron categories
+Managing lists,Managing lists,Managing lists
+AccountAutoReconcile,AccountAutoReconcile,AccountAutoReconcile
+renew items for patrons,renew items for patrons,renew items for patrons
+RESTAPIRenewalBranch,RESTAPIRenewalBranch,RESTAPIRenewalBranch
+checkouts via the OPAC,checkouts via the OPAC,checkouts via the OPAC
+cleanup\_database.pl cronjob,cleanup\_database.pl cronjob,cleanup\_database.pl cronjob
+private list share invites,private list share invites,private list share invites
+misc/cronjobs/cleanup\_database.pl cronjob,misc/cronjobs/cleanup\_database.pl cronjob,misc/cronjobs/cleanup\_database.pl cronjob
+create a patron,create a patron,create a patron
+holds history on the OPAC,holds history on the OPAC,holds history on the OPAC
+patrons categories,patrons categories,patrons categories
+StoreLastBorrower,StoreLastBorrower,StoreLastBorrower
+circulation history,circulation history,circulation history
+chosen to never have their reading history kept,chosen to never have their reading history kept,chosen to never have their reading history kept
+anonymize circulation histories,anonymize circulation histories,anonymize circulation histories
+Libraries settings,Libraries settings,Libraries settings
+self registration,self registration,self registration
+circulation rights,circulation rights,circulation rights
+patron registration form in the OPAC,patron registration form in the OPAC,patron registration form in the OPAC
+cleanup\_database.pl script,cleanup\_database.pl script,cleanup\_database.pl script
+PatronSelfRegistrationExpireTemporaryAccountsDelay,PatronSelfRegistrationExpireTemporaryAccountsDelay,PatronSelfRegistrationExpireTemporaryAccountsDelay
+circulation rights,circulation rights,circulation rights
+cleanup\_database cron job,cleanup\_database cron job,cleanup\_database cron job
+codes,codes,codes
+self registration,self registration,self registration
+PatronSelfRegistrationConfirmEmail,PatronSelfRegistrationConfirmEmail,PatronSelfRegistrationConfirmEmail
+purchase suggestions,purchase suggestions,purchase suggestions
+anonymous suggestions,anonymous suggestions,anonymous suggestions
+making suggestions in the name of the patron in the staff interface,making suggestions in the name of the patron in the staff interface,making suggestions in the name of the patron in the staff interface
+allowing patrons to make purchase suggestions,allowing patrons to make purchase suggestions,allowing patrons to make purchase suggestions
+make purchase suggestions from the OPAC,make purchase suggestions from the OPAC,make purchase suggestions from the OPAC
+purchase suggestion,purchase suggestion,purchase suggestion
+AnonSuggestions,AnonSuggestions,AnonSuggestions
+E-Resource management (ERM) module,E-Resource management (ERM) module,E-Resource management (ERM) module
+erm permission,erm permission,erm permission
+ERMProviderEbscoCustomerID,ERMProviderEbscoCustomerID,ERMProviderEbscoCustomerID
+eHoldings,eHoldings,eHoldings
+ERMProviderEbscoApiKey,ERMProviderEbscoApiKey,ERMProviderEbscoApiKey
+Log viewer tool,Log viewer tool,Log viewer tool
+logged action,logged action,logged action
+log viewer tool,log viewer tool,log viewer tool
+DumpTemplateVarsIntranet,DumpTemplateVarsIntranet,DumpTemplateVarsIntranet
+DumpTemplateVarsOpac,DumpTemplateVarsOpac,DumpTemplateVarsOpac
+new basket was created,new basket was created,new basket was created
+basket was closed,basket was closed,basket was closed
+fund was created,fund was created,fund was created
+order was added to a basket,order was added to a basket,order was added to a basket
+basket was edited,basket was edited,basket was edited
+order was received,order was received,order was received
+authority record,authority record,authority record
+new patron was added,new patron was added,new patron was added
+patron's account was deleted,patron's account was deleted,patron's account was deleted
+patron's account was edited,patron's account was edited,patron's account was edited
+patron's membership was renewed,patron's membership was renewed,patron's membership was renewed
+late order,late order,late order
+late serial issue,late serial issue,late serial issue
+cron job,cron job,cron job
+charges,charges,charges
+payment was voided,payment was voided,payment was voided
+holds,holds,holds
+confirmed and put aside to await pickup,confirmed and put aside to await pickup,confirmed and put aside to await pickup
+ILL requests,ILL requests,ILL requests
+an item is checked out,an item is checked out,an item is checked out
+news item,news item,news item
+notice or slip templates,notice or slip templates,notice or slip templates
+new notice or slip template was created,new notice or slip template was created,new notice or slip template was created
+checkout is renewed,checkout is renewed,checkout is renewed
+reports,reports,reports
+item is checked in,item is checked in,item is checked in
+serial subscription was created,serial subscription was created,serial subscription was created
+serial subscription was edited,serial subscription was edited,serial subscription was edited
+serial subscription was renewed,serial subscription was renewed,serial subscription was renewed
+Mana KB configuration,Mana KB configuration,Mana KB configuration
+OAI-PMH:AutoUpdateSets,OAI-PMH:AutoUpdateSets,OAI-PMH:AutoUpdateSets
+sample conf file,sample conf file,sample conf file
+OpacRenewalBranch,OpacRenewalBranch,OpacRenewalBranch
+IntranetAddMastheadLibraryPulldown,IntranetAddMastheadLibraryPulldown,IntranetAddMastheadLibraryPulldown
+library group,library group,library group
+return the results,return the results,return the results
+EnableSearchHistory,EnableSearchHistory,EnableSearchHistory
+search history,search history,search history
+expandedSearchOption,expandedSearchOption,expandedSearchOption
+LOC authorized values,LOC authorized values,LOC authorized values
+item location field,item location field,item location field
+OpacAdvancedSearchTypes,OpacAdvancedSearchTypes,OpacAdvancedSearchTypes
+OpacAdvSearchMoreOptions,OpacAdvSearchMoreOptions,OpacAdvSearchMoreOptions
+OpacAdvSearchOptions,OpacAdvSearchOptions,OpacAdvSearchOptions
+AdvancedSearchLanguages,AdvancedSearchLanguages,AdvancedSearchLanguages
+SearchLimitLibrary,SearchLimitLibrary,SearchLimitLibrary
+defaultSortField and defaultSortOrder,defaultSortField and defaultSortOrder,defaultSortField and defaultSortOrder
+item search fields,item search fields,item search fields
+batch item deletion tool,batch item deletion tool,batch item deletion tool
+RedirectToSoleResult,RedirectToSoleResult,RedirectToSoleResult
+save the search as a search filter,save the search as a search filter,save the search as a search filter
+StaffHighlightedWords,StaffHighlightedWords,StaffHighlightedWords
+Restricted,Restricted,Restricted
+Lost,Lost,Lost
+Withdrawn,Withdrawn,Withdrawn
+Damaged,Damaged,Damaged
+Not for loan,Not for loan,Not for loan
+MaxSearchResultsItemsPerRecordStatusCheck,MaxSearchResultsItemsPerRecordStatusCheck,MaxSearchResultsItemsPerRecordStatusCheck
+maxItemsInSearchResults,maxItemsInSearchResults,maxItemsInSearchResults
+Enhanced content system preferences,Enhanced content system preferences,Enhanced content system preferences
+DisplayLibraryFacets,DisplayLibraryFacets,DisplayLibraryFacets
+search engine configuration page,search engine configuration page,search engine configuration page
+maxRecordsForFacets,maxRecordsForFacets,maxRecordsForFacets
+displayFacetCount,displayFacetCount,displayFacetCount
+FacetMaxCount,FacetMaxCount,FacetMaxCount
+FacetLabelTruncationLength,FacetLabelTruncationLength,FacetLabelTruncationLength
+FacetOrder,FacetOrder,FacetOrder
+UNIMARCAuthorsFacetsSeparator,UNIMARCAuthorsFacetsSeparator,UNIMARCAuthorsFacetsSeparator
+search filters,search filters,search filters
+BrowseResultSelection,BrowseResultSelection,BrowseResultSelection
+sorting section,sorting section,sorting section
+'Holds' tab,'Holds' tab,'Holds' tab
+'Article requests' tab,'Article requests' tab,'Article requests' tab
+basic search,basic search,basic search
+advanced search,advanced search,advanced search
+search filter administration section,search filter administration section,search filter administration section
+search filter administration page,search filter administration page,search filter administration page
+Koha Indexing Chart,Koha Indexing Chart,Koha Indexing Chart
+manage\_sysprefs permission,manage\_sysprefs permission,manage\_sysprefs permission
+currencies and exchange rates,currencies and exchange rates,currencies and exchange rates
+OpacHighlightedWords,OpacHighlightedWords,OpacHighlightedWords
+inventory tool,inventory tool,inventory tool
+Batch item modification,Batch item modification,Batch item modification
+Batch item deletion,Batch item deletion,Batch item deletion
+batch item delete tool,batch item delete tool,batch item delete tool
+MaxItemsToProcessForBatchMod,MaxItemsToProcessForBatchMod,MaxItemsToProcessForBatchMod
+Patron card creator,Patron card creator,Patron card creator
+patron card creator tool,patron card creator tool,patron card creator tool
+reports module,reports module,reports module
+upload tool,upload tool,upload tool
+receiving a new issue,receiving a new issue,receiving a new issue
+creating the serial subscription,creating the serial subscription,creating the serial subscription
+creating or editing serial subscriptions,creating or editing serial subscriptions,creating or editing serial subscriptions
+purchase suggestions page in the acquisitions module,purchase suggestions page in the acquisitions module,purchase suggestions page in the acquisitions module
+clicking the 'renew' option on a serial subscription,clicking the 'renew' option on a serial subscription,clicking the 'renew' option on a serial subscription
+routing list feature,routing list feature,routing list feature
+routing list information,routing list information,routing list information
+sending late serial issues claims,sending late serial issues claims,sending late serial issues claims
+serials module,serials module,serials module
+batch checkout,batch checkout,batch checkout
+BatchCheckoutsValidCategories,BatchCheckoutsValidCategories,BatchCheckoutsValidCategories
+SCOBatchCheckoutsValidCategories,SCOBatchCheckoutsValidCategories,SCOBatchCheckoutsValidCategories
+BatchCheckouts,BatchCheckouts,BatchCheckouts
+TransfersBlockCirc,TransfersBlockCirc,TransfersBlockCirc
+CalculateFinesOnReturn,CalculateFinesOnReturn,CalculateFinesOnReturn
+SpecifyReturnDate,SpecifyReturnDate,SpecifyReturnDate
+fines cron job,fines cron job,fines cron job
+finesMode,finesMode,finesMode
+circulation page,circulation page,circulation page
+HoldsAutoFill,HoldsAutoFill,HoldsAutoFill
+NOT\_LOAN authorized values,NOT\_LOAN authorized values,NOT\_LOAN authorized values
+AutomaticConfirmTransfer,AutomaticConfirmTransfer,AutomaticConfirmTransfer
+NOT_LOAN authorized value,NOT_LOAN authorized value,NOT_LOAN authorized value
+cart\_to\_shelf cron job,cart\_to\_shelf cron job,cart\_to\_shelf cron job
+AgeRestrictionOverride,AgeRestrictionOverride,AgeRestrictionOverride
+Koha to MARC Mapping,Koha to MARC Mapping,Koha to MARC Mapping
+Koha to MARC Mapping,Koha to MARC Mapping,Koha to MARC Mapping
+AgeRestrictionMarker,AgeRestrictionMarker,AgeRestrictionMarker
+circulation and fines policies,circulation and fines policies,circulation and fines policies
+return policy rule,return policy rule,return policy rule
+DefaultLongOverdueSkipPatronCategories,DefaultLongOverdueSkipPatronCategories,DefaultLongOverdueSkipPatronCategories
+DefaultLongOverdueLostValue and DefaultLongOverdueDays,DefaultLongOverdueLostValue and DefaultLongOverdueDays,DefaultLongOverdueLostValue and DefaultLongOverdueDays
+longoverdue cron job,longoverdue cron job,longoverdue cron job
+DefaultLongOverduePatronCategories,DefaultLongOverduePatronCategories,DefaultLongOverduePatronCategories
+longoverdue cron,longoverdue cron,longoverdue cron
+circulation and fines policies,circulation and fines policies,circulation and fines policies
+checking out,checking out,checking out
+currency,currency,currency
+creating or editing a debit type,creating or editing a debit type,creating or editing a debit type
+AllFinesNeedOverride,AllFinesNeedOverride,AllFinesNeedOverride
+AllowFineOverride,AllowFineOverride,AllowFineOverride
+notice template,notice template,notice template
+overdue\_notices.pl cronjob,overdue\_notices.pl cronjob,overdue\_notices.pl cronjob
+RenewalPeriodBase,RenewalPeriodBase,RenewalPeriodBase
+new notice,new notice,new notice
+transferred between library branches,transferred between library branches,transferred between library branches
+Transfers to receive,Transfers to receive,Transfers to receive
+Calendar,Calendar,Calendar
+Transport cost matrix,Transport cost matrix,Transport cost matrix
+curbside pickup module,curbside pickup module,curbside pickup module
+fines cron job,fines cron job,fines cron job
+default lost item fee refund on return policy,default lost item fee refund on return policy,default lost item fee refund on return policy
+placing a hold in the staff interface,placing a hold in the staff interface,placing a hold in the staff interface
+placing a hold in the OPAC,placing a hold in the OPAC,placing a hold in the OPAC
+automatic check-in,automatic check-in,automatic check-in
+automatic_checkin.pl cronjob,automatic_checkin.pl cronjob,automatic_checkin.pl cronjob
+Unsuspend Holds,Unsuspend Holds,Unsuspend Holds
+'Holds to pull' list,'Holds to pull' list,'Holds to pull' list
+UpdateItemWhenLostFromHoldList,UpdateItemWhenLostFromHoldList,UpdateItemWhenLostFromHoldList
+AllowHoldDateInFuture,AllowHoldDateInFuture,AllowHoldDateInFuture
+placing holds in the staff interface,placing holds in the staff interface,placing holds in the staff interface
+placing multiple item-level holds on one record,placing multiple item-level holds on one record,placing multiple item-level holds on one record
+notice,notice,notice
+process\_message\_queue.pl cron job,process\_message\_queue.pl cron job,process\_message\_queue.pl cron job
+EnableItemGroups,EnableItemGroups,EnableItemGroups
+cataloging preferences,cataloging preferences,cataloging preferences
+Expire Holds cron job,Expire Holds cron job,Expire Holds cron job
+check in the item in order to trigger the next hold,check in the item in order to trigger the next hold,check in the item in order to trigger the next hold
+they opted to receive 'Hold filled' notices,they opted to receive 'Hold filled' notices,they opted to receive 'Hold filled' notices
+ExpireReservesAutoFillEmail,ExpireReservesAutoFillEmail,ExpireReservesAutoFillEmail
+ExpireReservesAutoFill,ExpireReservesAutoFill,ExpireReservesAutoFill
+hold ratios report,hold ratios report,hold ratios report
+Default holds policy by item type,Default holds policy by item type,Default holds policy by item type
+"LocalHoldsPriority, LocalHoldsPriorityPatronControl and LocalHoldsPriorityItemControl","LocalHoldsPriority, LocalHoldsPriorityPatronControl and LocalHoldsPriorityItemControl","LocalHoldsPriority, LocalHoldsPriorityPatronControl and LocalHoldsPriorityItemControl"
+"LocalHoldsPriority, LocalHoldsPriorityPatronControl, LocalHoldsPriorityItemControl","LocalHoldsPriority, LocalHoldsPriorityPatronControl, LocalHoldsPriorityItemControl","LocalHoldsPriority, LocalHoldsPriorityPatronControl, LocalHoldsPriorityItemControl"
+HoldsSplitQueue,HoldsSplitQueue,HoldsSplitQueue
+HoldsQueuePrioritizeBranch,HoldsQueuePrioritizeBranch,HoldsQueuePrioritizeBranch
+patron's account,patron's account,patron's account
+OPACHoldsIfAvailableAtPickup,OPACHoldsIfAvailableAtPickup,OPACHoldsIfAvailableAtPickup
+build\_holds\_queue.pl cronjob,build\_holds\_queue.pl cronjob,build\_holds\_queue.pl cronjob
+Koha holiday calendar,Koha holiday calendar,Koha holiday calendar
+Holds Awaiting Pickup,Holds Awaiting Pickup,Holds Awaiting Pickup
+Holds Queue report,Holds Queue report,Holds Queue report
+a cron job,a cron job,a cron job
+Transport Cost Matrix,Transport Cost Matrix,Transport Cost Matrix
+LOST authorized value category,LOST authorized value category,LOST authorized value category
+WITHDRAWN authorized value category,WITHDRAWN authorized value category,WITHDRAWN authorized value category
+DAMAGED authorized value category,DAMAGED authorized value category,DAMAGED authorized value category
+CCODE authorized value category,CCODE authorized value category,CCODE authorized value category
+CanMarkHoldsToPullAsLost,CanMarkHoldsToPullAsLost,CanMarkHoldsToPullAsLost
+Firefox plugin,Firefox plugin,Firefox plugin
+Windows tool,Windows tool,Windows tool
+offline circulation,offline circulation,offline circulation
+Firefox plugin,Firefox plugin,Firefox plugin
+desktop application,desktop application,desktop application
+ISSUEQSLIP,ISSUEQSLIP,ISSUEQSLIP
+ISSUESLIP,ISSUESLIP,ISSUESLIP
+export patrons' checkouts,export patrons' checkouts,export patrons' checkouts
+exporting the patron's current checkouts,exporting the patron's current checkouts,exporting the patron's current checkouts
+ExportCircHistory,ExportCircHistory,ExportCircHistory
+Holds to Pull,Holds to Pull,Holds to Pull
+checkout tab,checkout tab,checkout tab
+checkout,checkout,checkout
+Checkout tab.,Checkout tab.,Checkout tab.
+LOST authorized value,LOST authorized value,LOST authorized value
+LOST authorized values category,LOST authorized values category,LOST authorized values category
+NOT\_LOAN authorized value,NOT\_LOAN authorized value,NOT\_LOAN authorized value
+NOT\_LOAN authorized values category,NOT\_LOAN authorized values category,NOT\_LOAN authorized values category
+DefaultLongOverdueLostValue,DefaultLongOverdueLostValue,DefaultLongOverdueLostValue
+longoverdue cron job,longoverdue cron job,longoverdue cron job
+LOST values,LOST values,LOST values
+DefaultLongOverdueLostValue/DefaultLongOverdueDays,DefaultLongOverdueLostValue/DefaultLongOverdueDays,DefaultLongOverdueLostValue/DefaultLongOverdueDays
+long overdue cron job,long overdue cron job,long overdue cron job
+claims returned,claims returned,claims returned
+'Holds to pull','Holds to pull','Holds to pull'
+items tab,items tab,items tab
+longoverdue cronjob,longoverdue cronjob,longoverdue cronjob
+cataloging an item,cataloging an item,cataloging an item
+return claim,return claim,return claim
+receiving a payment,receiving a payment,receiving a payment
+pays for the item,pays for the item,pays for the item
+pays,pays,pays
+written off,written off,written off
+writes off,writes off,writes off
+Overdue Notice/Status Triggers,Overdue Notice/Status Triggers,Overdue Notice/Status Triggers
+restriction,restriction,restriction
+adding a manual restriction to a patron,adding a manual restriction to a patron,adding a manual restriction to a patron
+misc/cronjobs/automatic_renewals.pl,misc/cronjobs/automatic_renewals.pl,misc/cronjobs/automatic_renewals.pl
+return claims,return claims,return claims
+RETURN\_CLAIM\_RESOLUTION authorized value,RETURN\_CLAIM\_RESOLUTION authorized value,RETURN\_CLAIM\_RESOLUTION authorized value
+RETURN\_CLAIM\_RESOLUTION authorized value category,RETURN\_CLAIM\_RESOLUTION authorized value category,RETURN\_CLAIM\_RESOLUTION authorized value category
+resolve return claims,resolve return claims,resolve return claims
+return claims feature,return claims feature,return claims feature
+resolved return claims,resolved return claims,resolved return claims
+cleanup\_database.pl cron job,cleanup\_database.pl cron job,cleanup\_database.pl cron job
+self\_checkout\_module permission,self\_checkout\_module permission,self\_checkout\_module permission
+WebBasedSelfCheck,WebBasedSelfCheck,WebBasedSelfCheck
+patron record,patron record,patron record
+AutoSelfCheckAllowed,AutoSelfCheckAllowed,AutoSelfCheckAllowed
+SelfCheckAllowByIPRanges,SelfCheckAllowByIPRanges,SelfCheckAllowByIPRanges
+self check-out,self check-out,self check-out
+stock rotation module,stock rotation module,stock rotation module
+manage\_patron\_lists permission,manage\_patron\_lists permission,manage\_patron\_lists permission
+modifying patrons in batches,modifying patrons in batches,modifying patrons in batches
+deleting patrons in batches,deleting patrons in batches,deleting patrons in batches
+merging patrons,merging patrons,merging patrons
+printing patron card batches,printing patron card batches,printing patron card batches
+patron card creator,patron card creator,patron card creator
+batch patron modification tool,batch patron modification tool,batch patron modification tool
+batch patron deletion tool,batch patron deletion tool,batch patron deletion tool
+patron lists tab in the patron record,patron lists tab in the patron record,patron lists tab in the patron record
+clubs permission,clubs permission,clubs permission
+edit\_templates permission,edit\_templates permission,edit\_templates permission
+they enroll in a club,they enroll in a club,they enroll in a club
+edit\_clubs permission,edit\_clubs permission,edit\_clubs permission
+'Club fields' in the template,'Club fields' in the template,'Club fields' in the template
+enroll permission,enroll permission,enroll permission
+'Clubs' tab,'Clubs' tab,'Clubs' tab
+'Enrollment fields','Enrollment fields','Enrollment fields'
+'Your summary' section,'Your summary' section,'Your summary' section
+create an SQL report,create an SQL report,create an SQL report
+placing the hold,placing the hold,placing the hold
+moderate\_comments permission,moderate\_comments permission,moderate\_comments permission
+import\_patrons permission,import\_patrons permission,import\_patrons permission
+BorrowerMandatoryField,BorrowerMandatoryField,BorrowerMandatoryField
+dateformat system preference,dateformat system preference,dateformat system preference
+edit\_notices permission,edit\_notices permission,edit\_notices permission
+SlipCSS,SlipCSS,SlipCSS
+NoticeCSS,NoticeCSS,NoticeCSS
+claiming late orders,claiming late orders,claiming late orders
+claiming late serial issues,claiming late serial issues,claiming late serial issues
+ILL request process,ILL request process,ILL request process
+ordering acquisitions,ordering acquisitions,ordering acquisitions
+patron accounts,patron accounts,patron accounts
+sending a custom email,sending a custom email,sending a custom email
+preservation process,preservation process,preservation process
+purchase suggestion process,purchase suggestion process,purchase suggestion process
+custom report results,custom report results,custom report results
+triggers,triggers,triggers
+PhoneNotification,PhoneNotification,PhoneNotification
+Overdue notice markup,Overdue notice markup,Overdue notice markup
+patron file,patron file,patron file
+two-factor authentication,two-factor authentication,two-factor authentication
+purchase suggestion is accepted,purchase suggestion is accepted,purchase suggestion is accepted
+payment transaction,payment transaction,payment transaction
+UseEmailReceipts,UseEmailReceipts,UseEmailReceipts
+writeoff transaction,writeoff transaction,writeoff transaction
+claiming orders,claiming orders,claiming orders
+aquisitions module,aquisitions module,aquisitions module
+late orders page,late orders page,late orders page
+vendor contact,vendor contact,vendor contact
+basket summary page,basket summary page,basket summary page
+inform patrons on receiving orders,inform patrons on receiving orders,inform patrons on receiving orders
+article request has been made,article request has been made,article request has been made
+messaging preferences,messaging preferences,messaging preferences
+made a purchase suggestion,made a purchase suggestion,made a purchase suggestion
+order created from the suggestion,order created from the suggestion,order created from the suggestion
+received,received,received
+sending the cart by email from the OPAC,sending the cart by email from the OPAC,sending the cart by email from the OPAC
+sending the cart by email from the staff interface,sending the cart by email from the staff interface,sending the cart by email from the staff interface
+Messaging tab,Messaging tab,Messaging tab
+checkout note,checkout note,checkout note
+checkouts list on the OPAC,checkouts list on the OPAC,checkouts list on the OPAC
+'Item due' notice,'Item due' notice,'Item due' notice
+holds\_reminder.pl,holds\_reminder.pl,holds\_reminder.pl
+'Hold filled' notice,'Hold filled' notice,'Hold filled' notice
+emailLibrarianWhenHoldIsPlaced,emailLibrarianWhenHoldIsPlaced,emailLibrarianWhenHoldIsPlaced
+EmailPatronWhenHoldIsPlaced,EmailPatronWhenHoldIsPlaced,EmailPatronWhenHoldIsPlaced
+requests to partner libraries,requests to partner libraries,requests to partner libraries
+inter-library loan,inter-library loan,inter-library loan
+cancels their inter-library loan request,cancels their inter-library loan request,cancels their inter-library loan request
+modifies their inter-library loan request,modifies their inter-library loan request,modifies their inter-library loan request
+their inter-library loan request has been updated,their inter-library loan request has been updated,their inter-library loan request has been updated
+sending a list by email from the OPAC,sending a list by email from the OPAC,sending a list by email from the OPAC
+sending a list by email from the staff interface,sending a list by email from the staff interface,sending a list by email from the staff interface
+MembershipExpiryDaysNotice,MembershipExpiryDaysNotice,MembershipExpiryDaysNotice
+related cron job,related cron job,related cron job
+membership\_expiry.pl cronjob,membership\_expiry.pl cronjob,membership\_expiry.pl cronjob
+a curbside pickup is scheduled,a curbside pickup is scheduled,a curbside pickup is scheduled
+curbside pickup module must be enabled,curbside pickup module must be enabled,curbside pickup module must be enabled
+EmailPurchaseSuggestions,EmailPurchaseSuggestions,EmailPurchaseSuggestions
+assigned as manager of a suggestion,assigned as manager of a suggestion,assigned as manager of a suggestion
+Overdue notice/status triggers,Overdue notice/status triggers,Overdue notice/status triggers
+patron registers through the OPAC,patron registers through the OPAC,patron registers through the OPAC
+patron who registered through the OPAC,patron who registered through the OPAC,patron who registered through the OPAC
+patron who made a suggestion,patron who made a suggestion,patron who made a suggestion
+'from a suggestion' option is used to create an order from it,'from a suggestion' option is used to create an order from it,'from a suggestion' option is used to create an order from it
+a patron requests a new password from the OPAC,a patron requests a new password from the OPAC,a patron requests a new password from the OPAC
+requested a recall,requested a recall,requested a recall
+ready for them to pick up,ready for them to pick up,ready for them to pick up
+'Advanced notice','Advanced notice','Advanced notice'
+'Advanced notice' digest,'Advanced notice' digest,'Advanced notice' digest
+items in a train,items in a train,items in a train
+reports a problem on the OPAC,reports a problem on the OPAC,reports a problem on the OPAC
+patron's purchase suggestion is rejected,patron's purchase suggestion is rejected,patron's purchase suggestion is rejected
+RenewalSendNotice,RenewalSendNotice,RenewalSendNotice
+has been recalled,has been recalled,has been recalled
+adding or editing a subscription,adding or editing a subscription,adding or editing a subscription
+detail view in the OPAC,detail view in the OPAC,detail view in the OPAC
+stock rotation,stock rotation,stock rotation
+stockrotation.pl,stockrotation.pl,stockrotation.pl
+password reset email,password reset email,password reset email
+report a concern through the staff interface,report a concern through the staff interface,report a concern through the staff interface
+report a concern through the OPAC,report a concern through the OPAC,report a concern through the OPAC
+catalog concern,catalog concern,catalog concern
+a concern was reported about a bibliographic record,a concern was reported about a bibliographic record,a concern was reported about a bibliographic record
+the concern is marked as resolved with the 'Notify' flag,the concern is marked as resolved with the 'Notify' flag,the concern is marked as resolved with the 'Notify' flag
+the concern is updated with the 'Notify' flag,the concern is updated with the 'Notify' flag,the concern is updated with the 'Notify' flag
+notice\_unprocessed\_suggestions,notice\_unprocessed\_suggestions,notice\_unprocessed\_suggestions
+AutoEmailNewUser,AutoEmailNewUser,AutoEmailNewUser
+patron's accounting tab,patron's accounting tab,patron's accounting tab
+paying or writing off a charge,paying or writing off a charge,paying or writing off a charge
+FinePaymentAutoPopup,FinePaymentAutoPopup,FinePaymentAutoPopup
+credit type code,credit type code,credit type code
+debit type code,debit type code,debit type code
+'Print' button,'Print' button,'Print' button
+managing article requests from the staff interface,managing article requests from the staff interface,managing article requests from the staff interface
+Print checkin slip,Print checkin slip,Print checkin slip
+Check in page,Check in page,Check in page
+print the quick slip in circulation,print the quick slip in circulation,print the quick slip in circulation
+print a full slip in circulation,print a full slip in circulation,print a full slip in circulation
+a hold is confirmed and set to waiting,a hold is confirmed and set to waiting,a hold is confirmed and set to waiting
+'print' menu in the patron account,'print' menu in the patron account,'print' menu in the patron account
+receiving the recall,receiving the recall,receiving the recall
+edit\_notice\_status\_triggers permission,edit\_notice\_status\_triggers permission,edit\_notice\_status\_triggers permission
+Notices & slips,Notices & slips,Notices & slips
+set that patron category,set that patron category,set that patron category
+OverdueNoticeCalendar,OverdueNoticeCalendar,OverdueNoticeCalendar
+holiday calendar,holiday calendar,holiday calendar
+AutoRemoveOverduesRestrictions,AutoRemoveOverduesRestrictions,AutoRemoveOverduesRestrictions
+i-tiva Talking Tech service,i-tiva Talking Tech service,i-tiva Talking Tech service
+label\_creator permission,label\_creator permission,label\_creator permission
+patron image,patron image,patron image
+manage images,manage images,manage images
+create a profile,create a profile,create a profile
+template,template,template
+template edit form,template edit form,template edit form
+custom report,custom report,custom report
+option to send the report results,option to send the report results,option to send the report results
+patron card layouts,patron card layouts,patron card layouts
+ImageLimit,ImageLimit,ImageLimit
+delete\_anonymize\_patrons permission,delete\_anonymize\_patrons permission,delete\_anonymize\_patrons permission
+patron list,patron list,patron list
+edit\_patrons permission,edit\_patrons permission,edit\_patrons permission
+list of patrons,list of patrons,list of patrons
+batch\_extend\_due\_dates permission,batch\_extend\_due\_dates permission,batch\_extend\_due\_dates permission
+moderate\_tags permission,moderate\_tags permission,moderate\_tags permission
+tagging system preferences,tagging system preferences,tagging system preferences
+the dictionary,the dictionary,the dictionary
+batch\_upload\_patron\_images permission,batch\_upload\_patron\_images permission,batch\_upload\_patron\_images permission
+allowing patron images,allowing patron images,allowing patron images
+patron cards,patron cards,patron cards
+rotating\_collections permission,rotating\_collections permission,rotating\_collections permission
+edit\_calendar permission,edit\_calendar permission,edit\_calendar permission
+finescalendar,finescalendar,finescalendar
+manage\_csv\_profiles permission,manage\_csv\_profiles permission,manage\_csv\_profiles permission
+baskets,baskets,baskets
+late orders,late orders,late orders
+late issues,late issues,late issues
+list of lost items,list of lost items,list of lost items
+cart or list,cart or list,cart or list
+serials,serials,serials
+export late issues of serial subscriptions,export late issues of serial subscriptions,export late issues of serial subscriptions
+export late orders in the acquisitions module,export late orders in the acquisitions module,export late orders in the acquisitions module
+download records from acquisitions baskets,download records from acquisitions baskets,download records from acquisitions baskets
+lost items report,lost items report,lost items report
+Using Template Toolkit in MARC CSV profile,Using Template Toolkit in MARC CSV profile,Using Template Toolkit in MARC CSV profile
+acquisitions baskets,acquisitions baskets,acquisitions baskets
+view\_system\_logs permission,view\_system\_logs permission,view\_system\_logs permission
+system preferences,system preferences,system preferences
+logs preferences,logs preferences,logs preferences
+edit\_additional\_contents permission,edit\_additional\_contents permission,edit\_additional\_contents permission
+OpacNewsLibrarySelect,OpacNewsLibrarySelect,OpacNewsLibrarySelect
+Notices & slips tool,Notices & slips tool,Notices & slips tool
+installation,installation,installation
+AdditionalContentsEditor,AdditionalContentsEditor,AdditionalContentsEditor
+NewsAuthorDisplay,NewsAuthorDisplay,NewsAuthorDisplay
+display locations,display locations,display locations
+Quote of the day,Quote of the day,Quote of the day
+reporting a concern in the OPAC,reporting a concern in the OPAC,reporting a concern in the OPAC
+reporting a concern in the staff interface,reporting a concern in the staff interface,reporting a concern in the staff interface
+creating an interlibrary loan request on the OPAC,creating an interlibrary loan request on the OPAC,creating an interlibrary loan request on the OPAC
+ILLModuleCopyrightClearance,ILLModuleCopyrightClearance,ILLModuleCopyrightClearance
+OpacMaintenanceNotice,OpacMaintenanceNotice,OpacMaintenanceNotice
+'your summary' tab,'your summary' tab,'your summary' tab
+list of facets,list of facets,list of facets
+OPACResultsSidebar,OPACResultsSidebar,OPACResultsSidebar
+purchase suggestion form on the OPAC,purchase suggestion form on the OPAC,purchase suggestion form on the OPAC
+OpacSuppression,OpacSuppression,OpacSuppression
+OpacSuppressionMessage,OpacSuppressionMessage,OpacSuppressionMessage
+creates a library account via the OPAC,creates a library account via the OPAC,creates a library account via the OPAC
+PatronSelfRegistrationAdditionalInstructions,PatronSelfRegistrationAdditionalInstructions,PatronSelfRegistrationAdditionalInstructions
+SCOMainUserBlock,SCOMainUserBlock,SCOMainUserBlock
+SelfCheckHelpMessage,SelfCheckHelpMessage,SelfCheckHelpMessage
+self check-in,self check-in,self check-in
+SelfCheckInMainUserBlock,SelfCheckInMainUserBlock,SelfCheckInMainUserBlock
+Authorities,Authorities,Authorities
+Cataloguing module,Cataloguing module,Cataloguing module
+Lists,Lists,Lists
+Patrons module,Patrons module,Patrons module
+news,news,news
+IntranetNav,IntranetNav,IntranetNav
+IntranetmainUserBlock,IntranetmainUserBlock,IntranetmainUserBlock
+schedule\_tasks permission,schedule\_tasks permission,schedule\_tasks permission
+edit\_quotes permission,edit\_quotes permission,edit\_quotes permission
+QuoteOfTheDay,QuoteOfTheDay,QuoteOfTheDay
+news block,news block,news block
+plugin administration page,plugin administration page,plugin administration page
+tool permission,tool permission,tool permission
+upload\_general\_files permission,upload\_general\_files permission,upload\_general\_files permission
+Cataloging form,Cataloging form,Cataloging form
+access\_files permission,access\_files permission,access\_files permission
+cashup permission,cashup permission,cashup permission
+library details,library details,library details
+register details,register details,register details
+cashups,cashups,cashups
+acquisitions system preferences,acquisitions system preferences,acquisitions system preferences
+acquisitions administration,acquisitions administration,acquisitions administration
+EDI accounts,EDI accounts,EDI accounts
+library EANs,library EANs,library EANs
+entered your vendors,entered your vendors,entered your vendors
+Budget/fund tracking,Budget/fund tracking,Budget/fund tracking
+vendors\_manage permission,vendors\_manage permission,vendors\_manage permission
+add values,add values,add values
+VENDOR\_TYPE authorized value category,VENDOR\_TYPE authorized value category,VENDOR\_TYPE authorized value category
+vendor search,vendor search,vendor search
+editing baskets section below,editing baskets section below,editing baskets section below
+acquisitions claims,acquisitions claims,acquisitions claims
+serials claims,serials claims,serials claims
+VENDOR\_INTERFACE\_TYPE authorized value category,VENDOR\_INTERFACE\_TYPE authorized value category,VENDOR\_INTERFACE\_TYPE authorized value category
+Currencies and exchange rates,Currencies and exchange rates,Currencies and exchange rates
+TaxRates,TaxRates,TaxRates
+placing an order,placing an order,placing an order
+late orders report,late orders report,late orders report
+create a new basket,create a new basket,create a new basket
+add a new contract,add a new contract,add a new contract
+edit the vendor information,edit the vendor information,edit the vendor information
+search for the vendor,search for the vendor,search for the vendor
+contracts\_manage permission,contracts\_manage permission,contracts\_manage permission
+searching for the vendor,searching for the vendor,searching for the vendor
+access the vendor page,access the vendor page,access the vendor page
+vendor page,vendor page,vendor page
+creating a basket,creating a basket,creating a basket
+issue\_manage permission,issue\_manage permission,issue\_manage permission
+VENDOR\_ISSUE\_TYPE authorized value category,VENDOR\_ISSUE\_TYPE authorized value category,VENDOR\_ISSUE\_TYPE authorized value category
+on the patron's behalf,on the patron's behalf,on the patron's behalf
+make purchase suggestions via the OPAC,make purchase suggestions via the OPAC,make purchase suggestions via the OPAC
+suggestions\_manage permission,suggestions\_manage permission,suggestions\_manage permission
+acquisitions permissions,acquisitions permissions,acquisitions permissions
+SuggestionsLog system preference,SuggestionsLog system preference,SuggestionsLog system preference
+From a purchase suggestion,From a purchase suggestion,From a purchase suggestion
+SUGGEST\_STATUS authorized values category,SUGGEST\_STATUS authorized values category,SUGGEST\_STATUS authorized values category
+patron's account in the OPAC,patron's account in the OPAC,patron's account in the OPAC
+email notice,email notice,email notice
+SUGGEST authorized value category,SUGGEST authorized value category,SUGGEST authorized value category
+ordering from a suggestion,ordering from a suggestion,ordering from a suggestion
+SUGGEST\_STATUS authorized values,SUGGEST\_STATUS authorized values,SUGGEST\_STATUS authorized values
+add corresponding notices,add corresponding notices,add corresponding notices
+SUGGEST\_FORMAT authorized value category,SUGGEST\_FORMAT authorized value category,SUGGEST\_FORMAT authorized value category
+NOTIFY\_MANAGER notice,NOTIFY\_MANAGER notice,NOTIFY\_MANAGER notice
+order this title from the suggestion,order this title from the suggestion,order this title from the suggestion
+notice\_unprocessed\_suggestions.pl cronjob,notice\_unprocessed\_suggestions.pl cronjob,notice\_unprocessed\_suggestions.pl cronjob
+TO\_PROCESS,TO\_PROCESS,TO\_PROCESS
+'Your purchase suggestions' section of the patron's file on the OPAC,'Your purchase suggestions' section of the patron's file on the OPAC,'Your purchase suggestions' section of the patron's file on the OPAC
+purge\_suggestions.pl cronjob,purge\_suggestions.pl cronjob,purge\_suggestions.pl cronjob
+search for the vendor or bookseller,search for the vendor or bookseller,search for the vendor or bookseller
+create a basket,create a basket,create a basket
+EANs,EANs,EANs
+order\_manage permission,order\_manage permission,order\_manage permission
+added contracts,added contracts,added contracts
+AcqCreateItem,AcqCreateItem,AcqCreateItem
+additional fields for order baskets,additional fields for order baskets,additional fields for order baskets
+patron notifications,patron notifications,patron notifications
+items,items,items
+accounting details,accounting details,accounting details
+managing purchase suggestions,managing purchase suggestions,managing purchase suggestions
+your purchase suggestions,your purchase suggestions,your purchase suggestions
+UseACQFrameworkForBiblioRecords,UseACQFrameworkForBiblioRecords,UseACQFrameworkForBiblioRecords
+MARC framework,MARC framework,MARC framework
+stage\_marc\_import permission,stage\_marc\_import permission,stage\_marc\_import permission
+Stage MARC records for import,Stage MARC records for import,Stage MARC records for import
+MarcFieldsToOrder,MarcFieldsToOrder,MarcFieldsToOrder
+staged,staged,staged
+permissions,permissions,permissions
+circulate\_remaining\_permissions permission,circulate\_remaining\_permissions permission,circulate\_remaining\_permissions permission
+add items to the order,add items to the order,add items to the order
+Acquisitions administration,Acquisitions administration,Acquisitions administration
+currencies,currencies,currencies
+Dealing with uncertain prices,Dealing with uncertain prices,Dealing with uncertain prices
+WhenLostChargeReplacementFee,WhenLostChargeReplacementFee,WhenLostChargeReplacementFee
+vendor information,vendor information,vendor information
+creating the fund,creating the fund,creating the fund
+additional fields for order lines,additional fields for order lines,additional fields for order lines
+AcquisitionDetails,AcquisitionDetails,AcquisitionDetails
+OPACAcquisitionDetails,OPACAcquisitionDetails,OPACAcquisitionDetails
+add orders to the basket,add orders to the basket,add orders to the basket
+closing the basket,closing the basket,closing the basket
+add it to a basket group,add it to a basket group,add it to a basket group
+receive its items,receive its items,receive its items
+CSV profiles tool,CSV profiles tool,CSV profiles tool
+vendor profile,vendor profile,vendor profile
+receive items,receive items,receive items
+BasketConfirmations,BasketConfirmations,BasketConfirmations
+group\_manage permission,group\_manage permission,group\_manage permission
+OrderPdfFormat,OrderPdfFormat,OrderPdfFormat
+1PageOrderPDFText,1PageOrderPDFText,1PageOrderPDFText
+Vendor search,Vendor search,Vendor search
+close the basket,close the basket,close the basket
+order\_receive permission,order\_receive permission,order\_receive permission
+creating your basket,creating your basket,creating your basket
+"'Cost, replacement price' subfield","'Cost, replacement price' subfield","'Cost, replacement price' subfield"
+"'Cost, normal purchase price' subfield","'Cost, normal purchase price' subfield","'Cost, normal purchase price' subfield"
+AcqItemSetSubfieldsWhenReceived,AcqItemSetSubfieldsWhenReceived,AcqItemSetSubfieldsWhenReceived
+needing to be notified when the order is received,needing to be notified when the order is received,needing to be notified when the order is received
+suggested the purchase,suggested the purchase,suggested the purchase
+basket page,basket page,basket page
+receiving page,receiving page,receiving page
+basket group,basket group,basket group
+'late order' calculations,'late order' calculations,'late order' calculations
+ORDER\_CANCELLATION\_REASON authorized values category,ORDER\_CANCELLATION\_REASON authorized values category,ORDER\_CANCELLATION\_REASON authorized values category
+CancelOrdersInClosedBaskets,CancelOrdersInClosedBaskets,CancelOrdersInClosedBaskets
+acquisition permissions,acquisition permissions,acquisition permissions
+edit\_invoices permission,edit\_invoices permission,edit\_invoices permission
+merge\_invoices permission,merge\_invoices permission,merge\_invoices permission
+reopen\_closed\_invoices permission,reopen\_closed\_invoices permission,reopen\_closed\_invoices permission
+delete\_invoices permission,delete\_invoices permission,delete\_invoices permission
+orders are received,orders are received,orders are received
+merge selected invoices,merge selected invoices,merge selected invoices
+receiving,receiving,receiving
+authorized values category,authorized values category,authorized values category
+AcqEnableFiles,AcqEnableFiles,AcqEnableFiles
+accounting details section of the order,accounting details section of the order,accounting details section of the order
+creating the vendor,creating the vendor,creating the vendor
+contact at the vendor's,contact at the vendor's,contact at the vendor's
+'Acquisition claim' (code ACQCLAIM),'Acquisition claim' (code ACQCLAIM),'Acquisition claim' (code ACQCLAIM)
+add different notices,add different notices,add different notices
+active funds,active funds,active funds
+CalculateFundValuesIncludingTax,CalculateFundValuesIncludingTax,CalculateFundValuesIncludingTax
+EDIFACT system preference,EDIFACT system preference,EDIFACT system preference
+library codes,library codes,library codes
+item type codes,item type codes,item type codes
+fund codes,fund codes,fund codes
+Create a vendor/bookseller/jobber record,Create a vendor/bookseller/jobber record,Create a vendor/bookseller/jobber record
+Acquisitions system preferences,Acquisitions system preferences,Acquisitions system preferences
+MARC order fields,MARC order fields,MARC order fields
+EDI Accounts,EDI Accounts,EDI Accounts
+Library EANs,Library EANs,Library EANs
+EDI cron,EDI cron,EDI cron
+ordering from a new file,ordering from a new file,ordering from a new file
+EDIFACT messages,EDIFACT messages,EDIFACT messages
+EDI cron job,EDI cron job,EDI cron job
+Sending the EDIFACT order,Sending the EDIFACT order,Sending the EDIFACT order
+EdifactInvoiceImport,EdifactInvoiceImport,EdifactInvoiceImport
+clean up database script,clean up database script,clean up database script
+add records in your basket,add records in your basket,add records in your basket
+receiving orders,receiving orders,receiving orders
+add the items,add the items,add the items
+uploading of invoice files,uploading of invoice files,uploading of invoice files
+library funds,library funds,library funds
+cancel orders,cancel orders,cancel orders
+claiming a late serial issue,claiming a late serial issue,claiming a late serial issue
+late acquisitions order,late acquisitions order,late acquisitions order
+libraries settings,libraries settings,libraries settings
+order from a new .mrc file,order from a new .mrc file,order from a new .mrc file
+order from a staged file,order from a staged file,order from a staged file
+purge_suggestions.pl,purge_suggestions.pl,purge_suggestions.pl
+ACQ bibliographic framework,ACQ bibliographic framework,ACQ bibliographic framework
+basket groups,basket groups,basket groups
+Author/Subject Cloud cron job,Author/Subject Cloud cron job,Author/Subject Cloud cron job
+OPACMainUserBlock,OPACMainUserBlock,OPACMainUserBlock
+the news tool,the news tool,the news tool
+update the frameworks,update the frameworks,update the frameworks
+IntranetUserJS,IntranetUserJS,IntranetUserJS
+their online account on the OPAC,their online account on the OPAC,their online account on the OPAC
+their information,their information,their information
+personal setting,personal setting,personal setting
+patron category setting,patron category setting,patron category setting
+searching for patrons,searching for patrons,searching for patrons
+Patron Attribute Types,Patron Attribute Types,Patron Attribute Types
+Circulation history tab,Circulation history tab,Circulation history tab
+Holds history tab,Holds history tab,Holds history tab
+IntranetReadingHistoryHolds,IntranetReadingHistoryHolds,IntranetReadingHistoryHolds
+Circulation history,Circulation history,Circulation history
+privacy page,privacy page,privacy page
+lists,lists,lists
+ListOwnerDesignated,ListOwnerDesignated,ListOwnerDesignated
+ListOwnershipUponPatronDeletion,ListOwnershipUponPatronDeletion,ListOwnershipUponPatronDeletion
+misc/cronjobs/cleanup_database.pl,misc/cronjobs/cleanup_database.pl,misc/cronjobs/cleanup_database.pl
+change their password,change their password,change their password
+circulation rules matrix,circulation rules matrix,circulation rules matrix
+one by one,one by one,one by one
+in bulk,in bulk,in bulk
+OPACpatronimages,OPACpatronimages,OPACpatronimages
+ShowPatronImageInWebBasedSelfCheck,ShowPatronImageInWebBasedSelfCheck,ShowPatronImageInWebBasedSelfCheck
+Statistics tab,Statistics tab,Statistics tab
+TrackLastPatronActivityTriggers,TrackLastPatronActivityTriggers,TrackLastPatronActivityTriggers
+TrackLastPatronActivity,TrackLastPatronActivity,TrackLastPatronActivity
+checks out an item to the patron,checks out an item to the patron,checks out an item to the patron
+the patron logs into the OPAC,the patron logs into the OPAC,the patron logs into the OPAC
+places an article request in the staff interface,places an article request in the staff interface,places an article request in the staff interface
+staff renews a checked out item for the patron,staff renews a checked out item for the patron,staff renews a checked out item for the patron
+the patron renews their checkout through their OPAC account,the patron renews their checkout through their OPAC account,the patron renews their checkout through their OPAC account
+staff checks in an item,staff checks in an item,staff checks in an item
+emitting a discharge from the patron record,emitting a discharge from the patron record,emitting a discharge from the patron record
+requesting a discharge from the OPAC,requesting a discharge from the OPAC,requesting a discharge from the OPAC
+renew their card,renew their card,renew their card
+Notices and slips,Notices and slips,Notices and slips
+membership expiry cron job,membership expiry cron job,membership expiry cron job
+notices and slips,notices and slips,notices and slips
+EmailFieldPrimary,EmailFieldPrimary,EmailFieldPrimary
+EmailFieldPrecedence,EmailFieldPrecedence,EmailFieldPrecedence
+welcome messages,welcome messages,welcome messages
+overdue notices,overdue notices,overdue notices
+advance notices,advance notices,advance notices
+EmailFieldSelection,EmailFieldSelection,EmailFieldSelection
+library's rules,library's rules,library's rules
+changing the password in the patron's account in the staff interface,changing the password in the patron's account in the staff interface,changing the password in the patron's account in the staff interface
+resetting the password from the OPAC,resetting the password from the OPAC,resetting the password from the OPAC
+changing the password through the OPAC,changing the password through the OPAC,changing the password through the OPAC
+Talking Tech i-tiva,Talking Tech i-tiva,Talking Tech i-tiva
+Talking Tech,Talking Tech,Talking Tech
+PatronQuickAddFields,PatronQuickAddFields,PatronQuickAddFields
+"""Quick add new patron""","""Quick add new patron""","""Quick add new patron"""
+patrons toolbar,patrons toolbar,patrons toolbar
+BorrowerUnwantedField,BorrowerUnwantedField,BorrowerUnwantedField
+"""Quick add new patron"" form","""Quick add new patron"" form","""Quick add new patron"" form"
+Consents,Consents,Consents
+PrivacyPolicy,PrivacyPolicy,PrivacyPolicy
+EnableExpiredPasswordReset,EnableExpiredPasswordReset,EnableExpiredPasswordReset
+patron attribute types,patron attribute types,patron attribute types
+Bcrypt_settings,Bcrypt_settings,Bcrypt_settings
+item type level,item type level,item type level
+SuggestionsLog,SuggestionsLog,SuggestionsLog
+import local title records into Koha from a KBART file,import local title records into Koha from a KBART file,import local title records into Koha from a KBART file
+record sources,record sources,record sources
+manage\_record\_sources,manage\_record\_sources,manage\_record\_sources
+edit\_locked\_records,edit\_locked\_records,edit\_locked\_records
+Patron attribute types,Patron attribute types,Patron attribute types
+adding a new patron attribute type,adding a new patron attribute type,adding a new patron attribute type
+catalog concerns feature,catalog concerns feature,catalog concerns feature
+TICKET\_STATUS authorized value category,TICKET\_STATUS authorized value category,TICKET\_STATUS authorized value category
+TICKET\_RESOLUTION authorized value category,TICKET\_RESOLUTION authorized value category,TICKET\_RESOLUTION authorized value category
+managing catalog concerns,managing catalog concerns,managing catalog concerns
+patron permissions,patron permissions,patron permissions
+custom email message feature,custom email message feature,custom email message feature
+search engine configuration,search engine configuration,search engine configuration
+add new facets,add new facets,add new facets
+serial numbering patterns,serial numbering patterns,serial numbering patterns
+AutoClaimReturnStatusOnCheckin,AutoClaimReturnStatusOnCheckin,AutoClaimReturnStatusOnCheckin
+AutoClaimReturnStatusOnCheckout,AutoClaimReturnStatusOnCheckout,AutoClaimReturnStatusOnCheckout
+ESPreventAutoTruncate,ESPreventAutoTruncate,ESPreventAutoTruncate
+DisplayMultiItemHolds,DisplayMultiItemHolds,DisplayMultiItemHolds
+HoldRatioDefault,HoldRatioDefault,HoldRatioDefault
+PurgeListShareInvitesOlderThan,PurgeListShareInvitesOlderThan,PurgeListShareInvitesOlderThan
+SMSSendAdditionalOptions,SMSSendAdditionalOptions,SMSSendAdditionalOptions
+WaitingNotifyAtCheckout,WaitingNotifyAtCheckout,WaitingNotifyAtCheckout
+Preservation module,Preservation module,Preservation module
+booking,booking,booking
+hold,hold,hold
+placed in the staff interface,placed in the staff interface,placed in the staff interface
+bookable,bookable,bookable
+adding,adding,adding
+editing a patron,editing a patron,editing a patron
+'Print' menu in a patron's account,'Print' menu in a patron's account,'Print' menu in a patron's account
+create a new slip,create a new slip,create a new slip
+running SQL reports,running SQL reports,running SQL reports
+record problems with vendors,record problems with vendors,record problems with vendors
+issue\_manage,issue\_manage,issue\_manage
+offline circulation module,offline circulation module,offline circulation module
+AllowOfflineCirculation,AllowOfflineCirculation,AllowOfflineCirculation
+subscription-level,subscription-level,subscription-level
+added to the OPAC,added to the OPAC,added to the OPAC
+OPAC self checkout,OPAC self checkout,OPAC self checkout
+label layouts,label layouts,label layouts
+return policies,return policies,return policies
+hold policies,hold policies,hold policies
+patron lists tab,patron lists tab,patron lists tab
+patron lists,patron lists,patron lists
+item search,item search,item search
+custom debit type,custom debit type,custom debit type
+view a list of the serials they've chosen to receive alerts for,view a list of the serials they've chosen to receive alerts for,view a list of the serials they've chosen to receive alerts for
+list of email alerts in the patron's account,list of email alerts in the patron's account,list of email alerts in the patron's account
+HTML customization tool,HTML customization tool,HTML customization tool
+AcquisitionsDefaultEmailAddress,AcquisitionsDefaultEmailAddress,AcquisitionsDefaultEmailAddress
+AcquisitionsDefaultReplyTo,AcquisitionsDefaultReplyTo,AcquisitionsDefaultReplyTo
+AutomaticCheckinAutoFill,AutomaticCheckinAutoFill,AutomaticCheckinAutoFill
+automatic check-in feature,automatic check-in feature,automatic check-in feature
+cancelling acquisitions orders,cancelling acquisitions orders,cancelling acquisitions orders
+ChildNeedsGuarantor,ChildNeedsGuarantor,ChildNeedsGuarantor
+DefaultAuthorityTab,DefaultAuthorityTab,DefaultAuthorityTab
+ForceLibrarySelection,ForceLibrarySelection,ForceLibrarySelection
+ILLModuleDisclaimerByType,ILLModuleDisclaimerByType,ILLModuleDisclaimerByType
+ILLPartnerCode,ILLPartnerCode,ILLPartnerCode
+interlibrary loan,interlibrary loan,interlibrary loan
+intranetreadinghistory,intranetreadinghistory,intranetreadinghistory
+LoadCheckoutsTableDelay,LoadCheckoutsTableDelay,LoadCheckoutsTableDelay
+check out to themselves via the OPAC,check out to themselves via the OPAC,check out to themselves via the OPAC
+OverdueNoticeFrom,OverdueNoticeFrom,OverdueNoticeFrom
+RedirectGuaranteeEmail,RedirectGuaranteeEmail,RedirectGuaranteeEmail
+SCOLoadCheckoutsByDefault,SCOLoadCheckoutsByDefault,SCOLoadCheckoutsByDefault
+SerialsDefaultEmailAddress,SerialsDefaultEmailAddress,SerialsDefaultEmailAddress
+SerialsDefaultReplyTo,SerialsDefaultReplyTo,SerialsDefaultReplyTo
+showLastPatronCount,showLastPatronCount,showLastPatronCount
+showLastPatron,showLastPatron,showLastPatron
+SIP2AddOpacMessagesToScreenMessage,SIP2AddOpacMessagesToScreenMessage,SIP2AddOpacMessagesToScreenMessage
+UpdateItemLostStatusWhenPaid,UpdateItemLostStatusWhenPaid,UpdateItemLostStatusWhenPaid
+UpdateItemLostStatusWhenWriteoff,UpdateItemLostStatusWhenWriteoff,UpdateItemLostStatusWhenWriteoff
+UpdateNotForLoanStatusOnCheckin,UpdateNotForLoanStatusOnCheckin,UpdateNotForLoanStatusOnCheckin
+runreport.pl,runreport.pl,runreport.pl
+writeoff_debts.pl,writeoff_debts.pl,writeoff_debts.pl
+borrowers-force-messaging-defaults.pl,borrowers-force-messaging-defaults.pl,borrowers-force-messaging-defaults.pl
+membership\_expiry.pl,membership\_expiry.pl,membership\_expiry.pl
+debar_patrons_with_fines.pl,debar_patrons_with_fines.pl,debar_patrons_with_fines.pl
+circulate permission,circulate permission,circulate permission
+UseLocationAsAQInSIP,UseLocationAsAQInSIP,UseLocationAsAQInSIP
+SIP2SortBinMapping,SIP2SortBinMapping,SIP2SortBinMapping
+credit type,credit type,credit type
+paying charges,paying charges,paying charges
+making a payment,making a payment,making a payment
+Global system preferences,Global system preferences,Global system preferences
+Basic parameters,Basic parameters,Basic parameters
+Patrons and circulation rules,Patrons and circulation rules,Patrons and circulation rules
+batch checkouts,batch checkouts,batch checkouts
+previousIssuesDefaultSortOrder,previousIssuesDefaultSortOrder,previousIssuesDefaultSortOrder
+fast cataloging,fast cataloging,fast cataloging
+itemBarcodeFallbackSearch,itemBarcodeFallbackSearch,itemBarcodeFallbackSearch
+AutoSwitchPatron,AutoSwitchPatron,AutoSwitchPatron
+SpecifyDueDate,SpecifyDueDate,SpecifyDueDate
+automatic\_renewals cron job,automatic\_renewals cron job,automatic\_renewals cron job
+decreaseLoanHighHolds,decreaseLoanHighHolds,decreaseLoanHighHolds
+checkout of items on site,checkout of items on site,checkout of items on site
+todaysIssuesDefaultSortOrder,todaysIssuesDefaultSortOrder,todaysIssuesDefaultSortOrder
+CircAutoPrintQuickSlip,CircAutoPrintQuickSlip,CircAutoPrintQuickSlip
+DisplayClearScreenButton,DisplayClearScreenButton,DisplayClearScreenButton
+Accounting tab,Accounting tab,Accounting tab
+adding a new notice,adding a new notice,adding a new notice
+printing a receipt,printing a receipt,printing a receipt
+bundle,bundle,bundle
+ExportRemoveFields,ExportRemoveFields,ExportRemoveFields
+record in-house use,record in-house use,record in-house use
+Overdue/Notice Status Triggers,Overdue/Notice Status Triggers,Overdue/Notice Status Triggers
+force\_checkout permission,force\_checkout permission,force\_checkout permission
+superlibrarian,superlibrarian,superlibrarian
+adding a flag,adding a flag,adding a flag
+IssueLostItem,IssueLostItem,IssueLostItem
+AllowTooManyOverride,AllowTooManyOverride,AllowTooManyOverride
+AllowRenewalLimitOverride,AllowRenewalLimitOverride,AllowRenewalLimitOverride
+fast cataloging,fast cataloging,fast cataloging
+CircConfirmItemParts,CircConfirmItemParts,CircConfirmItemParts
+patron's summary in the OPAC,patron's summary in the OPAC,patron's summary in the OPAC
+manage\_checkout\_notes permission,manage\_checkout\_notes permission,manage\_checkout\_notes permission
+upon checkin,upon checkin,upon checkin
+renewal preferences,renewal preferences,renewal preferences
+you allow it,you allow it,you allow it
+renew their own items via the OPAC,renew their own items via the OPAC,renew their own items via the OPAC
+automatic\_checkin.pl cron job,automatic\_checkin.pl cron job,automatic\_checkin.pl cron job
+'Check in' section of the Circulation module,'Check in' section of the Circulation module,'Check in' section of the Circulation module
+Circulation > Check in,Circulation > Check in,Circulation > Check in
+calendar tool,calendar tool,calendar tool
+FineNotifyAtCheckin,FineNotifyAtCheckin,FineNotifyAtCheckin
+Add a new authorized value,Add a new authorized value,Add a new authorized value
+ClaimReturnedLostValue,ClaimReturnedLostValue,ClaimReturnedLostValue
+ClaimReturnedChargeFee,ClaimReturnedChargeFee,ClaimReturnedChargeFee
+ClaimReturnedWarningThreshold,ClaimReturnedWarningThreshold,ClaimReturnedWarningThreshold
+'Claims' tab,'Claims' tab,'Claims' tab
+CleanUpDatabaseReturnClaims,CleanUpDatabaseReturnClaims,CleanUpDatabaseReturnClaims
+create a separate item type,create a separate item type,create a separate item type
+create circulation rules,create circulation rules,create circulation rules
+BundleNotLoanValue,BundleNotLoanValue,BundleNotLoanValue
+BundleLostValue,BundleLostValue,BundleLostValue
+Not for Loan status,Not for Loan status,Not for Loan status
+BundleNotLoanValue system preference,BundleNotLoanValue system preference,BundleNotLoanValue system preference
+verify the contents later,verify the contents later,verify the contents later
+BundleLostValue system preference,BundleLostValue system preference,BundleLostValue system preference
+circulation and fines rules,circulation and fines rules,circulation and fines rules
+hold system preference,hold system preference,hold system preference
+placing holds,placing holds,placing holds
+OPAC chapter,OPAC chapter,OPAC chapter
+place\_holds permission,place\_holds permission,place\_holds permission
+DefaultHoldPickupLocation,DefaultHoldPickupLocation,DefaultHoldPickupLocation
+Circulation and Fines,Circulation and Fines,Circulation and Fines
+patron clubs feature,patron clubs feature,patron clubs feature
+suspend,suspend,suspend
+cancel,cancel,cancel
+HidePatronName,HidePatronName,HidePatronName
+modify\_holds\_priority permission,modify\_holds\_priority permission,modify\_holds\_priority permission
+SuspendHoldsIntranet,SuspendHoldsIntranet,SuspendHoldsIntranet
+auto\_unsuspend\_holds.pl cron job,auto\_unsuspend\_holds.pl cron job,auto\_unsuspend\_holds.pl cron job
+their online account,their online account,their online account
+checked in,checked in,checked in
+out,out,out
+the patron is notified,the patron is notified,the patron is notified
+HoldsAutoFillPrintSlip,HoldsAutoFillPrintSlip,HoldsAutoFillPrintSlip
+check in,check in,check in
+HOLD\_CANCELLATION authorized value category,HOLD\_CANCELLATION authorized value category,HOLD\_CANCELLATION authorized value category
+add a new notice,add a new notice,add a new notice
+manage\_bookings permission,manage\_bookings permission,manage\_bookings permission
+Items tab,Items tab,Items tab
+Item types parameters,Item types parameters,Item types parameters
+placing a booking,placing a booking,placing a booking
+standard checking out,standard checking out,standard checking out
+delivering curbside pickups,delivering curbside pickups,delivering curbside pickups
+requesting recalls,requesting recalls,requesting recalls
+RecallsLog,RecallsLog,RecallsLog
+manage\_recalls permission,manage\_recalls permission,manage\_recalls permission
+recalls cronjobs,recalls cronjobs,recalls cronjobs
+recalls notices and slips,recalls notices and slips,recalls notices and slips
+recalls queue,recalls queue,recalls queue
+recalls to pull list,recalls to pull list,recalls to pull list
+'Recalls' tab of the patron's file,'Recalls' tab of the patron's file,'Recalls' tab of the patron's file
+its equivalent in the OPAC,its equivalent in the OPAC,its equivalent in the OPAC
+'Recalls history' tab of a patron's file,'Recalls history' tab of a patron's file,'Recalls history' tab of a patron's file
+recalls awaiting pickup list,recalls awaiting pickup list,recalls awaiting pickup list
+overdue recalls list,overdue recalls list,overdue recalls list
+old recalls list,old recalls list,old recalls list
+checkin in,checkin in,checkin in
+transfer,transfer,transfer
+recalls to pull,recalls to pull,recalls to pull
+Recalls awaiting pickup list,Recalls awaiting pickup list,Recalls awaiting pickup list
+overdue\_recalls cronjob,overdue\_recalls cronjob,overdue\_recalls cronjob
+Overdue recalls list,Overdue recalls list,Overdue recalls list
+expire\_recalls cronjob,expire\_recalls cronjob,expire\_recalls cronjob
+recalls are set up,recalls are set up,recalls are set up
+check them in,check them in,check them in
+manually,manually,manually
+revert waiting recalls,revert waiting recalls,revert waiting recalls
+expire recalls,expire recalls,expire recalls
+check the item in,check the item in,check the item in
+stock rotation automation tool,stock rotation automation tool,stock rotation automation tool
+Transfers to send,Transfers to send,Transfers to send
+fast\_cataloging permission,fast\_cataloging permission,fast\_cataloging permission
+Build holds queue cron job,Build holds queue cron job,Build holds queue cron job
+RandomizeHoldsQueueWeight,RandomizeHoldsQueueWeight,RandomizeHoldsQueueWeight
+Transport cost matrix,Transport cost matrix,Transport cost matrix
+triggers the hold,triggers the hold,triggers the hold
+LOST value,LOST value,LOST value
+HoldsToPullStartDate,HoldsToPullStartDate,HoldsToPullStartDate
+ConfirmFutureHolds,ConfirmFutureHolds,ConfirmFutureHolds
+cancel\_expired\_holds.pl cron job,cancel\_expired\_holds.pl cron job,cancel\_expired\_holds.pl cron job
+their account on the OPAC,their account on the OPAC,their account on the OPAC
+Checking in the items,Checking in the items,Checking in the items
+TransfersMaxDaysWarning,TransfersMaxDaysWarning,TransfersMaxDaysWarning
+ArticleRequestsMandatoryFields,ArticleRequestsMandatoryFields,ArticleRequestsMandatoryFields
+ArticleRequestsMandatoryFieldsItemsOnly,ArticleRequestsMandatoryFieldsItemsOnly,ArticleRequestsMandatoryFieldsItemsOnly
+ArticleRequestsMandatoryFieldsRecordOnly,ArticleRequestsMandatoryFieldsRecordOnly,ArticleRequestsMandatoryFieldsRecordOnly
+ArticleRequestsOpacHostRedirection,ArticleRequestsOpacHostRedirection,ArticleRequestsOpacHostRedirection
+ArticleRequestsSupportedFormats,ArticleRequestsSupportedFormats,ArticleRequestsSupportedFormats
+circulation and fines rules matrix,circulation and fines rules matrix,circulation and fines rules matrix
+Default open article requests limit,Default open article requests limit,Default open article requests limit
+Default article request fees,Default article request fees,Default article request fees
+Managing article requests,Managing article requests,Managing article requests
+marks the article request as 'Completed',marks the article request as 'Completed',marks the article request as 'Completed'
+overdues\_report permission,overdues\_report permission,overdues\_report permission
+FilterBeforeOverdueReport,FilterBeforeOverdueReport,FilterBeforeOverdueReport
+change your branch,change your branch,change your branch
+fines cron job,fines cron job,fines cron job
+Statistical Patrons,Statistical Patrons,Statistical Patrons
+RecordLocalUseOnReturn,RecordLocalUseOnReturn,RecordLocalUseOnReturn
+staff member,staff member,staff member
+staff patron,staff patron,staff patron
+"AutoSelfCheckAllowed, AutoSelfCheckID and AutoSelfCheckPass","AutoSelfCheckAllowed, AutoSelfCheckID and AutoSelfCheckPass","AutoSelfCheckAllowed, AutoSelfCheckID and AutoSelfCheckPass"
+self checkout module system preferences,self checkout module system preferences,self checkout module system preferences
+SelfCheckoutByLogin,SelfCheckoutByLogin,SelfCheckoutByLogin
+SCOAllowCheckin,SCOAllowCheckin,SCOAllowCheckin
+SelfCheckInModule,SelfCheckInModule,SelfCheckInModule
+self\_checkin\_module permission,self\_checkin\_module permission,self\_checkin\_module permission
+SelfCheckInTimeout,SelfCheckInTimeout,SelfCheckInTimeout
+SelfCheckInUserCSS,SelfCheckInUserCSS,SelfCheckInUserCSS
+SelfCheckInUserJS,SelfCheckInUserJS,SelfCheckInUserJS
+build a custom report,build a custom report,build a custom report
+Firefox,Firefox,Firefox
+Windows,Windows,Windows
+file generator via a cron job,file generator via a cron job,file generator via a cron job
+offline circulation tool for Windows,offline circulation tool for Windows,offline circulation tool for Windows
+Google OpenID Connect,Google OpenID Connect,Google OpenID Connect
+GoogleOAuth2ClientSecret,GoogleOAuth2ClientSecret,GoogleOAuth2ClientSecret
+GoogleOpenIDConnect,GoogleOpenIDConnect,GoogleOpenIDConnect
+GoogleOAuth2ClientID,GoogleOAuth2ClientID,GoogleOAuth2ClientID
+GoogleOpenIDConnectDefaultBranch,GoogleOpenIDConnectDefaultBranch,GoogleOpenIDConnectDefaultBranch
+GoogleOpenIDConnectDefaultCategory,GoogleOpenIDConnectDefaultCategory,GoogleOpenIDConnectDefaultCategory
+GoogleOpenIDConnectAutoRegister,GoogleOpenIDConnectAutoRegister,GoogleOpenIDConnectAutoRegister
+overdue notice/status triggers,overdue notice/status triggers,overdue notice/status triggers
+OpacNoItemTypeImages,OpacNoItemTypeImages,OpacNoItemTypeImages
+lists functionality,lists functionality,lists functionality
+staff interface login form,staff interface login form,staff interface login form
+logs into,logs into,logs into
+library administration,library administration,library administration
+AutoLocation,AutoLocation,AutoLocation
+log into,log into,log into
+share usage stats,share usage stats,share usage stats
+UsageStats,UsageStats,UsageStats
+usage statistics administration page,usage statistics administration page,usage statistics administration page
+koha-indexer daemon,koha-indexer daemon,koha-indexer daemon
+Holds queue report,Holds queue report,Holds queue report
+categories,categories,categories
+debit type codes,debit type codes,debit type codes
+DefaultLongOverdueSkipLostStatuses,DefaultLongOverdueSkipLostStatuses,DefaultLongOverdueSkipLostStatuses
+DefaultLongOverdueChargeValue,DefaultLongOverdueChargeValue,DefaultLongOverdueChargeValue
+MarkLostItemsAsReturned,MarkLostItemsAsReturned,MarkLostItemsAsReturned
+Koha offline circulation,Koha offline circulation,Koha offline circulation
+cronjobs doing anonymization,cronjobs doing anonymization,cronjobs doing anonymization
+patron choosing to anonymize their history in the OPAC,patron choosing to anonymize their history in the OPAC,patron choosing to anonymize their history in the OPAC
+adding a new patron,adding a new patron,adding a new patron
+importing patrons with the patron import tool,importing patrons with the patron import tool,importing patrons with the patron import tool
+advance\_notices.pl,advance\_notices.pl,advance\_notices.pl
+overdue\_notices.pl,overdue\_notices.pl,overdue\_notices.pl
+advance_notices.pl,advance_notices.pl,advance_notices.pl
+letter code,letter code,letter code
+message queue,message queue,message queue
+overdue notice/status triggers tool,overdue notice/status triggers tool,overdue notice/status triggers tool
+longoverdues,longoverdues,longoverdues
+overdue notice trigger,overdue notice trigger,overdue notice trigger
+misc/cronjobs/advance\_notices.pl,misc/cronjobs/advance\_notices.pl,misc/cronjobs/advance\_notices.pl
+misc/cronjobs/process\_message\_queue.pl,misc/cronjobs/process\_message\_queue.pl,misc/cronjobs/process\_message\_queue.pl
+predefined notice,predefined notice,predefined notice
+AuthorityMergeLimit,AuthorityMergeLimit,AuthorityMergeLimit
+Automatic item modifications by age,Automatic item modifications by age,Automatic item modifications by age
+Stock rotation,Stock rotation,Stock rotation
+Learn more,Learn more,Learn more
+OpacBrowser,OpacBrowser,OpacBrowser
+action logs modules and actions,action logs modules and actions,action logs modules and actions
+patrons restrictions,patrons restrictions,patrons restrictions
+UploadPurgeTemporaryFilesDays,UploadPurgeTemporaryFilesDays,UploadPurgeTemporaryFilesDays
+framework,framework,framework
+authority type,authority type,authority type
+category,category,category
+PurgeSuggestionsOlderThan,PurgeSuggestionsOlderThan,PurgeSuggestionsOlderThan
+E-resource management module,E-resource management module,E-resource management module
+saved reports,saved reports,saved reports
+runtime parameter,runtime parameter,runtime parameter
+Reports > Guided reports > Saved report,Reports > Guided reports > Saved report,Reports > Guided reports > Saved report
+cron job approach,cron job approach,cron job approach
+Setting up the OCLC Connexion Daemon,Setting up the OCLC Connexion Daemon,Setting up the OCLC Connexion Daemon
+your interlibrary loan requests,your interlibrary loan requests,your interlibrary loan requests
+ill permission,ill permission,ill permission
+system preferences for interlibrary loans,system preferences for interlibrary loans,system preferences for interlibrary loans
+ILLCheckAvailability,ILLCheckAvailability,ILLCheckAvailability
+manage your request,manage your request,manage your request
+ILLHiddenRequestStatuses,ILLHiddenRequestStatuses,ILLHiddenRequestStatuses
+partner library,partner library,partner library
+CirculateILL,CirculateILL,CirculateILL
+Create a patron category,Create a patron category,Create a patron category
+CCODE,CCODE,CCODE
+LOC,LOC,LOC
+LOST,LOST,LOST
+NOT\_LOAN,NOT\_LOAN,NOT\_LOAN
+DAMAGED,DAMAGED,DAMAGED
+WITHDRAWN,WITHDRAWN,WITHDRAWN
+cities and towns,cities and towns,cities and towns
+Map your bibliographic data,Map your bibliographic data,Map your bibliographic data
+Map your patron data,Map your patron data,Map your patron data
+CAS system preferences,CAS system preferences,CAS system preferences
+csvdelimiter,csvdelimiter,csvdelimiter
+log system preferences,log system preferences,log system preferences
+logs,logs,logs
+sharing system preferences,sharing system preferences,sharing system preferences
+cron jobs,cron jobs,cron jobs
+DefaultLongOverdueDays,DefaultLongOverdueDays,DefaultLongOverdueDays
+dateformat,dateformat,dateformat
+OPACLanguages,OPACLanguages,OPACLanguages
+CalendarFirstDayOfWeek,CalendarFirstDayOfWeek,CalendarFirstDayOfWeek
+days your library is closed,days your library is closed,days your library is closed
+ReturnBeforeExpiry,ReturnBeforeExpiry,ReturnBeforeExpiry
+AllowHoldsOnDamagedItems,AllowHoldsOnDamagedItems,AllowHoldsOnDamagedItems
+AllowNotForLoanOverride,AllowNotForLoanOverride,AllowNotForLoanOverride
+NoticeBcc,NoticeBcc,NoticeBcc
+ReservesControlBranch,ReservesControlBranch,ReservesControlBranch
+audio alerts,audio alerts,audio alerts
+your holds queue,your holds queue,your holds queue
+when holds expire,when holds expire,when holds expire
+Calculate fines due,Calculate fines due,Calculate fines due
+Mark long overdue items as lost,Mark long overdue items as lost,Mark long overdue items as lost
+sends out messages,sends out messages,sends out messages
+queues overdue notices,queues overdue notices,queues overdue notices
+hold notices that didn't send for printing,hold notices that didn't send for printing,hold notices that didn't send for printing
+queues the advanced notice of items due,queues the advanced notice of items due,queues the advanced notice of items due
+resumed and remove suspension,resumed and remove suspension,resumed and remove suspension
+set them to renew,set them to renew,set them to renew
+staff members as patrons,staff members as patrons,staff members as patrons
+staff members access permissions,staff members access permissions,staff members access permissions
+autoMemberNum,autoMemberNum,autoMemberNum
+NotifyBorrowerDeparture,NotifyBorrowerDeparture,NotifyBorrowerDeparture
+BorrowersTitles,BorrowersTitles,BorrowersTitles
+borrowerRelationship,borrowerRelationship,borrowerRelationship
+Update patron categories,Update patron categories,Update patron categories
+custom classification sources,custom classification sources,custom classification sources
+MARC matching rules,MARC matching rules,MARC matching rules
+Z39.50 targets,Z39.50 targets,Z39.50 targets
+URLLinkText,URLLinkText,URLLinkText
+hide\_marc,hide\_marc,hide\_marc
+LabelMARCView,LabelMARCView,LabelMARCView
+DefaultClassificationSource,DefaultClassificationSource,DefaultClassificationSource
+marcflavour,marcflavour,marcflavour
+itemcallnumber,itemcallnumber,itemcallnumber
+autoBarcode,autoBarcode,autoBarcode
+checks URLs in catalog records,checks URLs in catalog records,checks URLs in catalog records
+RequireChoosingExistingAuthority,RequireChoosingExistingAuthority,RequireChoosingExistingAuthority
+AutoCreateAuthorities,AutoCreateAuthorities,AutoCreateAuthorities
+LinkerModule,LinkerModule,LinkerModule
+LinkerOptions,LinkerOptions,LinkerOptions
+CatalogModuleRelink,CatalogModuleRelink,CatalogModuleRelink
+merge changes into bibliographic records,merge changes into bibliographic records,merge changes into bibliographic records
+searching system preferences,searching system preferences,searching system preferences
+UseAuthoritiesForTracings,UseAuthoritiesForTracings,UseAuthoritiesForTracings
+TraceCompleteSubfields,TraceCompleteSubfields,TraceCompleteSubfields
+TraceSubjectSubdivisions,TraceSubjectSubdivisions,TraceSubjectSubdivisions
+OpacStarRatings,OpacStarRatings,OpacStarRatings
+LibraryName,LibraryName,LibraryName
+OPACNoResultsFound,OPACNoResultsFound,OPACNoResultsFound
+hidelostitems,hidelostitems,hidelostitems
+OPACShelfBrowser,OPACShelfBrowser,OPACShelfBrowser
+SearchMyLibraryFirst,SearchMyLibraryFirst,SearchMyLibraryFirst
+when you want the contents to rebuild,when you want the contents to rebuild,when you want the contents to rebuild
+custom RSS feeds,custom RSS feeds,custom RSS feeds
+feed to be populated,feed to be populated,feed to be populated
+Quote of the day editor,Quote of the day editor,Quote of the day editor
+pages tool,pages tool,pages tool
+FRBR/Editions,FRBR/Editions,FRBR/Editions
+Amazon,Amazon,Amazon
+Babelthèque,Babelthèque,Babelthèque
+Baker and Taylor,Baker and Taylor,Baker and Taylor
+HTML5 media,HTML5 media,HTML5 media
+Google,Google,Google
+GoogleJackets,GoogleJackets,GoogleJackets
+LibraryThing,LibraryThing,LibraryThing
+Novelist Select,Novelist Select,Novelist Select
+Open Library,Open Library,Open Library
+Overdrive,Overdrive,Overdrive
+Syndetics,Syndetics,Syndetics
+Tagging,Tagging,Tagging
+funds and budgets,funds and budgets,funds and budgets
+default currency,default currency,default currency
+framework with the code ACQ,framework with the code ACQ,framework with the code ACQ
+CurrencyFormat,CurrencyFormat,CurrencyFormat
+OPACDisplay856uAsImage,OPACDisplay856uAsImage,OPACDisplay856uAsImage
+circulation home page,circulation home page,circulation home page
+IntranetmainUserblock,IntranetmainUserblock,IntranetmainUserblock
+IntranetReportsHomeHTML,IntranetReportsHomeHTML,IntranetReportsHomeHTML
+StaffLoginInstructions,StaffLoginInstructions,StaffLoginInstructions
+intranetstylesheet,intranetstylesheet,intranetstylesheet
+OpacFavicon,OpacFavicon,OpacFavicon
+IntranetCirculationHomeHTML,IntranetCirculationHomeHTML,IntranetCirculationHomeHTML
+reports home page,reports home page,reports home page
+intranetcolorstylesheet,intranetcolorstylesheet,intranetcolorstylesheet
+IntranetSlipPrinterJS,IntranetSlipPrinterJS,IntranetSlipPrinterJS
+enable the two-factor authentication in their account,enable the two-factor authentication in their account,enable the two-factor authentication in their account
+enabled the two-factor authentication in their account,enabled the two-factor authentication in their account,enabled the two-factor authentication in their account
+Two factor authentication in the staff interface,Two factor authentication in the staff interface,Two factor authentication in the staff interface
+audio alerts section of administration,audio alerts section of administration,audio alerts section of administration
+OPACShowCheckoutName,OPACShowCheckoutName,OPACShowCheckoutName
+cart feature,cart feature,cart feature
+viewLabeledMARC,viewLabeledMARC,viewLabeledMARC
+viewMARC,viewMARC,viewMARC
+viewISBD,viewISBD,viewISBD
+search results page,search results page,search results page
+Search history,Search history,Search history
+QueryAutoTruncate,QueryAutoTruncate,QueryAutoTruncate
+Elasticsearch index name,Elasticsearch index name,Elasticsearch index name
+SearchEngine,SearchEngine,SearchEngine
+CCL search,CCL search,CCL search
+mappings,mappings,mappings
+save searches as search filters,save searches as search filters,save searches as search filters
+facet,facet,facet
+Search engine configuration,Search engine configuration,Search engine configuration
+numSearchResultsDropdown,numSearchResultsDropdown,numSearchResultsDropdown
+OPACnumSearchResults,OPACnumSearchResults,OPACnumSearchResults
+numSearchResults,numSearchResults,numSearchResults
+OPACnumSearchResultsDropdown,OPACnumSearchResultsDropdown,OPACnumSearchResultsDropdown
+limiting by library,limiting by library,limiting by library
+orders advanced search in acquisitions,orders advanced search in acquisitions,orders advanced search in acquisitions
+date and language limits,date and language limits,date and language limits
+OPACNumbersPreferPhrase,OPACNumbersPreferPhrase,OPACNumbersPreferPhrase
+IntranetNumbersPreferPhrase,IntranetNumbersPreferPhrase,IntranetNumbersPreferPhrase
+ERMModule,ERMModule,ERMModule
+ERM authorized values,ERM authorized values,ERM authorized values
+ERM system preferences,ERM system preferences,ERM system preferences
+Vendor record,Vendor record,Vendor record
+ERM_USER_ROLES authorized value,ERM_USER_ROLES authorized value,ERM_USER_ROLES authorized value
+Table settings,Table settings,Table settings
+ERMProviders,ERMProviders,ERMProviders
+harvesting cron job,harvesting cron job,harvesting cron job
+created a report,created a report,created a report
+data provider home screen,data provider home screen,data provider home screen
+Koha plugins,Koha plugins,Koha plugins
+item bundles,item bundles,item bundles
+analytics,analytics,analytics
+952$p in MARC21 or 995$f in UNIMARC,952$p in MARC21 or 995$f in UNIMARC,952$p in MARC21 or 995$f in UNIMARC
+manual barcode value builder,manual barcode value builder,manual barcode value builder
+952$d in MARC21 or 995$5 in UNIMARC,952$d in MARC21 or 995$5 in UNIMARC,952$d in MARC21 or 995$5 in UNIMARC
+added to MARC frameworks,added to MARC frameworks,added to MARC frameworks
+Barcode value builder,Barcode value builder,Barcode value builder
+Administration > MARC bibliographic frameworks,Administration > MARC bibliographic frameworks,Administration > MARC bibliographic frameworks
+create an authorized value category,create an authorized value category,create an authorized value category
+add authorized values,add authorized values,add authorized values
+attach files,attach files,attach files
+merge_authority cron job,merge_authority cron job,merge_authority cron job
+LinkerRelink,LinkerRelink,LinkerRelink
+AutoLinkBiblios,AutoLinkBiblios,AutoLinkBiblios
+Implementation checklist,Implementation checklist,Implementation checklist
+OCLC Cataloging Services,OCLC Cataloging Services,OCLC Cataloging Services
+item records,item records,item records
+edit\_catalogue permission,edit\_catalogue permission,edit\_catalogue permission
+bibliographic framework,bibliographic framework,bibliographic framework
+Administration module,Administration module,Administration module
+Z39.50/SRU servers,Z39.50/SRU servers,Z39.50/SRU servers
+AdditionalFieldsInZ3950ResultSearch,AdditionalFieldsInZ3950ResultSearch,AdditionalFieldsInZ3950ResultSearch
+MARCFieldDocURL,MARCFieldDocURL,MARCFieldDocURL
+editing subfields,editing subfields,editing subfields
+advanced\_editor permission,advanced\_editor permission,advanced\_editor permission
+MarcFieldDocURL,MarcFieldDocURL,MarcFieldDocURL
+keyboard shortcuts,keyboard shortcuts,keyboard shortcuts
+create\_shared\_macros permission,create\_shared\_macros permission,create\_shared\_macros permission
+delete\_shared\_macros permission,delete\_shared\_macros permission,delete\_shared\_macros permission
+stage records for import,stage records for import,stage records for import
+"import the prepared, or ""staged"", files","import the prepared, or ""staged"", files","import the prepared, or ""staged"", files"
+Manage staged records,Manage staged records,Manage staged records
+MARC modification template,MARC modification template,MARC modification template
+record matching rules,record matching rules,record matching rules
+AggressiveMatchOnISBN,AggressiveMatchOnISBN,AggressiveMatchOnISBN
+Manage staged records tool,Manage staged records tool,Manage staged records tool
+ordering from a staged file,ordering from a staged file,ordering from a staged file
+manage\_staged\_marc permission,manage\_staged\_marc permission,manage\_staged\_marc permission
+staged your records for import,staged your records for import,staged your records for import
+Stage records for import tool,Stage records for import tool,Stage records for import tool
+staging step,staging step,staging step
+cleanup\_database cronjob,cleanup\_database cronjob,cleanup\_database cronjob
+Easy Analytics,Easy Analytics,Easy Analytics
+Analytics enhanced workflow,Analytics enhanced workflow,Analytics enhanced workflow
+adding records,adding records,adding records
+records\_batchmod permission,records\_batchmod permission,records\_batchmod permission
+marc\_modification\_templates permission,marc\_modification\_templates permission,marc\_modification\_templates permission
+staging MARC records for import,staging MARC records for import,staging MARC records for import
+making batch record modifications,making batch record modifications,making batch record modifications
+staging records,staging records,staging records
+frameworks,frameworks,frameworks
+Google books,Google books,Google books
+NovelList Select,NovelList Select,NovelList Select
+Coce image cache server,Coce image cache server,Coce image cache server
+remote cover images with custom URLs,remote cover images with custom URLs,remote cover images with custom URLs
+Local cover images,Local cover images,Local cover images
+upload\_local\_cover\_images permission,upload\_local\_cover\_images permission,upload\_local\_cover\_images permission
+MergeReportFields,MergeReportFields,MergeReportFields
+add them to a list,add them to a list,add them to a list
+Add duplicate records to a list,Add duplicate records to a list,Add duplicate records to a list
+view the list,view the list,view the list
+merging via cataloging,merging via cataloging,merging via cataloging
+Deleting items section of this manual,Deleting items section of this manual,Deleting items section of this manual
+records\_batchdel permission,records\_batchdel permission,records\_batchdel permission
+catalog concerns report,catalog concerns report,catalog concerns report
+edit\_items permission,edit\_items permission,edit\_items permission
+item templates,item templates,item templates
+2 - Source of classification or shelving scheme,2 - Source of classification or shelving scheme,2 - Source of classification or shelving scheme
+a - Home library,a - Home library,a - Home library
+b - Current library,b - Current library,b - Current library
+o - Full call number,o - Full call number,o - Full call number
+cataloging plugin,cataloging plugin,cataloging plugin
+p - Barcode,p - Barcode,p - Barcode
+"v - Cost, replacement price","v - Cost, replacement price","v - Cost, replacement price"
+952$y - Koha item type,952$y - Koha item type,952$y - Koha item type
+framework editor,framework editor,framework editor
+adding new authorized values,adding new authorized values,adding new authorized values
+item template,item template,item template
+SpineLabelShowPrintOnBibDetails,SpineLabelShowPrintOnBibDetails,SpineLabelShowPrintOnBibDetails
+manage\_item\_editor\_templates permission,manage\_item\_editor\_templates permission,manage\_item\_editor\_templates permission
+add a new item,add a new item,add a new item
+batch item modification tool,batch item modification tool,batch item modification tool
+StaffDetailItemSelection,StaffDetailItemSelection,StaffDetailItemSelection
+batch item modification,batch item modification,batch item modification
+item summary,item summary,item summary
+items\_batchmod permission,items\_batchmod permission,items\_batchmod permission
+default framework,default framework,default framework
+batch item modification tool as above,batch item modification tool as above,batch item modification tool as above
+manage\_item\_groups permission,manage\_item\_groups permission,manage\_item\_groups permission
+automatic\_renewals.pl cronjob,automatic\_renewals.pl cronjob,automatic\_renewals.pl cronjob
+local holds priority,local holds priority,local holds priority
+upload\_local\_cover\_images) permission,upload\_local\_cover\_images) permission,upload\_local\_cover\_images) permission
+merge records tool,merge records tool,merge records tool
+delete\_all\_items permission,delete\_all\_items permission,delete\_all\_items permission
+batch delete tool,batch delete tool,batch delete tool
+items\_batchdel permission,items\_batchdel permission,items\_batchdel permission
+corresponding cron job,corresponding cron job,corresponding cron job
+952$d,952$d,952$d
+952$w,952$w,952$w
+952$s,952$s,952$s
+952$r,952$r,952$r
+damaged status,damaged status,damaged status
+withdrawn status,withdrawn status,withdrawn status
+StockRotation system preference,StockRotation system preference,StockRotation system preference
+stockrotation permission,stockrotation permission,stockrotation permission
+create rotation plans (rotas),create rotation plans (rotas),create rotation plans (rotas)
+assign items to them,assign items to them,assign items to them
+cronjob,cronjob,cronjob
+stockrotation.pl cron job,stockrotation.pl cron job,stockrotation.pl cron job
+add new rotation plans (rotas),add new rotation plans (rotas),add new rotation plans (rotas)
+manage\_rotas permission,manage\_rotas permission,manage\_rotas permission
+stages,stages,stages
+manage\_rota\_items permission,manage\_rota\_items permission,manage\_rota\_items permission
+EDI,EDI,EDI
+mapped to your MARC frameworks,mapped to your MARC frameworks,mapped to your MARC frameworks
+Administration > Classification sources,Administration > Classification sources,Administration > Classification sources
+create a profile,create a profile,create a profile
+edit the template,edit the template,edit the template
+Staged MARC management,Staged MARC management,Staged MARC management
+'Currently available batches' page,'Currently available batches' page,'Currently available batches' page
+SpineLabelFormat,SpineLabelFormat,SpineLabelFormat
+editauthorities permission,editauthorities permission,editauthorities permission
+edit,edit,edit
+merge,merge,merge
+delete,delete,delete
+merge\_authorities.pl script,merge\_authorities.pl script,merge\_authorities.pl script
+export\_catalog permission,export\_catalog permission,export\_catalog permission
+editcatalogue sub-permissions,editcatalogue sub-permissions,editcatalogue sub-permissions
+inventory permission,inventory permission,inventory permission
+creating a shelf list,creating a shelf list,creating a shelf list
+942 (MARC21) or 942 and 099 (UNIMARC),942 (MARC21) or 942 and 099 (UNIMARC),942 (MARC21) or 942 and 099 (UNIMARC)
+952 (MARC21) or 995 (UNIMARC),952 (MARC21) or 995 (UNIMARC),952 (MARC21) or 995 (UNIMARC)
+999 (MARC21) or 001 and 090 (UNIMARC),999 (MARC21) or 001 and 090 (UNIMARC),999 (MARC21) or 001 and 090 (UNIMARC)
+update\_totalissues.pl,update\_totalissues.pl,update\_totalissues.pl
+942$h,942$h,942$h
+942$i,942$i,942$i
+942$2,942$2,942$2
+952$y (MARC21) or 995$r (UNIMARC),952$y (MARC21) or 995$r (UNIMARC),952$y (MARC21) or 995$r (UNIMARC)
+indexed,indexed,indexed
+search,search,search
+article requests,article requests,article requests
+942$i (MARC21),942$i (MARC21),942$i (MARC21)
+942$6,942$6,942$6
+942$h (MARC21),942$h (MARC21),942$h (MARC21)
+YES\_NO authorized value category,YES\_NO authorized value category,YES\_NO authorized value category
+BlockReturnOfWithdrawnItems,BlockReturnOfWithdrawnItems,BlockReturnOfWithdrawnItems
+Search results,Search results,Search results
+952$v (MARC21) or 995$g (UNIMARC),952$v (MARC21) or 995$g (UNIMARC),952$v (MARC21) or 995$g (UNIMARC)
+longoverdue.pl cronjob,longoverdue.pl cronjob,longoverdue.pl cronjob
+BlockReturnOfLostItems,BlockReturnOfLostItems,BlockReturnOfLostItems
+952$o (MARC21) or 995$k (UNIMARC),952$o (MARC21) or 995$k (UNIMARC),952$o (MARC21) or 995$k (UNIMARC)
+952$6 (MARC21) or 995$s (UNIMARC),952$6 (MARC21) or 995$s (UNIMARC),952$6 (MARC21) or 995$s (UNIMARC)
+RESTRICTED authorized value category,RESTRICTED authorized value category,RESTRICTED authorized value category
+952$2 (MARC21) or 995$4 (UNIMARC),952$2 (MARC21) or 995$4 (UNIMARC),952$2 (MARC21) or 995$4 (UNIMARC)
+TrapHoldsOnOrder,TrapHoldsOnOrder,TrapHoldsOnOrder
+SkipHoldTrapOnNotForLoanValue,SkipHoldTrapOnNotForLoanValue,SkipHoldTrapOnNotForLoanValue
+UpdateNotForLoanStatusOnCheckout,UpdateNotForLoanStatusOnCheckout,UpdateNotForLoanStatusOnCheckout
+952$c (MARC21) or 995$e (UNIMARC),952$c (MARC21) or 995$e (UNIMARC),952$c (MARC21) or 995$e (UNIMARC)
+Library transfer limits,Library transfer limits,Library transfer limits
+BranchTransferLimitsType,BranchTransferLimitsType,BranchTransferLimitsType
+facets in the search results,facets in the search results,facets in the search results
+transfer limits,transfer limits,transfer limits
+OpacLocationBranchToDisplay,OpacLocationBranchToDisplay,OpacLocationBranchToDisplay
+OpacLocationOnDetail,OpacLocationOnDetail,OpacLocationOnDetail
+952$9 (MARC21) or 995$9 (UNIMARC),952$9 (MARC21) or 995$9 (UNIMARC),952$9 (MARC21) or 995$9 (UNIMARC)
+STACK authorized value category,STACK authorized value category,STACK authorized value category
+942$0 (MARC21) or 099$x (UNIMARC),942$0 (MARC21) or 099$x (UNIMARC),942$0 (MARC21) or 099$x (UNIMARC)
+create a RSS feed,create a RSS feed,create a RSS feed
+952$d (MARC21) or 995$5 (UNIMARC),952$d (MARC21) or 995$5 (UNIMARC),952$d (MARC21) or 995$5 (UNIMARC)
+importing MARC records,importing MARC records,importing MARC records
+edit\_borrowers permission,edit\_borrowers permission,edit\_borrowers permission
+slips,slips,slips
+ROADTYPE authorized value category,ROADTYPE authorized value category,ROADTYPE authorized value category
+adding authorized values,adding authorized values,adding authorized values
+Bsort1 authorized value category,Bsort1 authorized value category,Bsort1 authorized value category
+Bsort2 authorized value category,Bsort2 authorized value category,Bsort2 authorized value category
+automatic_renewal cronjob,automatic_renewal cronjob,automatic_renewal cronjob
+statistical patrons,statistical patrons,statistical patrons
+SIP2 patrons,SIP2 patrons,SIP2 patrons
+self checkout user,self checkout user,self checkout user
+HouseboundModule,HouseboundModule,HouseboundModule
+housebound role,housebound role,housebound role
+additional patron attributes,additional patron attributes,additional patron attributes
+advance notices and hold notices,advance notices and hold notices,advance notices and hold notices
+PatronDuplicateMatchingAddFIelds,PatronDuplicateMatchingAddFIelds,PatronDuplicateMatchingAddFIelds
+accounting tab,accounting tab,accounting tab
+Add a Patron,Add a Patron,Add a Patron
+patron category,patron category,patron category
+Add a new patron,Add a new patron,Add a new patron
+tracking inhouse use,tracking inhouse use,tracking inhouse use
+Upload patron images,Upload patron images,Upload patron images
+FailedLoginAttempts,FailedLoginAttempts,FailedLoginAttempts
+LockExpiredDelay,LockExpiredDelay,LockExpiredDelay
+'Forgot your password?','Forgot your password?','Forgot your password?'
+Restrictions,Restrictions,Restrictions
+restrictions tab,restrictions tab,restrictions tab
+Overdue/notice status triggers,Overdue/notice status triggers,Overdue/notice status triggers
+add patron form,add patron form,add patron form
+edit patron form,edit patron form,edit patron form
+BOR\_NOTES authorized value category,BOR\_NOTES authorized value category,BOR\_NOTES authorized value category
+update patron categories,update patron categories,update patron categories
+BorrowerRenewalPeriodBase,BorrowerRenewalPeriodBase,BorrowerRenewalPeriodBase
+Modificaton log,Modificaton log,Modificaton log
+delete\_borrowers permission,delete\_borrowers permission,delete\_borrowers permission
+edit the patron,edit the patron,edit the patron
+permissions permission,permissions permission,permissions permission
+staffaccess permission,staffaccess permission,staffaccess permission
+circulation,circulation,circulation
+item bookings,item bookings,item bookings
+manage the checkout notes,manage the checkout notes,manage the checkout notes
+patron curbside pickup appointments,patron curbside pickup appointments,patron curbside pickup appointments
+add a manual restriction,add a manual restriction,add a manual restriction
+force\_checkout,force\_checkout,force\_checkout
+Overdues,Overdues,Overdues
+Overdues with fines,Overdues with fines,Overdues with fines
+circulate\_remaining\_permissions,circulate\_remaining\_permissions,circulate\_remaining\_permissions
+simple search,simple search,simple search
+creating private or public lists,creating private or public lists,creating private or public lists
+adding items to private lists and public lists,adding items to private lists and public lists,adding items to private lists and public lists
+administration module,administration module,administration module
+auhorized values,auhorized values,auhorized values
+jobs management,jobs management,jobs management
+manage\_circ\_rules,manage\_circ\_rules,manage\_circ\_rules
+table settings,table settings,table settings
+circulate,circulate,circulate
+identity providers,identity providers,identity providers
+item circulation alerts,item circulation alerts,item circulation alerts
+item search fields,item search fields,item search fields
+keyboard shortcuts management section,keyboard shortcuts management section,keyboard shortcuts management section
+share content with Mana KB,share content with Mana KB,share content with Mana KB
+MARC Bibliographic framework test,MARC Bibliographic framework test,MARC Bibliographic framework test
+OAI sets configuration,OAI sets configuration,OAI sets configuration
+patron restriction types,patron restriction types,patron restriction types
+SMS cellular providers,SMS cellular providers,SMS cellular providers
+SMTP servers,SMTP servers,SMTP servers
+library transfer limits,library transfer limits,library transfer limits
+transport cost matrix,transport cost matrix,transport cost matrix
+share your usage statistics,share your usage statistics,share your usage statistics
+patrons,patrons,patrons
+delete patrons,delete patrons,delete patrons
+list\_borrowers permission,list\_borrowers permission,list\_borrowers permission
+send custom emails to patrons,send custom emails to patrons,send custom emails to patrons
+internal notes,internal notes,internal notes
+edit\_borrowers,edit\_borrowers,edit\_borrowers
+set permissions,set permissions,set permissions
+alter the holds priority,alter the holds priority,alter the holds priority
+place holds in the staff interface,place holds in the staff interface,place holds in the staff interface
+cataloging,cataloging,cataloging
+create macros,create macros,create macros
+delete all of a record's items,delete all of a record's items,delete all of a record's items
+delete macros,delete macros,delete macros
+add bibliographic records,add bibliographic records,add bibliographic records
+duplicating records,duplicating records,duplicating records
+edit existing bibliographic records,edit existing bibliographic records,edit existing bibliographic records
+merge existing bibliographic records,merge existing bibliographic records,merge existing bibliographic records
+delete bibliographic records,delete bibliographic records,delete bibliographic records
+add new items,add new items,add new items
+edit items,edit items,edit items
+delete items,delete items,delete items
+SubfieldsToAllowForRestrictedEditing,SubfieldsToAllowForRestrictedEditing,SubfieldsToAllowForRestrictedEditing
+sources,sources,sources
+remaining\_permissions permission,remaining\_permissions permission,remaining\_permissions permission
+add manual credits to a patron's account,add manual credits to a patron's account,add manual credits to a patron's account
+create manual invoices in a patron's account,create manual invoices in a patron's account,create manual invoices in a patron's account
+pay existing charges,pay existing charges,pay existing charges
+cancel charges,cancel charges,cancel charges
+void payments,void payments,void payments
+write off patron fees,write off patron fees,write off patron fees
+fund administration page,fund administration page,fund administration page
+budget\_add\_del permission,budget\_add\_del permission,budget\_add\_del permission
+contracts with vendors,contracts with vendors,contracts with vendors
+invoices,invoices,invoices
+EDI account,EDI account,EDI account
+EDI messages,EDI messages,EDI messages
+"create, edit, close and delete basket groups","create, edit, close and delete basket groups","create, edit, close and delete basket groups"
+"create, edit, and delete vendor issues","create, edit, and delete vendor issues","create, edit, and delete vendor issues"
+merge invoices,merge invoices,merge invoices
+place orders,place orders,place orders
+creating baskets,creating baskets,creating baskets
+adding order lines,adding order lines,adding order lines
+edit existing baskets,edit existing baskets,edit existing baskets
+closing baskets,closing baskets,closing baskets
+order from a new file,order from a new file,order from a new file
+order from titles with highest hold ratios,order from titles with highest hold ratios,order from titles with highest hold ratios
+receive orders,receive orders,receive orders
+claim late orders,claim late orders,claim late orders
+budget administration page,budget administration page,budget administration page
+budget planning,budget planning,budget planning
+"add, edit, and delete vendors","add, edit, and delete vendors","add, edit, and delete vendors"
+acquisition module,acquisition module,acquisition module
+purchase suggestion management,purchase suggestion management,purchase suggestion management
+suggestion\_manage,suggestion\_manage,suggestion\_manage
+create and manage purchase suggestions,create and manage purchase suggestions,create and manage purchase suggestions
+tools,tools,tools
+cataloguing tools,cataloguing tools,cataloguing tools
+access files tool,access files tool,access files tool
+batch extend due dates tool,batch extend due dates tool,batch extend due dates tool
+patron image upload tool,patron image upload tool,patron image upload tool
+batch patron deletion and anonymization tool,batch patron deletion and anonymization tool,batch patron deletion and anonymization tool
+quote editor,quote editor,quote editor
+export catalog data tool,export catalog data tool,export catalog data tool
+import patrons tool,import patrons tool,import patrons tool
+item modifications by age tool,item modifications by age tool,item modifications by age tool
+SubfieldsToAllowForRestrictedBatchmod,SubfieldsToAllowForRestrictedBatchmod,SubfieldsToAllowForRestrictedBatchmod
+batch item modification,batch item modification,batch item modification
+label creator,label creator,label creator
+barcode image generator tool,barcode image generator tool,barcode image generator tool
+quick spine label creator tool,quick spine label creator tool,quick spine label creator tool
+patron lists tool,patron lists tool,patron lists tool
+manage staged MARC records tool,manage staged MARC records tool,manage staged MARC records tool
+MARC modification templates tool,MARC modification templates tool,MARC modification templates tool
+tags tool,tags tool,tags tool
+batch record deletion tool,batch record deletion tool,batch record deletion tool
+batch record modification tool,batch record modification tool,batch record modification tool
+rotating collections tool,rotating collections tool,rotating collections tool
+stage MARC records tool,stage MARC records tool,stage MARC records tool
+upload local cover image tool,upload local cover image tool,upload local cover image tool
+add local cover images from the record detail page,add local cover images from the record detail page,add local cover images from the record detail page
+delete local cover images,delete local cover images,delete local cover images
+add cover images to items,add cover images to items,add cover images to items
+upload\_general\_files,upload\_general\_files,upload\_general\_files
+authority records,authority records,authority records
+search authorities,search authorities,search authorities
+manage serial numbering patterns,manage serial numbering patterns,manage serial numbering patterns
+manage serial frequencies,manage serial frequencies,manage serial frequencies
+check the expiration date of serials,check the expiration date of serials,check the expiration date of serials
+claim missing issues,claim missing issues,claim missing issues
+add new subscriptions,add new subscriptions,add new subscriptions
+edit existing serial subscriptions,edit existing serial subscriptions,edit existing serial subscriptions
+receive issues,receive issues,receive issues
+renew serial subscriptions,renew serial subscriptions,renew serial subscriptions
+routing lists,routing lists,routing lists
+statistics wizard,statistics wizard,statistics wizard
+Circulation page,Circulation page,Circulation page
+guided reports,guided reports,guided reports
+SQL reports,SQL reports,SQL reports
+run custom SQL reports,run custom SQL reports,run custom SQL reports
+"passwords, and usernames","passwords, and usernames","passwords, and usernames"
+add items to existing courses,add items to existing courses,add items to existing courses
+"create, edit and delete courses","create, edit and delete courses","create, edit and delete courses"
+administrative plugins,administrative plugins,administrative plugins
+install or uninstall plugins,install or uninstall plugins,install or uninstall plugins
+patron clubs,patron clubs,patron clubs
+create and edit patron clubs,create and edit patron clubs,create and edit patron clubs
+patron clubs tool,patron clubs tool,patron clubs tool
+create and edit club templates,create and edit club templates,create and edit club templates
+enroll patrons,enroll patrons,enroll patrons
+borrowers permission,borrowers permission,borrowers permission
+interlibrary loan (ILL) module,interlibrary loan (ILL) module,interlibrary loan (ILL) module
+self checkout,self checkout,self checkout
+self checkin,self checkin,self checkin
+AutoSelfCheckID,AutoSelfCheckID,AutoSelfCheckID
+stockrotation,stockrotation,stockrotation
+manage the items in the rotas,manage the items in the rotas,manage the items in the rotas
+manage rotas,manage rotas,manage rotas
+cash registers functionalities,cash registers functionalities,cash registers functionalities
+cash register transaction history,cash register transaction history,cash register transaction history
+cash register cashups,cash register cashups,cash register cashups
+recalls,recalls,recalls
+recall management page,recall management page,recall management page
+logging into the staff interface,logging into the staff interface,logging into the staff interface
+set the library,set the library,set the library
+Checking out,Checking out,Checking out
+unsuspend_holds cron job,unsuspend_holds cron job,unsuspend_holds cron job
+recalls are enabled,recalls are enabled,recalls are enabled
+recalls requested by the patron,recalls requested by the patron,recalls requested by the patron
+manage them,manage them,manage them
+claimed they returned items,claimed they returned items,claimed they returned items
+resolve claims,resolve claims,resolve claims
+manage\_restrictions,manage\_restrictions,manage\_restrictions
+patron restriction types administration page,patron restriction types administration page,patron restriction types administration page
+discharge,discharge,discharge
+setting flags in their accounts,setting flags in their accounts,setting flags in their accounts
+RestrictionBlockRenewing,RestrictionBlockRenewing,RestrictionBlockRenewing
+CumulativeRestrictionPeriods,CumulativeRestrictionPeriods,CumulativeRestrictionPeriods
+OverduesBlockCirc,OverduesBlockCirc,OverduesBlockCirc
+OverduesBlockRenewing,OverduesBlockRenewing,OverduesBlockRenewing
+updatecharges permission,updatecharges permission,updatecharges permission
+updatecharges,updatecharges,updatecharges
+payout permission,payout permission,payout permission
+refund permission,refund permission,refund permission
+discount permission,discount permission,discount permission
+fines cron job,fines cron job,fines cron job
+circulation and fines rules,circulation and fines rules,circulation and fines rules
+Patron types and categories,Patron types and categories,Patron types and categories
+Item iypes,Item iypes,Item iypes
+article request fees,article request fees,article request fees
+manual\_invoice permission,manual\_invoice permission,manual\_invoice permission
+payment page,payment page,payment page
+Writing off an individual charge,Writing off an individual charge,Writing off an individual charge
+PAYMENT\_TYPE authorized value category,PAYMENT\_TYPE authorized value category,PAYMENT\_TYPE authorized value category
+RequirePaymentType,RequirePaymentType,RequirePaymentType
+RequireCashRegister,RequireCashRegister,RequireCashRegister
+Partially writing off an individual charge,Partially writing off an individual charge,Partially writing off an individual charge
+writeoff permission,writeoff permission,writeoff permission
+Paying an individual charge in full,Paying an individual charge in full,Paying an individual charge in full
+Partially paying an individual charge,Partially paying an individual charge,Partially paying an individual charge
+Paying selected charges,Paying selected charges,Paying selected charges
+Void payments,Void payments,Void payments
+manual\_credit permission,manual\_credit permission,manual\_credit permission
+RecordStaffUserOnCheckout,RecordStaffUserOnCheckout,RecordStaffUserOnCheckout
+BorrowersLog,BorrowersLog,BorrowersLog
+IssueLog,IssueLog,IssueLog
+ReturnLog,ReturnLog,ReturnLog
+StatisticsFields,StatisticsFields,StatisticsFields
+EnableBorrowerFiles,EnableBorrowerFiles,EnableBorrowerFiles
+request discharges via the OPAC,request discharges via the OPAC,request discharges via the OPAC
+borrower,borrower,borrower
+chooser,chooser,chooser
+deliverer,deliverer,deliverer
+HSBND\_FREQ authorized value category,HSBND\_FREQ authorized value category,HSBND\_FREQ authorized value category
+chooser role,chooser role,chooser role
+deliverer role,deliverer role,deliverer role
+serial permissions,serial permissions,serial permissions
+'Alert subscriptions' tab in their online account,'Alert subscriptions' tab in their online account,'Alert subscriptions' tab in their online account
+TwoFactorAuthentication,TwoFactorAuthentication,TwoFactorAuthentication
+DefaultPatronSearchMethod,DefaultPatronSearchMethod,DefaultPatronSearchMethod
+DefaultPatronSearchFields,DefaultPatronSearchFields,DefaultPatronSearchFields
+patron attribute type,patron attribute type,patron attribute type
+'patron list','patron list','patron list'
+'merge the selected patrons','merge the selected patrons','merge the selected patrons'
+hold has been filled,hold has been filled,hold has been filled
+advance\_notices.pl cronjob,advance\_notices.pl cronjob,advance\_notices.pl cronjob
+process\_message\_queue.pl cronjob,process\_message\_queue.pl cronjob,process\_message\_queue.pl cronjob
+gather\_print\_notices.pl cronjob,gather\_print\_notices.pl cronjob,gather\_print\_notices.pl cronjob
+advance notices or hold notices,advance notices or hold notices,advance notices or hold notices
+send\_messages\_to\_patrons permission,send\_messages\_to\_patrons permission,send\_messages\_to\_patrons permission
+Notices tab,Notices tab,Notices tab
+patron attribute,patron attribute,patron attribute
+Holds queue,Holds queue,Holds queue
+Holds to pull,Holds to pull,Holds to pull
+build_holds_queue.pl,build_holds_queue.pl,build_holds_queue.pl
+HoldsQueueSkipClosed,HoldsQueueSkipClosed,HoldsQueueSkipClosed
+overdue notice cron job,overdue notice cron job,overdue notice cron job
+PrintNoticesMaxLines,PrintNoticesMaxLines,PrintNoticesMaxLines
+gather\_print\_notices.pl,gather\_print\_notices.pl,gather\_print\_notices.pl
+default circulation rule,default circulation rule,default circulation rule
+Edit framework subfields,Edit framework subfields,Edit framework subfields
+budget adminitration,budget adminitration,budget adminitration
+AcquisitionLog,AcquisitionLog,AcquisitionLog
+AuthFailureLog,AuthFailureLog,AuthFailureLog
+AuthSuccessLog,AuthSuccessLog,AuthSuccessLog
+AuthoritiesLog,AuthoritiesLog,AuthoritiesLog
+bibliographic records and items,bibliographic records and items,bibliographic records and items
+CataloguingLog,CataloguingLog,CataloguingLog
+checkouts,checkouts,checkouts
+checkins,checkins,checkins
+renewals,renewals,renewals
+item was checked out,item was checked out,item was checked out
+item was checked in,item was checked in,item was checked in
+checkout was renewed,checkout was renewed,checkout was renewed
+RenewalLog,RenewalLog,RenewalLog
+late orders are claimed,late orders are claimed,late orders are claimed
+late order was claimed,late order was claimed,late order was claimed
+ClaimsLog,ClaimsLog,ClaimsLog
+FinesLog,FinesLog,FinesLog
+HoldsLog,HoldsLog,HoldsLog
+IllLog,IllLog,IllLog
+patron files,patron files,patron files
+NewsLog,NewsLog,NewsLog
+notice and slips templates,notice and slips templates,notice and slips templates
+NoticesLog,NoticesLog,NoticesLog
+ReportsLog,ReportsLog,ReportsLog
+SubscriptionLog,SubscriptionLog,SubscriptionLog
+report writing tips on runtime parameters,report writing tips on runtime parameters,report writing tips on runtime parameters
+UseICUStyleQuotes,UseICUStyleQuotes,UseICUStyleQuotes
+cleanup database cron job,cleanup database cron job,cleanup database cron job

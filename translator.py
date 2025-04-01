@@ -239,9 +239,49 @@ class KohaTranslator:
         # Replace "**text **" with "**text**" (remove space before closing **)
         text = re.sub(r'(\*\*[^\*]+)\s+\*\*', r'\1**', text)
         
-        # Fix RST references (:ref:)
-        # Find all :ref:`label-name` patterns and ensure they're properly formatted
-        text = re.sub(r':ref:\s*`([^`]+)`', r':ref:`\1`', text)
+        # Fix missing bold markers (**text)
+        # Find ** without matching closing **
+        bold_start_pattern = r'\*\*([^\*]+)(?=[^\*]*$)'
+        for match in re.finditer(bold_start_pattern, text):
+            replacement = f"**{match.group(1)}**"
+            text = text.replace(match.group(0), replacement)
+        
+        # Fix missing emphasis markers (*text)
+        # Find * without matching closing * (but not part of ** for bold)
+        emphasis_start_pattern = r'(?<!\*)\*(?!\*)([^\*]+)(?=[^\*]*$)'
+        for match in re.finditer(emphasis_start_pattern, text):
+            replacement = f"*{match.group(1)}*"
+            text = text.replace(match.group(0), replacement)
+        
+        # Fix complex RST references (:ref:)
+        # First, fix complex references with labels: :ref:`text<label>`
+        text = re.sub(r':ref:\s*`\s*([^<`]+)\s*<\s*([^>`]+)\s*>`', r':ref:`\1<\2>`', text)
+        
+        # Fix simple references: :ref:`label`
+        text = re.sub(r':ref:\s*`\s*([^`]+)\s*`', r':ref:`\1`', text)
+        
+        # Fix broken references with multiple :ref: tags
+        # Look for patterns like ':ref:`text :ref:`' which are invalid
+        broken_ref_pattern = r':ref:`([^`]*)\s+:ref:`'
+        for match in re.finditer(broken_ref_pattern, text):
+            # Replace with two properly formatted references
+            original = match.group(0)
+            fixed = f":ref:`{match.group(1)}` :ref:`"
+            text = text.replace(original, fixed)
+        
+        # Fix substitution references (|name|)
+        # Ensure there are no spaces between the pipes and the content
+        text = re.sub(r'\|\s+([^|\n]+)\s+\|', r'|\1|', text)
+        text = re.sub(r'\|\s+([^|\n]+)\|', r'|\1|', text)
+        text = re.sub(r'\|([^|\n]+)\s+\|', r'|\1|', text)
+        
+        # Fix incomplete pipe references
+        # Find | without matching closing |
+        incomplete_pipe_pattern = r'\|([^|\n]+)(?=[^|]*\n|[^|]*$)'
+        for match in re.finditer(incomplete_pipe_pattern, text):
+            if '|' not in match.group(1):  # Make sure we're not matching something that already has a closing pipe
+                replacement = f"|{match.group(1)}|"
+                text = text.replace(match.group(0), replacement)
         
         return text
         
@@ -250,20 +290,118 @@ class KohaTranslator:
         if not text:
             return text, {}
             
-        # Find all :ref:`label-name` patterns
-        ref_pattern = r':ref:`([^`]+)`'
-        refs = re.findall(ref_pattern, text)
-        
         # Create a dictionary of placeholders
         placeholders = {}
-        for i, ref in enumerate(refs):
-            placeholder = f"REF_PLACEHOLDER_{i}"
-            placeholders[placeholder] = f":ref:`{ref}`"
-            
-        # Replace references with placeholders
         preserved_text = text
-        for placeholder, ref in placeholders.items():
-            preserved_text = preserved_text.replace(ref, placeholder)
+        
+        # Process all references in a single pass to handle multiple references in the same string
+        # First, identify all references in the text
+        all_refs = []
+        
+        # 1. Find complex references with labels: :ref:`text<label>`
+        complex_ref_pattern = r':ref:`([^<`]+)<([^>`]+)>`'
+        complex_matches = list(re.finditer(complex_ref_pattern, text))
+        for match in complex_matches:
+            all_refs.append({
+                'type': 'complex',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+        
+        # 2. Find simple references without explicit labels: :ref:`label`
+        simple_ref_pattern = r':ref:`([^<`]+)`'
+        # We need to be careful not to match parts of complex references that were already matched
+        simple_matches = []
+        for match in re.finditer(simple_ref_pattern, text):
+            # Check if this match overlaps with any complex reference
+            is_part_of_complex = False
+            for ref in all_refs:
+                if (match.start() >= ref['start'] and match.start() < ref['end']) or \
+                   (match.end() > ref['start'] and match.end() <= ref['end']):
+                    is_part_of_complex = True
+                    break
+            if not is_part_of_complex:
+                simple_matches.append(match)
+                all_refs.append({
+                    'type': 'simple',
+                    'start': match.start(),
+                    'end': match.end(),
+                    'match': match
+                })
+        
+        # 3. Find substitution references: |name|
+        subst_pattern = r'\|([^|\n]+)\|'
+        subst_matches = list(re.finditer(subst_pattern, text))
+        for match in subst_matches:
+            all_refs.append({
+                'type': 'subst',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+        
+        # Sort references by their position in the text (from end to start to avoid offset issues)
+        all_refs.sort(key=lambda x: x['start'], reverse=True)
+        
+        # Process each reference and replace with placeholders
+        for i, ref in enumerate(all_refs):
+            match = ref['match']
+            full_match = match.group(0)
+            
+            if ref['type'] == 'complex':
+                # Complex reference: :ref:`text<label>`
+                ref_text = match.group(1)  # This is the display text that should be translated (preserve spaces)
+                ref_label = match.group(2)  # This is the label that should not be translated (preserve spaces)
+                
+                # Create a unique placeholder for this reference
+                placeholder_id = f"COMPLEX_REF_{i}"
+                
+                # Store the original reference parts
+                # Determine if there was a space before the label
+                has_space = len(match.group(1)) > 0 and match.group(1)[-1] == ' '
+                
+                placeholders[placeholder_id] = {
+                    'type': 'complex',
+                    'prefix': ':ref:`',
+                    'display_text': ref_text,  # Original display text (will be replaced with translation)
+                    'has_space': has_space,  # Track if there was a space before the label
+                    'suffix': f"<{ref_label}>`"  # Label part that should not be translated
+                }
+                
+                # Replace the original reference with just the display text that needs translation
+                # We'll wrap it with special markers to ensure we can identify it after translation
+                preserved_text = preserved_text[:match.start()] + \
+                                f"[REF_START:{placeholder_id}]{ref_text}[REF_END:{placeholder_id}]" + \
+                                preserved_text[match.end():]
+                
+            elif ref['type'] == 'simple':
+                # Simple reference: :ref:`label`
+                ref_label = match.group(1).strip()
+                placeholder = f"SIMPLE_REF_PLACEHOLDER_{i}"
+                placeholders[placeholder] = {
+                    'type': 'simple',
+                    'full': full_match
+                }
+                
+                # Replace the entire reference with a placeholder
+                preserved_text = preserved_text[:match.start()] + \
+                                placeholder + \
+                                preserved_text[match.end():]
+                
+            elif ref['type'] == 'subst':
+                # Substitution reference: |name|
+                subst_name = match.group(1).strip()
+                placeholder = f"SUBST_PLACEHOLDER_{i}"
+                placeholders[placeholder] = {
+                    'type': 'subst',
+                    'full': full_match
+                }
+                
+                # Replace the entire reference with a placeholder
+                preserved_text = preserved_text[:match.start()] + \
+                                placeholder + \
+                                preserved_text[match.end():]
             
         return preserved_text, placeholders
         
@@ -273,8 +411,55 @@ class KohaTranslator:
             return text
             
         restored_text = text
-        for placeholder, ref in placeholders.items():
-            restored_text = restored_text.replace(placeholder, ref)
+        
+        # First handle complex references with the special markers
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
+                # Find the translated display text between our special markers
+                pattern = re.escape(f"[REF_START:{placeholder_id}]") + "(.*?)" + re.escape(f"[REF_END:{placeholder_id}]")
+                matches = list(re.finditer(pattern, restored_text, re.DOTALL))
+                
+                # Replace each occurrence with the properly formatted reference
+                for match in matches:
+                    translated_display_text = match.group(1).strip()
+                    
+                    # Add a space before the label if the original had one
+                    if ref_data.get('has_space', False):
+                        full_reference = f"{ref_data['prefix']}{translated_display_text} {ref_data['suffix']}"
+                    else:
+                        full_reference = f"{ref_data['prefix']}{translated_display_text}{ref_data['suffix']}"
+                    
+                    # Replace the marked text with the full reference
+                    start, end = match.span()
+                    restored_text = restored_text[:start] + full_reference + restored_text[end:]
+        
+        # Handle simple references and substitutions
+        for placeholder, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and (ref_data['type'] == 'simple' or ref_data['type'] == 'subst'):
+                pattern = re.escape(placeholder)
+                restored_text = re.sub(pattern, lambda m: ref_data['full'], restored_text)
+            elif not isinstance(ref_data, dict):
+                # Handle old-style placeholders for backward compatibility
+                pattern = re.escape(placeholder)
+                restored_text = re.sub(pattern, lambda m: ref_data, restored_text)
+        
+        # Fix any broken references that might have been created during translation
+        # This can happen if DeepL inserts spaces or changes formatting within references
+        
+        # Fix complex references with labels: :ref:`text<label>`
+        restored_text = re.sub(r':ref:\s*`\s*([^<`]+)\s*<\s*([^>`]+)\s*>`', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix simple references: :ref:`label`
+        restored_text = re.sub(r':ref:\s*`\s*([^`]+)\s*`', r':ref:`\1`', restored_text)
+        
+        # Fix broken references that might have been split during translation
+        # Look for patterns like ':ref:`text :ref:`' which are invalid
+        broken_ref_pattern = r':ref:`([^`]*):ref:`'
+        for match in re.finditer(broken_ref_pattern, restored_text):
+            # Replace with two properly formatted references
+            original = match.group(0)
+            fixed = f":ref:`{match.group(1)}` :ref:`"
+            restored_text = restored_text.replace(original, fixed)
             
         return restored_text
         

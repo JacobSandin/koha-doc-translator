@@ -1,0 +1,2502 @@
+ThingISBN
+OPACFRBRizeEditions
+FRBRizeEditions
+BakerTaylorUsername and
+    BakerTaylorPassword
+BakerTaylorBookstoreURL
+BakerTaylorEnabled
+HTML5MediaEnabled
+LibraryThingForLibrariesID
+LocalCoverImages
+OPACLocalCoverImages
+CustomCoverImagesURL
+OPACCustomCoverImages
+CustomCoverImages
+AllowMultipleCovers
+staffClientBaseURL
+Baker & Taylor Content Cafe
+NovelistSelectProfile and NovelistSelectPassword
+OverDriveLibraryID
+OverDriveClientKey and
+   OverDriveClientSecret
+SyndeticsClientCode
+SyndeticsEnabled
+SyndeticsEditions
+Tags
+loggedinlibrary permission
+superlibrarian permission
+StaffLoginLibraryBasedOnIP
+StaffLoginRestrictLibraryByIP
+implementation checklist
+system preferences
+serials permission
+creating a new subscription
+creating a new serial subscription
+numbering patterns table (see above)
+create\_subscription permission
+Acquisitions module
+'Notices and slips' tool
+makePreviousSerialAvailable
+SerialsUpdate.pl cron job
+StaffSerialIssueDisplayCount
+OPACSerialIssueDisplayCount
+manage frequencies
+add a custom frequency
+manage numbering patterns
+adding a numbering pattern
+custom fields
+edit\_subscription permission
+receive\_serials permission
+item add form
+receiving issues
+routing permission
+RoutingSerials
+RoutingListNote
+RoutingListAddReserves
+routing lists tab
+your routing lists
+acquisitions
+serial subscriptions
+'Table settings'
+opacSerialDefaultTab
+setting up the subscription
+SubscriptionHistory
+creating the subscription
+claim\_serials permission
+Notices and slips tool
+CSV profile
+check\_expiration permission
+renew\_subscription permission
+RenewSerialAddsSuggestion
+acquisitions module
+additional fields
+SerialsSearchResultsLimit
+receiving an issue
+Serials table in the FAQ section
+routing list
+preservation module
+subscription
+Serial collection
+lost status
+claim was sent to the vendor
+guided reports wizard
+SQL query
+create\_reports permission
+guided report wizard
+directly with SQL
+JSON reports services
+REPORT\_GROUP authorized value category
+REPORT\_SUBGROUP authorized value category
+report writing tips
+edit it
+duplicate it
+make edits
+run the report
+authorized value category
+MARC bibliographic frameworks
+classification sources
+item types
+libraries
+patron categories
+cash registers
+debit types
+credit types
+send to batch modification tools
+automatic hyperlinks to
+Column names
+configured Mana KB
+execute\_reports permission
+create from SQL
+Mana is set up
+search Mana for an existing SQL report
+edit the current report
+create a new report from the existing one
+notices and slips tool
+Tools > Notices and slips
+New notice
+task scheduler tool
+custom reports
+reports permissions
+report permission
+managing plugins section
+Circulating ILL materials
+View ILL requests list
+authorized value
+ILL module
+HTML customization location
+creating an ILL request from the OPAC
+ILL requests placed by patrons on the OPAC
+manage all ILL requests
+send requests to partners
+library's
+ILL email notifications
+letter codes
+OPAC requests
+plugins
+submits an ILL request
+manual invoicing
+EnablePointOfSale
+UseCashRegisters
+configure your cash registers
+takepayment permission
+PAYMENT\_TYPE authorized value
+OPACXSLTDetailsDisplay
+OPACXSLTListsDisplay
+OPACXSLTResultsDisplay
+XSLTDetailsDisplay
+XSLTListsDisplay
+XSLTResultsDisplay
+ISBD
+BiblioDefaultView
+IntranetUserCSS
+HTML customizations tool
+HTML customizations
+UseControlNumber
+EasyAnalyticalRecords
+ComponentSortOrder
+ComponentSortField
+autoControlNumber
+record overlay rules
+concern reporting feature in the staff interface
+CatalogerEmails
+OpacCatalogConcerns
+CatalogConcerns
+easy way of linking analytic
+   entries to the host records
+basic editor
+advanced editor
+authority frameworks
+MARC Bibliographic
+   Frameworks
+add the field in the MARC bibliographic framework
+circulation preferences > holds policy
+EnableItemGroupHolds
+LOC authorized value category
+UpdateItemLocationOnCheckin
+UpdateItemLocationOnCheckout
+SubfieldsToUseWhenPrefill
+cataloging bibliographic records
+cataloging authority records
+items\_batchmod\_restricted permission
+batch item modification tool
+edit\_items\_restricted permission
+PrefillItem
+Quick spine label creator tool
+plugins section in the administration chapter
+StaffInterfaceLanguages
+StaffLangSelectorMode
+TranslateNotices
+News
+Pages
+opaclanguagesdisplay
+OpacLangSelectorMode
+language
+"Notices and Slips" interface
+creating a new patron account in the staff interface
+messaging options
+registers online on the OPAC
+PatronSelfRegistrationBorrowerUnwantedField
+OAI-PMH
+OAI-PMH:ConfFile
+ILS-DI system preferences
+Guided reports wizard
+Report from SQL
+RESTOAuth2ClientCredentials
+Marc Modification Templates
+OCLC Connexion Daemon
+above
+staged for import
+TalkingTechItivaPhoneNotification
+EnhancedMessagingPreferences
+Overdue notice/status triggers
+TalkingTech\_itiva\_outbound.pl
+TalkingTech\_itiva\_inbound.pl
+manage\_libraries permission
+notices
+'Libraries' page of the OPAC
+KohaAdminEmailAddress
+ILLDefaultStaffEmail
+ReplytoDefault
+ReturnpathDefault
+SMTP server
+HTML customization
+'Libraries' page in the OPAC
+MARCOrgCode
+'Libraries' page on the OPAC
+ConsiderLibraryHoursInCirculation
+OPACUserJS
+OPACUserCSS
+advanced search limit dropdown
+view\_borrower\_infos\_from\_any\_libraries permission
+edit\_any\_item permission
+OpacAddMastheadLibraryPulldown
+advanced search page
+hold policies in the circulation rules
+return policy
+hold policy
+UseCirculationDesks
+manage\_itemtypes permission
+circulation rules
+circulation rule
+ITEMTYPECAT authorized value category
+item-level\_itypes
+noItemTypeImages
+OPACNoItemTypeImages
+OPACnoItemTypeImages
+OpacHiddenItems
+cronjob misc/cronjobs/automatic_checkin.pl
+bookings
+calendar
+replacement cost
+Adding item types
+manage\_auth\_values permission
+article request
+creating a fund
+patron messages
+circulation messages
+patron's sort 1 field
+patron's sort 2 field
+cataloging and working with items
+advanced cataloging editor
+course reserves
+agreement record
+e-resource management module
+reporting
+license record
+license
+agreement
+cancelling holds
+housebound tab
+item type settings
+adding or editing an item
+NewItemsDefaultLocation
+suggestion form
+patron attributes
+patron add and edit form
+paying fines
+add new values
+MARC bibliographic framework
+saved reports page
+REPORT\_GROUP
+return claim has been resolved
+patron form
+creating
+editing
+managing suggestions
+suggestions
+course reserves module
+adding a new course
+catalog concerns
+file uploads
+vendor
+adding an issue
+vendors
+add a new authorized value to the category
+SUGGEST\_STATUS
+existing authorized values categories
+manage\_patron\_categories permission
+update\_patrons\_category.pl
+FeeOnChangePatronCategory
+overdue notice triggers
+Tools module
+OpacResetPassword
+OpacPasswordChange
+minPasswordLength
+RequireStrongPassword
+ForcePasswordResetWhenSetByStaff
+BlockExpiredPatronOpacActions
+Placing a hold on an item
+Placing ILL requests
+Renewing an item
+CheckPrevCheckout
+ILLModule
+batch\_anonymize.pl script
+batch anonymization
+OPACPrivacy
+LocalHoldsPriority
+noissuescharge
+NoIssuesChargeGuarantees
+NoIssuesChargeGuarantorsWithGuarantees
+advanced messaging preferences
+changed on an individual basis
+borrowers-force-messaging-defaults script
+manage\_circ\_rules permission
+CircControl
+HomeOrHoldingBranch
+IndependentBranches
+on-site checkouts
+ConsiderOnSiteCheckoutsAsNormalCheckouts
+useDaysMode
+library
+finesCalendar
+FinesIncludeGracePeriod
+MaxFine
+UnseenRenewals
+NoRenewalBeforePrecision
+automatic renewal cron job
+default checkout and hold policy by patron category
+Default checkout, hold, and return policy
+maxreserves
+staff interface
+Holds awaiting pickup
+ReservesMaxPickUpDelay
+ArticleRequests
+charge a rental fee for the item type
+UseRecalls
+RecallsMaxPickUpDelay
+OnSiteCheckouts
+library groups
+when the request is placed
+RefundLostOnReturnControl
+NoRefundOnLostReturnedItemsAge
+AllowHoldPolicyOverride
+AutomaticItemReturn
+CircControlReturnsBranch
+manage\_patron\_attributes permission
+ExtendedPatronAttributes
+patron
+      import tool
+patron search
+add an authorized value list
+batch patron import
+patron record add/edit form
+manage\_transfers permission
+UseBranchTransferLimits
+Authorized values
+UseTransportCostMatrix
+StaticHoldsQueueWeight
+manage\_item\_circ\_alerts permission
+manage\_cities permission
+CurbsidePickup
+manage\_curbside\_pickups permission
+PatronRestrictionTypes
+manage\_patron\_restrictions permission
+manage\_accounts permission
+patron category settings
+item's 'replacement cost' field
+item type's default replacement cost
+manual invoices
+circulation and fines rules
+item type
+patron's category
+ExpireReservesMaxPickUpDelay
+ExpireReservesMaxPickUpDelayCharge
+adding a new charge to a patron's account
+point of sale
+transaction history
+cancelling a charge in a patron's account
+manual credits
+discount fines and charges
+Default 
+   lost item fee refund on return policy
+fee payments
+point of sale module
+refunding the payment of a fine or charge
+writing off a fine or charge
+manual credit
+AutoCreditNumber
+manage\_cash\_registers permission
+entering a 
+payment
+they are enabled in the configuration file
+manage permission
+configure permission
+admin permission
+tool plugins
+report plugins
+configured external plugin repositories
+batch record modification
+manage\_background\_jobs permission
+Batch bibliographic record modification
+Batch bibliographic record deletion
+Batch authority record modification
+Batch authority record deletion
+Batch item record modification
+Batch item record deletion
+cancelled
+created from a list
+RealTimeHoldsQueue
+holds queue
+Staged MARC records for import
+Import MARC records
+manage\_marc\_frameworks permission
+editing fields and
+   subfields
+MARC bibliographic framework test
+advancedMARCeditor
+importing records
+ApplyFrameworkDefaults
+Koha to MARC mapping
+authority catalog
+Authority types
+cataloguing plugin
+cataloging section
+upload files to Koha to link to your
+            records
+cataloging with the basic editor
+editing fields and subfields in frameworks
+using the instructions
+above
+a new
+framework
+make any changes
+MARC
+bibliographic frameworks
+manage\_classifications permission
+filing rule
+splitting rule
+Classification sources
+creating or editing a classification source
+label layout
+manage\_matching\_rules permission
+Stage MARC
+records for import
+Koha search indexes
+manage\_record\_sources permission
+edit\_locked\_records permission
+manage\_marc\_overlay\_rules permission
+manage\_oai\_sets permission
+item
+search
+manage\_item\_search\_fields permission
+SavedSearchFilters
+manage\_search\_filters permission
+searching the catalog through the staff interface
+advanced search form
+manage\_search\_engine\_config permission
+Elasticsearch indexes
+Searching
+search fields tab
+browse search
+facets
+add the search field
+add mappings to that search field
+add mappings
+delete mappings
+currencies\_manage permission
+staging tools
+funds
+period\_manage permission
+budget\_add\_del
+budget\_manage
+budget\_modify
+period\_manage
+from scratch
+duplicating the previous year's budget
+add funds
+add sub funds
+plan spending
+edit the budget
+close the previous budget
+duplicate the previous year's
+budget
+deleting the funds
+make it inactive
+close it
+add a budget
+budget\_modify permission
+order\_manage\_all permission
+report
+Planning category FAQ
+adding a new fund
+planning\_manage permission
+budget\_manage permission
+EDIFACT
+edi\_manage permission
+vendor set up in
+   acquisitions
+EDI questions for vendors
+acquisitions module chapter
+manage\_identity\_providers permission
+add more domains to this provider
+patron category
+creating a new identity provider
+identity provider
+manage\_search\_targets permission
+manage\_smtp\_servers permission
+library's details
+manage\_didyoumean permission
+authorities
+manage\_column\_config permission
+Funds table on the main acquisition page
+Basket summary
+Order search results
+Late orders
+Suggestions
+Patron categories
+Cities
+Currencies
+Item types
+Libraries
+Item bundles
+SeparateHoldings
+Item table above edit item form
+Catalog concern management
+Z39.50 search results
+Checkouts
+Patron search results
+List of holds on a bibliographic record
+Holds awaiting pickup (holds with cancellation requests)
+Holds awaiting pickup (holds waiting over X days)
+Holds awaiting pickup (holds waiting)
+Hold ratios
+Overdues report
+printing the summary
+Checkins
+Holds queue
+Courses
+Reserves
+Agreements
+E-holdings packages
+E-holdings titles
+Licenses
+Requests
+Patron checkout history
+Accounting > Transactions
+Holds history
+Details > Holds
+Details > Checkouts
+Details > Relatives' checkouts
+Patron lists
+Accounting > Make a payment
+Point of sale
+Batch patron modification tool
+Log viewer
+MARC modification templates
+Notices and slips
+Stock rotation rotas
+Stock rotation items
+List of files in upload tool
+Course reserves
+Holdings/Items
+Serials issues on subscription tab
+Items lost
+Orders by fund
+Saved SQL reports
+Acquisition details
+AudioAlerts
+manage\_audio\_alerts permission
+smssenddriver-label
+manage\_sms\_providers permission
+messaging tab
+manage\_usage\_stats permission
+manage\_mana permission
+manage\_additional\_fields permission
+creation of a new order basket
+adding orders to a basket
+invoice in the acquisitions module
+editing an existing subscription
+paying or writing off charges in a patron's account
+creating manual credits
+creating a manual invoice
+create a new authorized value category
+orders advanced search
+invoice search
+subscription advanced search
+authorized values
+adding a subscription
+cataloging module
+viewing the invoice
+EnableAdvancedCatalogingEditor
+manage\_keyboard\_shortcuts permission
+OpacBrowseSearch system preference
+Browse search
+OPACdefaultSortField and OPACdefaultSortOrder
+DisplayOPACiconsXSLT
+enhanced content system preferences
+Did you mean?
+search results facets
+XSLT material
+type icons
+Serials module
+adding the subscription
+OPACAuthorIdentifiers system preference
+suggestion
+purchase suggestion form
+OPACSearchForTitleIn
+OpacExportOptions
+problem report feature
+OpacAuthorities
+Lists and cart
+OpacAllowPublicListCreation
+cart
+View the content of a list
+adding items to it
+'Lists' tab
+OpacAllowSharingPrivateLists
+TagsInputOnDetail
+adding tags to titles
+list
+place a hold
+add tags to selected titles
+OPACHoldRequests
+DisplayMultiPlaceHold
+OPACShowHoldQueueDetails
+OPACAllowUserToChooseBranch
+library configuration
+OPACAllowHoldDateInFuture
+cancel\_expired\_holds.pl cronjob
+AllowHoldItemTypeSelection
+item groups
+OpacHoldNotes
+account page
+setting up recalls
+expire\_recalls.pl cronjob
+TagsEnabled
+TagsInputOnList
+OPACComments
+ShowReviewerPhoto
+ShowReviewer
+OpacShowRecentComments
+RSS feeds cron job
+RSS cron job
+OpacUserJS system preference
+CookieConsentedJS system preference
+CookieConsent system preference
+PatronSelfRegistration
+PatronSelfRegistrationBorrowerMandatoryField
+PatronSelfRegistrationVerifyByEmail
+PatronSelfRegistrationPrefillForm
+EmailPatronRegistrations
+PatronSelfRegistrationDefaultCategory
+opacuserlogin
+account summary
+OPACUserSummary
+OPACShowSavings
+NotifyPasswordChange
+OPAC messages
+OPAC notes
+OpacMySummaryNote HTML customization location
+OpacRenewalAllowed
+OPACFineNoRenewals
+maxoutstanding
+AllowPatronToControlAutoRenewal
+OPACMySummaryHTML
+patron attribute
+patron's record set the value
+AllowCheckoutNotes
+see and manage checkout notes
+their privacy
+AllowStaffToSetCheckoutsVisibilityForGuarantor
+OPACFinesTab
+AllowStaffToSetFinesVisibilityForGuarantor
+clubs
+enroll in clubs
+SuspendHoldsOpac
+AutoResumeSuspendedHolds
+waiting hold cancellation policy
+OPACAllowUserToChangeBranch
+allows recalls
+flagged your patron's account
+OPACPatronDetails
+EnablePayPalOpacPayments
+PatronSelfModificationBorrowerUnwantedField
+PatronSelfModificationMandatoryField
+AutoApprovePatronProfileSettings
+PrivacyPolicyConsent
+PrivacyPolicyURL
+EnableOpacSearchHistory
+opacreadinghistory
+'Privacy' tab
+Your reading
+history
+Circulation
+History
+AnonymousPatron
+AllowPatronToSetCheckoutsVisibilityForGuarantor
+OPACHoldsHistory
+OPACViewOthersSuggestions
+EnhancedMessagingPreferencesOPAC
+SMSSendDriver
+cellular
+providers entered in administration
+i-tiva Talking
+Tech
+AutoRenewalNotices
+virtualshelves
+create or edit their own private lists
+bibliographic record
+useDischarge
+discharge is approved by library staff
+serial routing lists
+HTML customization display location
+curbside pickup
+curbside pickup configuration
+Your purchase suggestions
+OPACSuggestionMandatoryFields
+OPACSuggestionUnwantedFields
+OPACSuggestionAutoFill
+authorized value list
+'OpacLibraryInfo' HTML customizations
+OPACReportProblem
+OPAC problem reports tool
+self checkout module
+OpacTrustedCheckout
+summary
+UseCourseReserves
+added as
+patrons
+authorized
+values
+collection codes (CCODE)
+shelving locations (LOC)
+circulation and fine rules
+manage\_courses permission
+add\_reserves permission
+PreservationModule system preference
+add the statuses
+preservation permission
+PreservationNotForLoanWaitingListIn
+PreservationNotForLoanDefaultTrainIn
+create a new notice
+copying the PRES_TRAIN_ITEM
+      notice
+preservation settings
+add your items to a train
+Preservation module settings
+from the Trains page
+from the Waiting list page
+add your items to the waiting list
+adding them to the waiting
+list
+Add item
+create the train
+processing
+processing's default settings
+edit\_public\_list\_contents permission
+catalogue permission
+edit\_public\_lists permission
+delete\_public\_lists permission
+CSV profiles
+opacbookbag
+intranetbookbag
+modify via Cataloging
+Preservation module setting
+AdvancedSearchTypes
+AuthorityXSLTOpacResultsDisplay
+AuthorityXSLTResultsDisplay
+XSLT material type icons
+DisplayIconsXSLT
+news tool
+library limit on the advanced search page
+OPACURLOpenInNewWindow
+Display856uAsImage
+OpacMaintenance
+OPACShowMusicalInscripts
+OpacItemLocation
+Reference_NFL_Statuses
+OPACResultsMaxItemsUnavailable
+OPACResultsUnavailableGroupingBy
+OPACPlayMusicalInscripts
+OpacAdditionalStylesheet
+opaclayoutstylesheet
+library form
+PassItemMarcToXSLT
+search results
+NOT\_LOAN authorized value category
+basket is closed
+OPACAuthorIdentifiersAndInformation
+OPACAuthorIdentifiers
+authority search
+authorities browser cron job
+SearchEngine system preference
+concern reporting feature in the OPAC
+Table setting
+patronimages
+'Report a problem' feature on the OPAC
+OPAC section
+summary box on OPAC homepage
+'your summary' page
+checkout history page
+checkout histories are anonymized
+cleanup\_database script
+quote of the day editor
+comments tool
+OPACBaseURL
+individual patron categories
+Managing lists
+AccountAutoReconcile
+renew items for patrons
+RESTAPIRenewalBranch
+checkouts via the OPAC
+cleanup\_database.pl cronjob
+private list share invites
+misc/cronjobs/cleanup\_database.pl cronjob
+create a patron
+holds history on the OPAC
+patrons categories
+StoreLastBorrower
+circulation history
+chosen to never have their reading history kept
+anonymize circulation histories
+Libraries settings
+self
+   registration
+circulation
+    rights
+patron registration form in the OPAC
+cleanup\_database.pl script
+PatronSelfRegistrationExpireTemporaryAccountsDelay
+circulation rights
+cleanup\_database cron job
+codes
+self registration
+PatronSelfRegistrationConfirmEmail
+purchase suggestions
+anonymous suggestions
+making suggestions in the name of the patron in the staff interface
+allowing patrons to make purchase
+   suggestions
+make purchase suggestions from the OPAC
+purchase suggestion
+AnonSuggestions
+E-Resource management (ERM) module
+erm permission
+ERMProviderEbscoCustomerID
+eHoldings
+ERMProviderEbscoApiKey
+Log viewer tool
+logged action
+log viewer tool
+DumpTemplateVarsIntranet
+DumpTemplateVarsOpac
+new basket was created
+basket was closed
+fund was created
+order was added to a basket
+basket was edited
+order was received
+authority record
+new patron was added
+patron's account was deleted
+patron's account was edited
+patron's membership was renewed
+late order
+late serial issue
+cron job
+charges
+payment was voided
+holds
+confirmed and put aside to await pickup
+ILL requests
+an item is checked out
+news item
+notice or slip templates
+new notice or slip template was created
+checkout is renewed
+reports
+item is checked in
+serial subscription was created
+serial subscription was edited
+serial subscription was renewed
+Mana KB configuration
+OAI-PMH:AutoUpdateSets
+sample conf file
+OpacRenewalBranch
+IntranetAddMastheadLibraryPulldown
+library group
+return the results
+EnableSearchHistory
+search history
+expandedSearchOption
+LOC authorized values
+item location field
+OpacAdvancedSearchTypes
+OpacAdvSearchMoreOptions
+OpacAdvSearchOptions
+AdvancedSearchLanguages
+SearchLimitLibrary
+defaultSortField and defaultSortOrder
+item search
+fields
+batch item deletion tool
+RedirectToSoleResult
+save the search as a search filter
+StaffHighlightedWords
+Restricted
+Lost
+Withdrawn
+Damaged
+Not for loan
+MaxSearchResultsItemsPerRecordStatusCheck
+maxItemsInSearchResults
+Enhanced content system preferences
+DisplayLibraryFacets
+search engine configuration page
+maxRecordsForFacets
+displayFacetCount
+FacetMaxCount
+FacetLabelTruncationLength
+FacetOrder
+UNIMARCAuthorsFacetsSeparator
+search filters
+BrowseResultSelection
+sorting section
+'Holds' tab
+'Article requests' tab
+basic search
+advanced search
+search filter administration section
+search filter administration page
+Koha Indexing Chart
+manage\_sysprefs permission
+currencies and exchange rates
+OpacHighlightedWords
+inventory tool
+Batch item modification
+Batch item deletion
+batch item delete tool
+MaxItemsToProcessForBatchMod
+Patron card creator
+patron card creator tool
+reports module
+upload tool
+receiving a new issue
+creating the serial subscription
+creating or editing serial subscriptions
+purchase suggestions page in the acquisitions module
+clicking the 'renew' option on a serial subscription
+routing list feature
+routing list information
+sending late serial issues claims
+serials module
+batch checkout
+BatchCheckoutsValidCategories
+SCOBatchCheckoutsValidCategories
+BatchCheckouts
+TransfersBlockCirc
+CalculateFinesOnReturn
+SpecifyReturnDate
+fines cron
+   job
+finesMode
+circulation page
+HoldsAutoFill
+NOT\_LOAN authorized values
+AutomaticConfirmTransfer
+NOT_LOAN authorized value
+cart\_to\_shelf cron job
+AgeRestrictionOverride
+Koha to
+   MARC Mapping
+Koha
+       to MARC Mapping
+AgeRestrictionMarker
+circulation and fines policies
+return policy rule
+DefaultLongOverdueSkipPatronCategories
+DefaultLongOverdueLostValue and DefaultLongOverdueDays
+longoverdue cron job
+DefaultLongOverduePatronCategories
+longoverdue cron
+circulation and fines
+      policies
+checking out
+currency
+creating or editing a debit type
+AllFinesNeedOverride
+AllowFineOverride
+notice template
+overdue\_notices.pl cronjob
+RenewalPeriodBase
+new notice
+transferred between library branches
+Transfers to receive
+Calendar
+Transport cost
+   matrix
+curbside pickup module
+fines cron job
+default lost item fee refund on return policy
+placing a hold in the staff interface
+placing a hold in the OPAC
+automatic check-in
+automatic_checkin.pl cronjob
+Unsuspend Holds
+'Holds to pull' list
+UpdateItemWhenLostFromHoldList
+AllowHoldDateInFuture
+placing holds in the staff interface
+placing multiple item-level holds on one record
+notice
+process\_message\_queue.pl
+    cron job
+EnableItemGroups
+cataloging preferences
+Expire Holds cron
+   job
+check in the item in order to trigger the next hold
+they opted to receive 'Hold filled' notices
+ExpireReservesAutoFillEmail
+ExpireReservesAutoFill
+hold ratios report
+Default holds policy by item type
+LocalHoldsPriority, LocalHoldsPriorityPatronControl and LocalHoldsPriorityItemControl
+LocalHoldsPriority, LocalHoldsPriorityPatronControl, LocalHoldsPriorityItemControl
+HoldsSplitQueue
+HoldsQueuePrioritizeBranch
+patron's account
+OPACHoldsIfAvailableAtPickup
+build\_holds\_queue.pl cronjob
+Koha holiday calendar
+Holds Awaiting Pickup
+Holds Queue
+   report
+a cron
+   job
+Transport Cost Matrix
+LOST authorized value category
+WITHDRAWN authorized value category
+DAMAGED authorized value category
+CCODE authorized value category
+CanMarkHoldsToPullAsLost
+Firefox plugin
+Windows tool
+offline circulation
+Firefox
+   plugin
+desktop
+   application
+ISSUEQSLIP
+ISSUESLIP
+export patrons' checkouts
+exporting the patron's current checkouts
+ExportCircHistory
+Holds to Pull
+checkout tab
+checkout
+Checkout tab.
+LOST authorized value
+LOST authorized values category
+NOT\_LOAN authorized value
+NOT\_LOAN authorized values category
+DefaultLongOverdueLostValue
+longoverdue cron
+   job
+LOST values
+DefaultLongOverdueLostValue/DefaultLongOverdueDays
+long overdue cron job
+claims returned
+'Holds to pull'
+items tab
+longoverdue cronjob
+cataloging an item
+return claim
+receiving a payment
+pays for the item
+pays
+written off
+writes off
+Overdue Notice/Status Triggers
+restriction
+adding a manual restriction to a patron
+misc/cronjobs/automatic_renewals.pl
+return claims
+RETURN\_CLAIM\_RESOLUTION authorized value
+RETURN\_CLAIM\_RESOLUTION authorized value category
+resolve return claims
+return claims feature
+resolved return claims
+cleanup\_database.pl cron job
+self\_checkout\_module permission
+WebBasedSelfCheck
+patron record
+AutoSelfCheckAllowed
+SelfCheckAllowByIPRanges
+self check-out
+stock rotation module
+manage\_patron\_lists permission
+modifying patrons in batches
+deleting patrons in batches
+merging patrons
+printing patron card batches
+patron card creator
+batch patron modification tool
+batch patron deletion tool
+patron lists tab in the patron record
+clubs permission
+edit\_templates permission
+they enroll in a club
+edit\_clubs permission
+'Club fields' in the template
+enroll permission
+'Clubs' tab
+'Enrollment fields'
+'Your summary' section
+create an SQL report
+placing the hold
+moderate\_comments permission
+import\_patrons permission
+BorrowerMandatoryField
+dateformat system preference
+edit\_notices permission
+SlipCSS
+NoticeCSS
+claiming late orders
+claiming late serial issues
+ILL request process
+ordering acquisitions
+patron accounts
+sending a custom email
+preservation process
+purchase suggestion process
+custom report results
+triggers
+PhoneNotification
+Overdue notice markup
+patron file
+two-factor authentication
+purchase suggestion is accepted
+payment transaction
+UseEmailReceipts
+writeoff transaction
+claiming orders
+aquisitions module
+late orders page
+vendor contact
+basket summary page
+inform patrons on receiving orders
+article request has been made
+messaging preferences
+made a purchase suggestion
+order created from the suggestion
+received
+sending the cart by email from the OPAC
+sending the cart by email from the staff interface
+Messaging tab
+checkout note
+checkouts list on the OPAC
+'Item due' notice
+holds\_reminder.pl
+'Hold filled' notice
+emailLibrarianWhenHoldIsPlaced
+EmailPatronWhenHoldIsPlaced
+requests to partner libraries
+inter-library loan
+cancels their inter-library loan request
+modifies their inter-library loan request
+their inter-library loan request has been updated
+sending a list by email from the OPAC
+sending a list by email from the staff interface
+MembershipExpiryDaysNotice
+related cron job
+membership\_expiry.pl cronjob
+a curbside pickup is scheduled
+curbside pickup module must be enabled
+EmailPurchaseSuggestions
+assigned as manager of 
+      a suggestion
+Overdue notice/status
+      triggers
+patron registers through the OPAC
+patron who registered through the OPAC
+patron who made a suggestion
+'from a suggestion' option is used to create an order from it
+a patron requests a new password from the OPAC
+requested a recall
+ready for them to pick up
+'Advanced notice'
+'Advanced notice' digest
+items in a train
+reports a problem on the OPAC
+patron's purchase suggestion is rejected
+RenewalSendNotice
+has been recalled
+adding or editing a subscription
+detail view in the OPAC
+stock rotation
+stockrotation.pl
+password reset email
+report a concern through the staff interface
+report a concern through the OPAC
+catalog concern
+a concern was reported about a bibliographic record
+the concern is marked as resolved with the 'Notify' flag
+the concern is updated with the 'Notify' flag
+notice\_unprocessed\_suggestions
+AutoEmailNewUser
+patron's accounting tab
+paying or writing off a charge
+FinePaymentAutoPopup
+credit type code
+debit type code
+'Print' button
+managing article requests from the staff interface
+Print checkin slip
+Check in page
+print the quick slip in circulation
+print a full slip in circulation
+a hold is confirmed and set to waiting
+'print' menu in the patron account
+receiving the recall
+edit\_notice\_status\_triggers permission
+Notices & slips
+set that patron category
+OverdueNoticeCalendar
+holiday calendar
+AutoRemoveOverduesRestrictions
+i-tiva Talking
+   Tech service
+label\_creator permission
+patron image
+manage
+      images
+create a profile
+template
+template edit form
+custom report
+option to send the report results
+patron card layouts
+ImageLimit
+delete\_anonymize\_patrons permission
+patron list
+edit\_patrons permission
+list of
+patrons
+batch\_extend\_due\_dates permission
+moderate\_tags permission
+tagging system preferences
+the dictionary
+batch\_upload\_patron\_images permission
+allowing patron
+images
+patron cards
+rotating\_collections permission
+edit\_calendar permission
+finescalendar
+manage\_csv\_profiles permission
+baskets
+late orders
+late issues
+list of lost items
+cart or list
+serials
+export late issues of serial subscriptions
+export late orders in the acquisitions module
+download records from acquisitions baskets
+lost items report
+Using Template Toolkit in MARC CSV profile
+acquisitions baskets
+view\_system\_logs permission
+system
+preferences
+logs preferences
+edit\_additional\_contents permission
+OpacNewsLibrarySelect
+Notices & slips tool
+installation
+AdditionalContentsEditor
+NewsAuthorDisplay
+display locations
+Quote of the day
+reporting a concern in the OPAC
+reporting a concern in the staff interface
+creating an interlibrary loan request on the OPAC
+ILLModuleCopyrightClearance
+OpacMaintenanceNotice
+'your summary' tab
+list of facets
+OPACResultsSidebar
+purchase suggestion form on the OPAC
+OpacSuppression
+OpacSuppressionMessage
+creates a library account via the OPAC
+PatronSelfRegistrationAdditionalInstructions
+SCOMainUserBlock
+SelfCheckHelpMessage
+self check-in
+SelfCheckInMainUserBlock
+Authorities
+Cataloguing module
+Lists
+Patrons module
+news
+IntranetNav
+IntranetmainUserBlock
+schedule\_tasks permission
+edit\_quotes permission
+QuoteOfTheDay
+news block
+plugin administration page
+tool permission
+upload\_general\_files permission
+Cataloging form
+access\_files permission
+cashup permission
+library details
+register details
+cashups
+acquisitions system preferences
+acquisitions administration
+EDI accounts
+library EANs
+entered your vendors
+Budget/fund tracking
+vendors\_manage permission
+add values
+VENDOR\_TYPE authorized value category
+vendor search
+editing baskets section below
+acquisitions claims
+serials claims
+VENDOR\_INTERFACE\_TYPE authorized value category
+Currencies and exchange rates
+TaxRates
+placing an order
+late orders report
+create a new basket
+add a new contract
+edit the vendor information
+search for the vendor
+contracts\_manage permission
+searching for the vendor
+access the vendor page
+vendor page
+creating a basket
+issue\_manage permission
+VENDOR\_ISSUE\_TYPE authorized value category
+on the patron's behalf
+make purchase suggestions via the OPAC
+suggestions\_manage permission
+acquisitions permissions
+SuggestionsLog system preference
+From a purchase suggestion
+SUGGEST\_STATUS authorized values category
+patron's account in the OPAC
+email notice
+SUGGEST authorized value category
+ordering from a suggestion
+SUGGEST\_STATUS authorized values
+add corresponding notices
+SUGGEST\_FORMAT authorized value category
+NOTIFY\_MANAGER notice
+order this title from the suggestion
+notice\_unprocessed\_suggestions.pl cronjob
+TO\_PROCESS
+'Your purchase suggestions' section of the patron's file on the OPAC
+purge\_suggestions.pl cronjob
+search for the vendor or bookseller
+create a basket
+EANs
+order\_manage permission
+added contracts
+AcqCreateItem
+additional fields for order baskets
+patron notifications
+items
+accounting details
+managing purchase suggestions
+your purchase suggestions
+UseACQFrameworkForBiblioRecords
+MARC framework
+stage\_marc\_import permission
+Stage MARC records for import
+MarcFieldsToOrder
+staged
+permissions
+circulate\_remaining\_permissions permission
+add items to the order
+Acquisitions administration
+currencies
+Dealing with uncertain prices
+WhenLostChargeReplacementFee
+vendor information
+creating the
+   fund
+additional fields for order lines
+AcquisitionDetails
+OPACAcquisitionDetails
+add orders to the basket
+closing the basket
+add it to a basket group
+receive its items
+CSV profiles tool
+vendor profile
+receive items
+BasketConfirmations
+group\_manage permission
+OrderPdfFormat
+1PageOrderPDFText
+Vendor search
+close the basket
+order\_receive permission
+creating your basket
+'Cost, replacement price' subfield
+'Cost, normal purchase price' subfield
+AcqItemSetSubfieldsWhenReceived
+needing to be notified when the order is received
+suggested the purchase
+basket page
+receiving page
+basket group
+'late order' calculations
+ORDER\_CANCELLATION\_REASON authorized values category
+CancelOrdersInClosedBaskets
+acquisition permissions
+edit\_invoices permission
+merge\_invoices permission
+reopen\_closed\_invoices permission
+delete\_invoices permission
+orders are received
+merge selected invoices
+receiving
+authorized values category
+AcqEnableFiles
+accounting details section of the order
+creating the vendor
+contact at the vendor's
+'Acquisition claim' (code ACQCLAIM)
+add different notices
+active funds
+CalculateFundValuesIncludingTax
+EDIFACT system preference
+library codes
+item type codes
+fund codes
+Create a vendor/bookseller/jobber record
+Acquisitions system preferences
+MARC order fields
+EDI Accounts
+Library EANs
+EDI cron
+ordering from a new
+file
+EDIFACT messages
+EDI cron job
+Sending the EDIFACT order
+EdifactInvoiceImport
+clean up database script
+add records in your basket
+receiving orders
+add the items
+uploading of invoice files
+library funds
+cancel orders
+claiming a late serial issue
+late acquisitions order
+libraries settings
+order from a new .mrc file
+order from a staged file
+purge_suggestions.pl
+ACQ bibliographic framework
+basket groups
+Author/Subject Cloud cron job
+OPACMainUserBlock
+the news tool
+update the frameworks
+IntranetUserJS
+their online account on the OPAC
+their information
+personal setting
+patron category setting
+searching for patrons
+Patron Attribute
+      Types
+Circulation history tab
+Holds history tab
+IntranetReadingHistoryHolds
+Circulation history
+privacy page
+lists
+ListOwnerDesignated
+ListOwnershipUponPatronDeletion
+misc/cronjobs/cleanup_database.pl
+change their password
+circulation rules matrix
+one by one
+in
+   bulk
+OPACpatronimages
+ShowPatronImageInWebBasedSelfCheck
+Statistics tab
+TrackLastPatronActivityTriggers
+TrackLastPatronActivity
+checks out an item to the patron
+the patron logs into the OPAC
+places an article request in the staff interface
+staff renews a checked out item for the patron
+the patron renews their checkout through their OPAC account
+staff checks in an item
+emitting a discharge from the patron record
+requesting a discharge from the OPAC
+renew their card
+Notices and
+   slips
+membership expiry cron job
+notices and slips
+EmailFieldPrimary
+EmailFieldPrecedence
+welcome messages
+overdue notices
+advance notices
+EmailFieldSelection
+library's rules
+changing the password in the patron's account in the staff interface
+resetting the password from the OPAC
+changing the password through the OPAC
+Talking Tech i-tiva
+Talking Tech
+PatronQuickAddFields
+"Quick add new patron"
+patrons toolbar
+BorrowerUnwantedField
+"Quick add new patron" form
+Consents
+PrivacyPolicy
+EnableExpiredPasswordReset
+patron attribute types
+Bcrypt_settings
+item type level
+SuggestionsLog
+import local title records into Koha from a KBART file
+record sources
+manage\_record\_sources
+edit\_locked\_records
+Patron attribute types
+adding a new patron attribute type
+catalog concerns feature
+TICKET\_STATUS authorized value category
+TICKET\_RESOLUTION authorized value category
+managing catalog concerns
+patron permissions
+custom email message feature
+search engine configuration
+add new facets
+serial numbering patterns
+AutoClaimReturnStatusOnCheckin
+AutoClaimReturnStatusOnCheckout
+ESPreventAutoTruncate
+DisplayMultiItemHolds
+HoldRatioDefault
+PurgeListShareInvitesOlderThan
+SMSSendAdditionalOptions
+WaitingNotifyAtCheckout
+Preservation module
+booking
+hold
+placed in the staff interface
+bookable
+adding
+editing a patron
+'Print' menu in a patron's account
+create a new slip
+running SQL reports
+record problems with vendors
+issue\_manage
+offline circulation module
+AllowOfflineCirculation
+subscription-level
+added to the OPAC
+OPAC self checkout
+label layouts
+return policies
+hold policies
+patron lists tab
+patron lists
+item search
+custom debit type
+view a list of the serials they've chosen to receive alerts for
+list of email alerts in the patron's account
+HTML customization tool
+AcquisitionsDefaultEmailAddress
+AcquisitionsDefaultReplyTo
+AutomaticCheckinAutoFill
+automatic check-in feature
+cancelling acquisitions orders
+ChildNeedsGuarantor
+DefaultAuthorityTab
+ForceLibrarySelection
+ILLModuleDisclaimerByType
+ILLPartnerCode
+interlibrary loan
+intranetreadinghistory
+LoadCheckoutsTableDelay
+check out to themselves via the OPAC
+OverdueNoticeFrom
+RedirectGuaranteeEmail
+SCOLoadCheckoutsByDefault
+SerialsDefaultEmailAddress
+SerialsDefaultReplyTo
+showLastPatronCount
+showLastPatron
+SIP2AddOpacMessagesToScreenMessage
+UpdateItemLostStatusWhenPaid
+UpdateItemLostStatusWhenWriteoff
+UpdateNotForLoanStatusOnCheckin
+runreport.pl
+writeoff_debts.pl
+borrowers-force-messaging-defaults.pl
+membership\_expiry.pl
+debar_patrons_with_fines.pl
+circulate permission
+UseLocationAsAQInSIP
+SIP2SortBinMapping
+credit type
+paying charges
+making a payment
+Global
+system preferences
+Basic
+parameters
+Patrons and circulation
+rules
+batch checkouts
+previousIssuesDefaultSortOrder
+fast
+   cataloging
+itemBarcodeFallbackSearch
+AutoSwitchPatron
+SpecifyDueDate
+automatic\_renewals cron job
+decreaseLoanHighHolds
+checkout of items on site
+todaysIssuesDefaultSortOrder
+CircAutoPrintQuickSlip
+DisplayClearScreenButton
+Accounting tab
+adding a new notice
+printing a receipt
+bundle
+ExportRemoveFields
+record in-house use
+Overdue/Notice
+      Status Triggers
+force\_checkout permission
+superlibrarian
+adding a flag
+IssueLostItem
+AllowTooManyOverride
+AllowRenewalLimitOverride
+fast cataloging
+CircConfirmItemParts
+patron's summary in the OPAC
+manage\_checkout\_notes permission
+upon checkin
+renewal preferences
+you allow it
+renew their own items via the OPAC
+automatic\_checkin.pl cron job
+'Check in' section of the Circulation module
+Circulation > Check in
+calendar tool
+FineNotifyAtCheckin
+Add a new authorized value
+ClaimReturnedLostValue
+ClaimReturnedChargeFee
+ClaimReturnedWarningThreshold
+'Claims' tab
+CleanUpDatabaseReturnClaims
+create a separate item type
+create circulation rules
+BundleNotLoanValue
+BundleLostValue
+Not for Loan status
+BundleNotLoanValue system preference
+verify the contents later
+BundleLostValue system preference
+circulation and fines
+rules
+hold system preference
+placing holds
+OPAC chapter
+place\_holds permission
+DefaultHoldPickupLocation
+Circulation and Fines
+patron clubs feature
+suspend
+cancel
+HidePatronName
+modify\_holds\_priority permission
+SuspendHoldsIntranet
+auto\_unsuspend\_holds.pl cron job
+their online account
+checked in
+out
+the patron is notified
+HoldsAutoFillPrintSlip
+check in
+HOLD\_CANCELLATION authorized value category
+add a new notice
+manage\_bookings permission
+Items tab
+Item types parameters
+placing a booking
+standard checking out
+delivering curbside pickups
+requesting recalls
+RecallsLog
+manage\_recalls permission
+recalls cronjobs
+recalls notices and slips
+recalls queue
+recalls to pull list
+'Recalls' tab of the patron's file
+its equivalent in the OPAC
+'Recalls history' tab of a patron's file
+recalls awaiting pickup list
+overdue recalls list
+old recalls list
+checkin in
+transfer
+recalls to pull
+Recalls awaiting pickup list
+overdue\_recalls cronjob
+Overdue recalls list
+expire\_recalls cronjob
+recalls are set up
+check them in
+manually
+revert waiting recalls
+expire recalls
+check the item in
+stock rotation automation tool
+Transfers to send
+fast\_cataloging permission
+Build holds queue cron
+job
+RandomizeHoldsQueueWeight
+Transport cost matrix
+triggers the hold
+LOST value
+HoldsToPullStartDate
+ConfirmFutureHolds
+cancel\_expired\_holds.pl cron job
+their account on the OPAC
+Checking in the items
+TransfersMaxDaysWarning
+ArticleRequestsMandatoryFields
+ArticleRequestsMandatoryFieldsItemsOnly
+ArticleRequestsMandatoryFieldsRecordOnly
+ArticleRequestsOpacHostRedirection
+ArticleRequestsSupportedFormats
+circulation and fines rules
+matrix
+Default open article requests limit
+Default article request fees
+Managing article requests
+marks the article request as 'Completed'
+overdues\_report permission
+FilterBeforeOverdueReport
+change your
+branch
+fines cron
+    job
+Statistical Patrons
+RecordLocalUseOnReturn
+staff member
+staff patron
+AutoSelfCheckAllowed, AutoSelfCheckID and AutoSelfCheckPass
+self checkout module system preferences
+SelfCheckoutByLogin
+SCOAllowCheckin
+SelfCheckInModule
+self\_checkin\_module permission
+SelfCheckInTimeout
+SelfCheckInUserCSS
+SelfCheckInUserJS
+build a custom report
+Firefox
+Windows
+file generator via a cron
+job
+offline circulation tool for Windows
+Google OpenID Connect
+GoogleOAuth2ClientSecret
+GoogleOpenIDConnect
+GoogleOAuth2ClientID
+GoogleOpenIDConnectDefaultBranch
+GoogleOpenIDConnectDefaultCategory
+GoogleOpenIDConnectAutoRegister
+overdue notice/status triggers
+OpacNoItemTypeImages
+lists functionality
+staff interface login form
+logs into
+library administration
+AutoLocation
+log into
+share usage stats
+UsageStats
+usage statistics administration page
+koha-indexer daemon
+Holds queue report
+categories
+debit type codes
+DefaultLongOverdueSkipLostStatuses
+DefaultLongOverdueChargeValue
+MarkLostItemsAsReturned
+Koha offline
+circulation
+cronjobs doing anonymization
+patron choosing to anonymize their history in the OPAC
+adding a new patron
+importing patrons with the patron import tool
+advance\_notices.pl
+overdue\_notices.pl
+advance_notices.pl
+letter code
+message queue
+overdue notice/status triggers tool
+longoverdues
+overdue notice trigger
+misc/cronjobs/advance\_notices.pl
+misc/cronjobs/process\_message\_queue.pl
+predefined notice
+AuthorityMergeLimit
+Automatic item modifications by age
+Stock rotation
+Learn more
+OpacBrowser
+action logs modules and actions
+patrons restrictions
+UploadPurgeTemporaryFilesDays
+framework
+authority type
+category
+PurgeSuggestionsOlderThan
+E-resource management module
+saved reports
+runtime parameter
+Reports > Guided reports > Saved report
+cron job approach
+Setting up the OCLC Connexion Daemon
+your interlibrary loan requests
+ill permission
+system preferences for interlibrary loans
+ILLCheckAvailability
+manage your request
+ILLHiddenRequestStatuses
+partner library
+CirculateILL
+Create a patron category
+CCODE
+LOC
+LOST
+NOT\_LOAN
+DAMAGED
+WITHDRAWN
+cities and towns
+Map your bibliographic data
+Map your patron data
+CAS system preferences
+csvdelimiter
+log system preferences
+logs
+sharing system
+   preferences
+cron jobs
+DefaultLongOverdueDays
+dateformat
+OPACLanguages
+CalendarFirstDayOfWeek
+days your library is closed
+ReturnBeforeExpiry
+AllowHoldsOnDamagedItems
+AllowNotForLoanOverride
+NoticeBcc
+ReservesControlBranch
+audio alerts
+your holds queue
+when holds expire
+Calculate fines due
+Mark long overdue items as lost
+sends out messages
+queues overdue notices
+hold notices that didn't send for printing
+queues the advanced notice of items due
+resumed and remove suspension
+set them to renew
+staff members as patrons
+staff members access permissions
+autoMemberNum
+NotifyBorrowerDeparture
+BorrowersTitles
+borrowerRelationship
+Update patron categories
+custom classification sources
+MARC matching rules
+Z39.50 targets
+URLLinkText
+hide\_marc
+LabelMARCView
+DefaultClassificationSource
+marcflavour
+itemcallnumber
+autoBarcode
+checks URLs in catalog records
+RequireChoosingExistingAuthority
+AutoCreateAuthorities
+LinkerModule
+LinkerOptions
+CatalogModuleRelink
+merge changes into bibliographic records
+searching system preferences
+UseAuthoritiesForTracings
+TraceCompleteSubfields
+TraceSubjectSubdivisions
+OpacStarRatings
+LibraryName
+OPACNoResultsFound
+hidelostitems
+OPACShelfBrowser
+SearchMyLibraryFirst
+when you want the contents to rebuild
+custom RSS feeds
+feed to be populated
+Quote of the day editor
+pages tool
+FRBR/Editions
+Amazon
+Babelthèque
+Baker and Taylor
+HTML5 media
+Google
+GoogleJackets
+LibraryThing
+Novelist Select
+Open Library
+Overdrive
+Syndetics
+Tagging
+funds and budgets
+default currency
+framework with the code ACQ
+CurrencyFormat
+OPACDisplay856uAsImage
+circulation home page
+IntranetmainUserblock
+IntranetReportsHomeHTML
+StaffLoginInstructions
+intranetstylesheet
+OpacFavicon
+IntranetCirculationHomeHTML
+reports home page
+intranetcolorstylesheet
+IntranetSlipPrinterJS
+enable the two-factor authentication in their account
+enabled the two-factor authentication in their account
+Two factor authentication in the staff interface
+audio alerts section of administration
+OPACShowCheckoutName
+cart feature
+viewLabeledMARC
+viewMARC
+viewISBD
+search results page
+Search history
+QueryAutoTruncate
+Elasticsearch index name
+SearchEngine
+CCL search
+mappings
+save searches as search filters
+facet
+Search engine configuration
+numSearchResultsDropdown
+OPACnumSearchResults
+numSearchResults
+OPACnumSearchResultsDropdown
+limiting by library
+orders advanced search in acquisitions
+date and language limits
+OPACNumbersPreferPhrase
+IntranetNumbersPreferPhrase
+ERMModule
+ERM authorized values
+ERM system preferences
+Vendor record
+ERM_USER_ROLES authorized value
+Table settings
+ERMProviders
+harvesting cron job
+created a report
+data provider home screen
+Koha plugins
+item bundles
+analytics
+952$p in MARC21 or 995$f in UNIMARC
+manual barcode value builder
+952$d in MARC21 or 995$5 in UNIMARC
+added to MARC frameworks
+Barcode value builder
+Administration > MARC bibliographic frameworks
+create an authorized value category
+add authorized values
+attach files
+merge_authority cron job
+LinkerRelink
+AutoLinkBiblios
+Implementation checklist
+OCLC Cataloging Services
+item records
+edit\_catalogue permission
+bibliographic framework
+Administration
+      module
+Z39.50/SRU servers
+AdditionalFieldsInZ3950ResultSearch
+MARCFieldDocURL
+editing subfields
+advanced\_editor permission
+MarcFieldDocURL
+keyboard shortcuts
+create\_shared\_macros permission
+delete\_shared\_macros permission
+stage records for import
+import the prepared, or "staged", files
+Manage staged records
+MARC modification template
+record matching rules
+AggressiveMatchOnISBN
+Manage staged records
+   tool
+ordering from a staged file
+manage\_staged\_marc permission
+staged your records for import
+Stage records for import tool
+staging step
+cleanup\_database cronjob
+Easy Analytics
+Analytics enhanced workflow
+adding
+records
+records\_batchmod permission
+marc\_modification\_templates permission
+staging MARC
+records for import
+making batch record modifications
+staging records
+frameworks
+Google books
+NovelList Select
+Coce image cache server
+remote cover images with custom URLs
+Local cover images
+upload\_local\_cover\_images permission
+MergeReportFields
+add them to a list
+Add duplicate records to a list
+view the list
+merging via cataloging
+Deleting items section of this manual
+records\_batchdel permission
+catalog concerns report
+edit\_items permission
+item templates
+2 - Source of classification or shelving scheme
+a - Home library
+b - Current library
+o - Full call number
+cataloging plugin
+p - Barcode
+v - Cost, replacement price
+952$y - Koha item type
+framework editor
+adding new authorized 
+   values
+item template
+SpineLabelShowPrintOnBibDetails
+manage\_item\_editor\_templates permission
+add a new item
+batch item modification
+   tool
+StaffDetailItemSelection
+batch item
+   modification
+item summary
+items\_batchmod permission
+default framework
+batch item modification tool as above
+manage\_item\_groups permission
+automatic\_renewals.pl cronjob
+local holds priority
+upload\_local\_cover\_images) permission
+merge records
+tool
+delete\_all\_items permission
+batch delete tool
+items\_batchdel permission
+corresponding
+   cron job
+952$d
+952$w
+952$s
+952$r
+damaged status
+withdrawn status
+StockRotation system preference
+stockrotation permission
+create rotation plans (rotas)
+assign items to them
+cronjob
+stockrotation.pl cron job
+add new rotation plans (rotas)
+manage\_rotas permission
+stages
+manage\_rota\_items permission
+EDI
+mapped to your MARC frameworks
+Administration >
+      Classification sources
+create a
+      profile
+edit the template
+Staged MARC management
+'Currently available batches' page
+SpineLabelFormat
+editauthorities permission
+edit
+merge
+delete
+merge\_authorities.pl script
+export\_catalog permission
+editcatalogue sub-permissions
+inventory permission
+creating a shelf list
+942 (MARC21) or 942 and 099 (UNIMARC)
+952 (MARC21) or 995 (UNIMARC)
+999 (MARC21) or 001 and 090 (UNIMARC)
+update\_totalissues.pl
+942$h
+942$i
+942$2
+952$y (MARC21) or 995$r (UNIMARC)
+indexed
+search
+article requests
+942$i (MARC21)
+942$6
+942$h (MARC21)
+YES\_NO authorized value category
+BlockReturnOfWithdrawnItems
+Search results
+952$v (MARC21) or 995$g (UNIMARC)
+longoverdue.pl cronjob
+BlockReturnOfLostItems
+952$o (MARC21) or 995$k (UNIMARC)
+952$6 (MARC21) or 995$s (UNIMARC)
+RESTRICTED authorized value category
+952$2 (MARC21) or 995$4 (UNIMARC)
+TrapHoldsOnOrder
+SkipHoldTrapOnNotForLoanValue
+UpdateNotForLoanStatusOnCheckout
+952$c (MARC21) or 995$e (UNIMARC)
+Library transfer limits
+BranchTransferLimitsType
+facets in the search results
+transfer limits
+OpacLocationBranchToDisplay
+OpacLocationOnDetail
+952$9 (MARC21) or 995$9 (UNIMARC)
+STACK authorized value category
+942$0 (MARC21) or 099$x (UNIMARC)
+create a RSS feed
+952$d (MARC21) or 995$5 (UNIMARC)
+importing MARC records
+edit\_borrowers permission
+slips
+ROADTYPE authorized value category
+adding authorized values
+Bsort1 authorized value category
+Bsort2 authorized value category
+automatic_renewal cronjob
+statistical patrons
+SIP2 patrons
+self checkout user
+HouseboundModule
+housebound role
+additional patron attributes
+advance notices and hold notices
+PatronDuplicateMatchingAddFIelds
+accounting tab
+Add a Patron
+patron
+category
+Add a new
+patron
+tracking inhouse use
+Upload patron images
+FailedLoginAttempts
+LockExpiredDelay
+'Forgot your password?'
+Restrictions
+restrictions tab
+Overdue/notice status triggers
+add patron form
+edit patron form
+BOR\_NOTES authorized value category
+update patron categories
+BorrowerRenewalPeriodBase
+Modificaton log
+delete\_borrowers permission
+edit the patron
+permissions permission
+staffaccess permission
+circulation
+item bookings
+manage the checkout notes
+patron curbside pickup appointments
+add a manual restriction
+force\_checkout
+Overdues
+Overdues with fines
+circulate\_remaining\_permissions
+simple search
+creating private or public lists
+adding items to private lists and public lists
+administration module
+auhorized values
+jobs management
+manage\_circ\_rules
+table settings
+circulate
+identity providers
+item circulation alerts
+item search fields
+keyboard shortcuts management section
+share content with Mana KB
+MARC Bibliographic framework test
+OAI sets configuration
+patron restriction types
+SMS cellular providers
+SMTP servers
+library transfer limits
+transport cost matrix
+share your usage statistics
+patrons
+delete patrons
+list\_borrowers permission
+send custom emails to patrons
+internal notes
+edit\_borrowers
+set permissions
+alter the holds priority
+place holds in the staff interface
+cataloging
+create macros
+delete all of a record's items
+delete macros
+add bibliographic records
+duplicating records
+edit existing bibliographic records
+merge existing bibliographic records
+delete bibliographic records
+add new items
+edit items
+delete items
+SubfieldsToAllowForRestrictedEditing
+sources
+remaining\_permissions permission
+add manual credits to a patron's account
+create manual invoices in a patron's account
+pay existing charges
+cancel charges
+void payments
+write off patron fees
+fund administration page
+budget\_add\_del permission
+contracts with vendors
+invoices
+EDI account
+EDI messages
+create, edit, close and delete basket groups
+create, edit, and delete vendor issues
+merge invoices
+place orders
+creating baskets
+adding order lines
+edit existing baskets
+closing baskets
+order from a new file
+order from titles with highest hold ratios
+receive orders
+claim late orders
+budget administration page
+budget planning
+add, edit, and delete vendors
+acquisition module
+purchase suggestion management
+suggestion\_manage
+create and manage purchase suggestions
+tools
+cataloguing tools
+access files tool
+batch extend due dates tool
+patron image upload tool
+batch patron deletion and anonymization tool
+quote editor
+export catalog data tool
+import patrons tool
+item modifications by age tool
+SubfieldsToAllowForRestrictedBatchmod
+batch item modification
+label creator
+barcode image generator tool
+quick spine label creator tool
+patron lists tool
+manage staged MARC records tool
+MARC modification templates tool
+tags tool
+batch record deletion tool
+batch record modification tool
+rotating collections tool
+stage MARC records tool
+upload local cover image tool
+add local cover images from the record detail page
+delete local cover images
+add cover images to items
+upload\_general\_files
+authority records
+search authorities
+manage serial numbering patterns
+manage serial frequencies
+check the expiration date of serials
+claim missing issues
+add new subscriptions
+edit existing serial subscriptions
+receive issues
+renew serial subscriptions
+routing lists
+statistics wizard
+Circulation page
+guided reports
+SQL reports
+run custom SQL reports
+passwords, and usernames
+add items to existing courses
+create, edit and delete courses
+administrative plugins
+install or uninstall plugins
+patron clubs
+create and edit patron clubs
+patron clubs tool
+create and edit club templates
+enroll patrons
+borrowers permission
+interlibrary loan (ILL) module
+self checkout
+self checkin
+AutoSelfCheckID
+stockrotation
+manage the items in the rotas
+manage rotas
+cash registers functionalities
+cash register transaction history
+cash register cashups
+recalls
+recall management page
+logging into the staff interface
+set the library
+Checking
+out
+unsuspend_holds cron
+   job
+recalls are enabled
+recalls requested by the patron
+manage them
+claimed they returned items
+resolve claims
+manage\_restrictions
+patron restriction types administration page
+discharge
+setting flags in their accounts
+RestrictionBlockRenewing
+CumulativeRestrictionPeriods
+OverduesBlockCirc
+OverduesBlockRenewing
+updatecharges permission
+updatecharges
+payout permission
+refund permission
+discount permission
+fines cron
+job
+circulation and fines
+   rules
+Patron
+   types and categories
+Item
+   iypes
+article request fees
+manual\_invoice permission
+payment page
+Writing off an individual charge
+PAYMENT\_TYPE authorized value category
+RequirePaymentType
+RequireCashRegister
+Partially writing off an individual charge
+writeoff permission
+Paying an individual charge in full
+Partially paying an individual charge
+Paying selected charges
+Void payments
+manual\_credit permission
+RecordStaffUserOnCheckout
+BorrowersLog
+IssueLog
+ReturnLog
+StatisticsFields
+EnableBorrowerFiles
+request discharges via the OPAC
+borrower
+chooser
+deliverer
+HSBND\_FREQ authorized value category
+chooser role
+deliverer role
+serial permissions
+'Alert subscriptions' tab in their online account
+TwoFactorAuthentication
+DefaultPatronSearchMethod
+DefaultPatronSearchFields
+patron attribute type
+'patron list'
+'merge the selected patrons'
+hold has been filled
+advance\_notices.pl cronjob
+process\_message\_queue.pl cronjob
+gather\_print\_notices.pl cronjob
+advance notices or hold notices
+send\_messages\_to\_patrons permission
+Notices tab
+patron
+attribute
+Holds
+queue
+Holds to pull
+build_holds_queue.pl
+HoldsQueueSkipClosed
+overdue notice cron job
+PrintNoticesMaxLines
+gather\_print\_notices.pl
+default circulation rule
+Edit framework subfields
+budget adminitration
+AcquisitionLog
+AuthFailureLog
+AuthSuccessLog
+AuthoritiesLog
+bibliographic records and items
+CataloguingLog
+checkouts
+checkins
+renewals
+item was checked out
+item was checked in
+checkout was renewed
+RenewalLog
+late orders are claimed
+late order was claimed
+ClaimsLog
+FinesLog
+HoldsLog
+IllLog
+patron files
+NewsLog
+notice and slips templates
+NoticesLog
+ReportsLog
+SubscriptionLog
+report writing tips on runtime parameters
+UseICUStyleQuotes
+cleanup database cron job

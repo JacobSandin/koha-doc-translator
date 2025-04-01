@@ -79,3 +79,8 @@ suspend,pausa,
 system preference,systeminställning,systeminställningar
 user ID,användarnamn
 Get there:,Sökväg:
+noissuescharge,avgiftsgräns för utlåningsstopp,
+NoIssuesChargeGuarantees,avgiftsgräns för garanterade,
+NoIssuesChargeGuarantorsWithGuarantees,avgiftsgräns för vårdnadshavare med garanterade,
+patron category,låntagarkategori,
+
