@@ -74,19 +74,42 @@ class KohaTranslator:
             'en': 'EN'
         }
 
-    def load_or_create_glossary(self, phrases_file):
-        """Load existing glossary or create a new one from phrases.csv, or update an existing one"""
+    def load_or_create_glossary(self, phrases_file, ref_phrases_file=None):
+        """Load existing glossary or create a new one from phrases files, or update an existing one
+        
+        If ref_phrases_file is provided, entries from that file will be loaded first,
+        then entries from phrases_file will be added, overriding any duplicates.
+        """
         try:
-            # Load entries from phrases.csv
+            # Initialize entries dictionary
             entries = {}
-            with open(phrases_file, 'r', encoding='utf-8') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    if row['EN'] and row['SV']:  # Only add if both translations exist
-                        entries[row['EN']] = row['SV']
+            
+            # Load entries from ref_phrases.csv if provided
+            if ref_phrases_file and os.path.exists(ref_phrases_file):
+                logging.info(f"Loading reference phrases from {ref_phrases_file}")
+                try:
+                    with open(ref_phrases_file, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            if row['EN'] and row['SV']:  # Only add if both translations exist
+                                entries[row['EN']] = row['SV']
+                    logging.info(f"Loaded {len(entries)} entries from reference phrases file")
+                except Exception as e:
+                    logging.error(f"Error loading reference phrases file: {e}")
+            
+            # Load entries from main phrases.csv, overriding any duplicates
+            if os.path.exists(phrases_file):
+                logging.info(f"Loading main phrases from {phrases_file}")
+                phrase_count_before = len(entries)
+                with open(phrases_file, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        if row['EN'] and row['SV']:  # Only add if both translations exist
+                            entries[row['EN']] = row['SV']
+                logging.info(f"Loaded {len(entries) - phrase_count_before} new entries and potentially overrode duplicates from main phrases file")
             
             if not entries:
-                print("No valid entries found in phrases.csv")
+                logging.error("No valid entries found in any phrases files")
                 return
                 
             # Try to find existing glossary
@@ -623,6 +646,9 @@ class KohaTranslator:
             entry = po.find(msgid)
             if entry:
                 entry.msgstr = msgstr
+                # Remove fuzzy flag if present
+                if 'fuzzy' in entry.flags:
+                    entry.flags.remove('fuzzy')
                 updated_entries.add(msgid)
         
         # Second pass: Try to find matches using normalized text
@@ -637,6 +663,9 @@ class KohaTranslator:
                 normalized_entry_msgid = self.normalize_text(entry.msgid)
                 if normalized_entry_msgid == normalized_msgid:
                     entry.msgstr = msgstr
+                    # Remove fuzzy flag if present
+                    if 'fuzzy' in entry.flags:
+                        entry.flags.remove('fuzzy')
                     found = True
                     break
             
@@ -644,7 +673,9 @@ class KohaTranslator:
             if not found:
                 entry = polib.POEntry(
                     msgid=msgid,
-                    msgstr=msgstr
+                    msgstr=msgstr,
+                    # Ensure no fuzzy flag is set for new entries
+                    flags=[]
                 )
                 po.append(entry)
         
@@ -854,6 +885,7 @@ def main():
     parser.add_argument('--file', help='Process specific file (without .rst extension)')
     parser.add_argument('--all', action='store_true', help='Process all files (required for bulk translation)')
     parser.add_argument('--phrases', default='phrases.csv', help='Path to phrases CSV file (default: phrases.csv)')
+    parser.add_argument('--ref-phrases', default='ref_phrases.csv', help='Path to reference phrases CSV file (default: ref_phrases.csv)')
     parser.add_argument('--translate-all', action='store_true', help='Translate all strings, even if they already exist in PO file')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode with full text output')
     parser.add_argument('--log-file', help='Specify custom log file path (default: log/translation_TIMESTAMP.log)')
@@ -887,7 +919,7 @@ def main():
     if args.translate:
         try:
             # Load glossary before translation
-            translator.load_or_create_glossary(args.phrases)
+            translator.load_or_create_glossary(args.phrases, args.ref_phrases)
             if not translator.glossary:
                 print("Error: Failed to create or load glossary. Stopping translation process.")
                 return

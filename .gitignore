@@ -3,6 +3,7 @@ repos/
 repos*/
 log/
 *old*
+*.log
 # Environment variables
 .env
 
