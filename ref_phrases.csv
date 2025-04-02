@@ -1,4 +1,4 @@
-EN,SV,PL
+EN,SV,PLURAL
 ThingISBN,ThingISBN,ThingISBN
 OPACFRBRizeEditions,OPACFRBRizeEditions,OPACFRBRizeEditions
 FRBRizeEditions,FRBRizeEditions,FRBRizeEditions
@@ -430,7 +430,6 @@ editing fields and subfields in frameworks,editing fields and subfields in frame
 using the instructions above,using the instructions above,using the instructions above
 a new framework,a new framework,a new framework
 make any changes,make any changes,make any changes
-MARC bibliographic frameworks,MARC bibliographic frameworks,MARC bibliographic frameworks
 manage\_classifications permission,manage\_classifications permission,manage\_classifications permission
 filing rule,filing rule,filing rule
 splitting rule,splitting rule,splitting rule
@@ -715,7 +714,6 @@ OpacTrustedCheckout,OpacTrustedCheckout,OpacTrustedCheckout
 summary,summary,summary
 UseCourseReserves,UseCourseReserves,UseCourseReserves
 added as patrons,added as patrons,added as patrons
-authorized values,authorized values,authorized values
 collection codes (CCODE),collection codes (CCODE),collection codes (CCODE)
 shelving locations (LOC),shelving locations (LOC),shelving locations (LOC)
 circulation and fine rules,circulation and fine rules,circulation and fine rules
@@ -751,7 +749,6 @@ Preservation module setting,Preservation module setting,Preservation module sett
 AdvancedSearchTypes,AdvancedSearchTypes,AdvancedSearchTypes
 AuthorityXSLTOpacResultsDisplay,AuthorityXSLTOpacResultsDisplay,AuthorityXSLTOpacResultsDisplay
 AuthorityXSLTResultsDisplay,AuthorityXSLTResultsDisplay,AuthorityXSLTResultsDisplay
-XSLT material type icons,XSLT material type icons,XSLT material type icons
 DisplayIconsXSLT,DisplayIconsXSLT,DisplayIconsXSLT
 news tool,news tool,news tool
 library limit on the advanced search page,library limit on the advanced search page,library limit on the advanced search page
@@ -811,10 +808,8 @@ circulation rights,circulation rights,circulation rights
 patron registration form in the OPAC,patron registration form in the OPAC,patron registration form in the OPAC
 cleanup\_database.pl script,cleanup\_database.pl script,cleanup\_database.pl script
 PatronSelfRegistrationExpireTemporaryAccountsDelay,PatronSelfRegistrationExpireTemporaryAccountsDelay,PatronSelfRegistrationExpireTemporaryAccountsDelay
-circulation rights,circulation rights,circulation rights
 cleanup\_database cron job,cleanup\_database cron job,cleanup\_database cron job
 codes,codes,codes
-self registration,self registration,self registration
 PatronSelfRegistrationConfirmEmail,PatronSelfRegistrationConfirmEmail,PatronSelfRegistrationConfirmEmail
 purchase suggestions,purchase suggestions,purchase suggestions
 anonymous suggestions,anonymous suggestions,anonymous suggestions
@@ -949,7 +944,6 @@ NOT_LOAN authorized value,NOT_LOAN authorized value,NOT_LOAN authorized value
 cart\_to\_shelf cron job,cart\_to\_shelf cron job,cart\_to\_shelf cron job
 AgeRestrictionOverride,AgeRestrictionOverride,AgeRestrictionOverride
 Koha to MARC Mapping,Koha to MARC Mapping,Koha to MARC Mapping
-Koha to MARC Mapping,Koha to MARC Mapping,Koha to MARC Mapping
 AgeRestrictionMarker,AgeRestrictionMarker,AgeRestrictionMarker
 circulation and fines policies,circulation and fines policies,circulation and fines policies
 return policy rule,return policy rule,return policy rule
@@ -958,7 +952,6 @@ DefaultLongOverdueLostValue and DefaultLongOverdueDays,DefaultLongOverdueLostVal
 longoverdue cron job,longoverdue cron job,longoverdue cron job
 DefaultLongOverduePatronCategories,DefaultLongOverduePatronCategories,DefaultLongOverduePatronCategories
 longoverdue cron,longoverdue cron,longoverdue cron
-circulation and fines policies,circulation and fines policies,circulation and fines policies
 checking out,checking out,checking out
 currency,currency,currency
 creating or editing a debit type,creating or editing a debit type,creating or editing a debit type
@@ -973,7 +966,6 @@ Transfers to receive,Transfers to receive,Transfers to receive
 Calendar,Calendar,Calendar
 Transport cost matrix,Transport cost matrix,Transport cost matrix
 curbside pickup module,curbside pickup module,curbside pickup module
-fines cron job,fines cron job,fines cron job
 default lost item fee refund on return policy,default lost item fee refund on return policy,default lost item fee refund on return policy
 placing a hold in the staff interface,placing a hold in the staff interface,placing a hold in the staff interface
 placing a hold in the OPAC,placing a hold in the OPAC,placing a hold in the OPAC
@@ -1016,7 +1008,6 @@ CanMarkHoldsToPullAsLost,CanMarkHoldsToPullAsLost,CanMarkHoldsToPullAsLost
 Firefox plugin,Firefox plugin,Firefox plugin
 Windows tool,Windows tool,Windows tool
 offline circulation,offline circulation,offline circulation
-Firefox plugin,Firefox plugin,Firefox plugin
 desktop application,desktop application,desktop application
 ISSUEQSLIP,ISSUEQSLIP,ISSUEQSLIP
 ISSUESLIP,ISSUESLIP,ISSUESLIP
@@ -1032,7 +1023,6 @@ LOST authorized values category,LOST authorized values category,LOST authorized 
 NOT\_LOAN authorized value,NOT\_LOAN authorized value,NOT\_LOAN authorized value
 NOT\_LOAN authorized values category,NOT\_LOAN authorized values category,NOT\_LOAN authorized values category
 DefaultLongOverdueLostValue,DefaultLongOverdueLostValue,DefaultLongOverdueLostValue
-longoverdue cron job,longoverdue cron job,longoverdue cron job
 LOST values,LOST values,LOST values
 DefaultLongOverdueLostValue/DefaultLongOverdueDays,DefaultLongOverdueLostValue/DefaultLongOverdueDays,DefaultLongOverdueLostValue/DefaultLongOverdueDays
 long overdue cron job,long overdue cron job,long overdue cron job
@@ -1145,7 +1135,6 @@ a curbside pickup is scheduled,a curbside pickup is scheduled,a curbside pickup 
 curbside pickup module must be enabled,curbside pickup module must be enabled,curbside pickup module must be enabled
 EmailPurchaseSuggestions,EmailPurchaseSuggestions,EmailPurchaseSuggestions
 assigned as manager of a suggestion,assigned as manager of a suggestion,assigned as manager of a suggestion
-Overdue notice/status triggers,Overdue notice/status triggers,Overdue notice/status triggers
 patron registers through the OPAC,patron registers through the OPAC,patron registers through the OPAC
 patron who registered through the OPAC,patron who registered through the OPAC,patron who registered through the OPAC
 patron who made a suggestion,patron who made a suggestion,patron who made a suggestion
@@ -1232,7 +1221,6 @@ lost items report,lost items report,lost items report
 Using Template Toolkit in MARC CSV profile,Using Template Toolkit in MARC CSV profile,Using Template Toolkit in MARC CSV profile
 acquisitions baskets,acquisitions baskets,acquisitions baskets
 view\_system\_logs permission,view\_system\_logs permission,view\_system\_logs permission
-system preferences,system preferences,system preferences
 logs preferences,logs preferences,logs preferences
 edit\_additional\_contents permission,edit\_additional\_contents permission,edit\_additional\_contents permission
 OpacNewsLibrarySelect,OpacNewsLibrarySelect,OpacNewsLibrarySelect
@@ -1343,7 +1331,6 @@ your purchase suggestions,your purchase suggestions,your purchase suggestions
 UseACQFrameworkForBiblioRecords,UseACQFrameworkForBiblioRecords,UseACQFrameworkForBiblioRecords
 MARC framework,MARC framework,MARC framework
 stage\_marc\_import permission,stage\_marc\_import permission,stage\_marc\_import permission
-Stage MARC records for import,Stage MARC records for import,Stage MARC records for import
 MarcFieldsToOrder,MarcFieldsToOrder,MarcFieldsToOrder
 staged,staged,staged
 permissions,permissions,permissions
@@ -1469,7 +1456,6 @@ staff checks in an item,staff checks in an item,staff checks in an item
 emitting a discharge from the patron record,emitting a discharge from the patron record,emitting a discharge from the patron record
 requesting a discharge from the OPAC,requesting a discharge from the OPAC,requesting a discharge from the OPAC
 renew their card,renew their card,renew their card
-Notices and slips,Notices and slips,Notices and slips
 membership expiry cron job,membership expiry cron job,membership expiry cron job
 notices and slips,notices and slips,notices and slips
 EmailFieldPrimary,EmailFieldPrimary,EmailFieldPrimary
@@ -1541,7 +1527,6 @@ return policies,return policies,return policies
 hold policies,hold policies,hold policies
 patron lists tab,patron lists tab,patron lists tab
 patron lists,patron lists,patron lists
-item search,item search,item search
 custom debit type,custom debit type,custom debit type
 view a list of the serials they've chosen to receive alerts for,view a list of the serials they've chosen to receive alerts for,view a list of the serials they've chosen to receive alerts for
 list of email alerts in the patron's account,list of email alerts in the patron's account,list of email alerts in the patron's account
@@ -1610,7 +1595,6 @@ adding a flag,adding a flag,adding a flag
 IssueLostItem,IssueLostItem,IssueLostItem
 AllowTooManyOverride,AllowTooManyOverride,AllowTooManyOverride
 AllowRenewalLimitOverride,AllowRenewalLimitOverride,AllowRenewalLimitOverride
-fast cataloging,fast cataloging,fast cataloging
 CircConfirmItemParts,CircConfirmItemParts,CircConfirmItemParts
 patron's summary in the OPAC,patron's summary in the OPAC,patron's summary in the OPAC
 manage\_checkout\_notes permission,manage\_checkout\_notes permission,manage\_checkout\_notes permission
@@ -1637,7 +1621,6 @@ Not for Loan status,Not for Loan status,Not for Loan status
 BundleNotLoanValue system preference,BundleNotLoanValue system preference,BundleNotLoanValue system preference
 verify the contents later,verify the contents later,verify the contents later
 BundleLostValue system preference,BundleLostValue system preference,BundleLostValue system preference
-circulation and fines rules,circulation and fines rules,circulation and fines rules
 hold system preference,hold system preference,hold system preference
 placing holds,placing holds,placing holds
 OPAC chapter,OPAC chapter,OPAC chapter
@@ -1696,7 +1679,6 @@ Transfers to send,Transfers to send,Transfers to send
 fast\_cataloging permission,fast\_cataloging permission,fast\_cataloging permission
 Build holds queue cron job,Build holds queue cron job,Build holds queue cron job
 RandomizeHoldsQueueWeight,RandomizeHoldsQueueWeight,RandomizeHoldsQueueWeight
-Transport cost matrix,Transport cost matrix,Transport cost matrix
 triggers the hold,triggers the hold,triggers the hold
 LOST value,LOST value,LOST value
 HoldsToPullStartDate,HoldsToPullStartDate,HoldsToPullStartDate
@@ -1718,7 +1700,6 @@ marks the article request as 'Completed',marks the article request as 'Completed
 overdues\_report permission,overdues\_report permission,overdues\_report permission
 FilterBeforeOverdueReport,FilterBeforeOverdueReport,FilterBeforeOverdueReport
 change your branch,change your branch,change your branch
-fines cron job,fines cron job,fines cron job
 Statistical Patrons,Statistical Patrons,Statistical Patrons
 RecordLocalUseOnReturn,RecordLocalUseOnReturn,RecordLocalUseOnReturn
 staff member,staff member,staff member
@@ -2028,7 +2009,6 @@ item template,item template,item template
 SpineLabelShowPrintOnBibDetails,SpineLabelShowPrintOnBibDetails,SpineLabelShowPrintOnBibDetails
 manage\_item\_editor\_templates permission,manage\_item\_editor\_templates permission,manage\_item\_editor\_templates permission
 add a new item,add a new item,add a new item
-batch item modification tool,batch item modification tool,batch item modification tool
 StaffDetailItemSelection,StaffDetailItemSelection,StaffDetailItemSelection
 batch item modification,batch item modification,batch item modification
 item summary,item summary,item summary
@@ -2063,7 +2043,6 @@ manage\_rota\_items permission,manage\_rota\_items permission,manage\_rota\_item
 EDI,EDI,EDI
 mapped to your MARC frameworks,mapped to your MARC frameworks,mapped to your MARC frameworks
 Administration > Classification sources,Administration > Classification sources,Administration > Classification sources
-create a profile,create a profile,create a profile
 edit the template,edit the template,edit the template
 Staged MARC management,Staged MARC management,Staged MARC management
 'Currently available batches' page,'Currently available batches' page,'Currently available batches' page
@@ -2134,7 +2113,6 @@ advance notices and hold notices,advance notices and hold notices,advance notice
 PatronDuplicateMatchingAddFIelds,PatronDuplicateMatchingAddFIelds,PatronDuplicateMatchingAddFIelds
 accounting tab,accounting tab,accounting tab
 Add a Patron,Add a Patron,Add a Patron
-patron category,patron category,patron category
 Add a new patron,Add a new patron,Add a new patron
 tracking inhouse use,tracking inhouse use,tracking inhouse use
 Upload patron images,Upload patron images,Upload patron images
@@ -2174,7 +2152,6 @@ table settings,table settings,table settings
 circulate,circulate,circulate
 identity providers,identity providers,identity providers
 item circulation alerts,item circulation alerts,item circulation alerts
-item search fields,item search fields,item search fields
 keyboard shortcuts management section,keyboard shortcuts management section,keyboard shortcuts management section
 share content with Mana KB,share content with Mana KB,share content with Mana KB
 MARC Bibliographic framework test,MARC Bibliographic framework test,MARC Bibliographic framework test
@@ -2251,7 +2228,6 @@ export catalog data tool,export catalog data tool,export catalog data tool
 import patrons tool,import patrons tool,import patrons tool
 item modifications by age tool,item modifications by age tool,item modifications by age tool
 SubfieldsToAllowForRestrictedBatchmod,SubfieldsToAllowForRestrictedBatchmod,SubfieldsToAllowForRestrictedBatchmod
-batch item modification,batch item modification,batch item modification
 label creator,label creator,label creator
 barcode image generator tool,barcode image generator tool,barcode image generator tool
 quick spine label creator tool,quick spine label creator tool,quick spine label creator tool
@@ -2329,8 +2305,6 @@ updatecharges,updatecharges,updatecharges
 payout permission,payout permission,payout permission
 refund permission,refund permission,refund permission
 discount permission,discount permission,discount permission
-fines cron job,fines cron job,fines cron job
-circulation and fines rules,circulation and fines rules,circulation and fines rules
 Patron types and categories,Patron types and categories,Patron types and categories
 Item iypes,Item iypes,Item iypes
 article request fees,article request fees,article request fees
@@ -2375,8 +2349,6 @@ gather\_print\_notices.pl cronjob,gather\_print\_notices.pl cronjob,gather\_prin
 advance notices or hold notices,advance notices or hold notices,advance notices or hold notices
 send\_messages\_to\_patrons permission,send\_messages\_to\_patrons permission,send\_messages\_to\_patrons permission
 Notices tab,Notices tab,Notices tab
-patron attribute,patron attribute,patron attribute
-Holds queue,Holds queue,Holds queue
 Holds to pull,Holds to pull,Holds to pull
 build_holds_queue.pl,build_holds_queue.pl,build_holds_queue.pl
 HoldsQueueSkipClosed,HoldsQueueSkipClosed,HoldsQueueSkipClosed

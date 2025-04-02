@@ -94,7 +94,13 @@ class KohaTranslator:
                         reader = csv.DictReader(f)
                         for row in reader:
                             if row['EN'] and row['SV']:  # Only add if both translations exist
+                                # Store singular form
                                 phrases_entries[row['EN']] = row['SV']
+                                
+                                # Also store plural form if available
+                                if 'PLURAL' in row and row['PLURAL'] and row['PLURAL'].strip():
+                                    # Add plural form as a separate entry
+                                    phrases_entries[row['EN'] + 's'] = row['PLURAL']
                     logging.info(f"Loaded {len(phrases_entries)} entries from main phrases file")
                 except Exception as e:
                     logging.error(f"Error loading main phrases file: {e}")
@@ -110,7 +116,15 @@ class KohaTranslator:
                                 # Only add if this term doesn't have a custom translation in phrases.csv
                                 # or if the SV value is different from the EN value (not just a copy)
                                 if row['EN'] not in phrases_entries and row['EN'] != row['SV']:
+                                    # Store singular form
                                     ref_entries[row['EN']] = row['SV']
+                                    
+                                    # Also store plural form if available
+                                    if 'PLURAL' in row and row['PLURAL'] and row['PLURAL'].strip():
+                                        # Check if plural form already exists in phrases_entries
+                                        if row['EN'] + 's' not in phrases_entries:
+                                            # Add plural form as a separate entry
+                                            ref_entries[row['EN'] + 's'] = row['PLURAL']
                     logging.info(f"Loaded {len(ref_entries)} usable entries from reference phrases file")
                 except Exception as e:
                     logging.error(f"Error loading reference phrases file: {e}")

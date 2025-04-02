@@ -111,7 +111,7 @@ def main():
         import csv
         writer = csv.writer(f)
         if mode == 'w':  # Only write header for new file
-            writer.writerow(["EN", "SV", "PL"])  # Header row
+            writer.writerow(["EN", "SV", "PLURAL"])  # Header row
         for text in unique_texts:
             writer.writerow([text, text, text])  # Same value for all three columns
     
