@@ -83,8 +83,23 @@ class KohaTranslator:
         try:
             # Initialize entries dictionary
             entries = {}
+            ref_entries = {}
+            phrases_entries = {}
             
-            # Load entries from ref_phrases.csv if provided
+            # First, load entries from phrases.csv to identify which terms have custom translations
+            if os.path.exists(phrases_file):
+                logging.info(f"Loading main phrases from {phrases_file}")
+                try:
+                    with open(phrases_file, 'r', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            if row['EN'] and row['SV']:  # Only add if both translations exist
+                                phrases_entries[row['EN']] = row['SV']
+                    logging.info(f"Loaded {len(phrases_entries)} entries from main phrases file")
+                except Exception as e:
+                    logging.error(f"Error loading main phrases file: {e}")
+            
+            # Then load entries from ref_phrases.csv, but only if they don't exist in phrases.csv
             if ref_phrases_file and os.path.exists(ref_phrases_file):
                 logging.info(f"Loading reference phrases from {ref_phrases_file}")
                 try:
@@ -92,21 +107,19 @@ class KohaTranslator:
                         reader = csv.DictReader(f)
                         for row in reader:
                             if row['EN'] and row['SV']:  # Only add if both translations exist
-                                entries[row['EN']] = row['SV']
-                    logging.info(f"Loaded {len(entries)} entries from reference phrases file")
+                                # Only add if this term doesn't have a custom translation in phrases.csv
+                                # or if the SV value is different from the EN value (not just a copy)
+                                if row['EN'] not in phrases_entries and row['EN'] != row['SV']:
+                                    ref_entries[row['EN']] = row['SV']
+                    logging.info(f"Loaded {len(ref_entries)} usable entries from reference phrases file")
                 except Exception as e:
                     logging.error(f"Error loading reference phrases file: {e}")
             
-            # Load entries from main phrases.csv, overriding any duplicates
-            if os.path.exists(phrases_file):
-                logging.info(f"Loading main phrases from {phrases_file}")
-                phrase_count_before = len(entries)
-                with open(phrases_file, 'r', encoding='utf-8') as f:
-                    reader = csv.DictReader(f)
-                    for row in reader:
-                        if row['EN'] and row['SV']:  # Only add if both translations exist
-                            entries[row['EN']] = row['SV']
-                logging.info(f"Loaded {len(entries) - phrase_count_before} new entries and potentially overrode duplicates from main phrases file")
+            # Combine entries, with phrases.csv taking precedence
+            entries.update(ref_entries)  # Add reference entries first
+            entries.update(phrases_entries)  # Then override with custom phrases
+            
+            logging.info(f"Combined glossary has {len(entries)} total entries")
             
             if not entries:
                 logging.error("No valid entries found in any phrases files")
@@ -387,15 +400,16 @@ class KohaTranslator:
                 placeholders[placeholder_id] = {
                     'type': 'complex',
                     'prefix': ':ref:`',
-                    'display_text': ref_text,  # Original display text (will be replaced with translation)
+                    'display_text': ref_text.strip(),  # Original display text (will be replaced with translation)
                     'has_space': has_space,  # Track if there was a space before the label
                     'suffix': f"<{ref_label}>`"  # Label part that should not be translated
                 }
                 
-                # Replace the original reference with just the display text that needs translation
-                # We'll wrap it with special markers to ensure we can identify it after translation
+                # For complex references, use a simpler marker approach to ensure DeepL can properly apply glossary
+                # Instead of special markers that might interfere with translation, just use the text directly
+                # This should help ensure terms like "patron category" get properly translated
                 preserved_text = preserved_text[:match.start()] + \
-                                f"[REF_START:{placeholder_id}]{ref_text}[REF_END:{placeholder_id}]" + \
+                                f"[REF:{placeholder_id}]{ref_text.strip()}[/REF:{placeholder_id}]" + \
                                 preserved_text[match.end():]
                 
             elif ref['type'] == 'simple':
@@ -438,13 +452,18 @@ class KohaTranslator:
         # First handle complex references with the special markers
         for placeholder_id, ref_data in placeholders.items():
             if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
-                # Find the translated display text between our special markers
-                pattern = re.escape(f"[REF_START:{placeholder_id}]") + "(.*?)" + re.escape(f"[REF_END:{placeholder_id}]")
+                # Find the translated display text between our new markers
+                pattern = re.escape(f"[REF:{placeholder_id}]") + "(.*?)" + re.escape(f"[/REF:{placeholder_id}]")
                 matches = list(re.finditer(pattern, restored_text, re.DOTALL))
                 
                 # Replace each occurrence with the properly formatted reference
                 for match in matches:
                     translated_display_text = match.group(1).strip()
+                    
+                    # Fix for Swedish translations: remove hyphen before certain words
+                    # This happens when DeepL adds a hyphen before words like "nivån"
+                    if translated_display_text.startswith('-'):
+                        translated_display_text = translated_display_text[1:].strip()
                     
                     # Add a space before the label if the original had one
                     if ref_data.get('has_space', False):
@@ -494,6 +513,26 @@ class KohaTranslator:
         try:
             # Preserve RST references before translation
             preserved_text, placeholders = self.preserve_rst_references(text)
+            
+            # Pre-process complex references to apply glossary terms to display text
+            # This helps ensure terms like "patron category" get properly translated
+            for placeholder_id, ref_data in placeholders.items():
+                if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
+                    display_text = ref_data.get('display_text', '').strip()
+                    if display_text and self.glossary:
+                        # Try to find this exact term in our glossary entries
+                        # We need to check if this is a known glossary term
+                        try:
+                            # Get glossary entries
+                            glossary_entries = self.translator.get_glossary_entries(self.glossary)
+                            if display_text in glossary_entries:
+                                # Replace the display text in the preserved text with the glossary term
+                                pattern = re.escape(f"[REF_START:{placeholder_id}]{display_text}[REF_END:{placeholder_id}]")
+                                # Mark it in a way that DeepL will recognize it as a glossary term
+                                preserved_text = re.sub(pattern, f"[REF_START:{placeholder_id}]{display_text}[REF_END:{placeholder_id}]", preserved_text)
+                        except Exception as e:
+                            # If we can't get glossary entries, just continue
+                            logging.debug(f"Error checking glossary for term '{display_text}': {e}")
             
             # Add a small delay between requests to avoid rate limiting
             time.sleep(1)  # Increased delay to avoid rate limits

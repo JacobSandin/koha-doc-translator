@@ -75,30 +75,50 @@ def main():
     print(f"Scanning RST files in {rst_dir}...")
     display_texts = find_ref_display_texts(rst_dir)
     
+    # Load existing entries from ref_phrases.csv if it exists
+    existing_entries = set()
+    if os.path.exists(output_csv_file):
+        try:
+            print(f"Loading existing entries from {output_csv_file}...")
+            with open(output_csv_file, 'r', encoding='utf-8') as f:
+                import csv
+                reader = csv.reader(f)
+                next(reader)  # Skip header row
+                for row in reader:
+                    if row and len(row) > 0:
+                        existing_entries.add(row[0].strip())
+            print(f"Loaded {len(existing_entries)} existing entries")
+        except Exception as e:
+            print(f"Error loading existing entries: {e}")
+    
     # Remove duplicates while preserving order
     unique_texts = []
     seen = set()
     for text in display_texts:
-        if text not in seen:
-            seen.add(text)
-            unique_texts.append(text)
+        cleaned_text = clean_text_for_csv(text)
+        if cleaned_text not in seen and cleaned_text not in existing_entries:
+            seen.add(cleaned_text)
+            unique_texts.append(cleaned_text)
     
     # Write the unique display texts to the text file
     with open(output_txt_file, 'w', encoding='utf-8') as f:
         for text in unique_texts:
             f.write(text + '\n')
     
-    # Write the unique display texts to the CSV file with the format EN,SV,PL
-    with open(output_csv_file, 'w', encoding='utf-8', newline='') as f:
+    # Append the new unique display texts to the CSV file
+    mode = 'a' if os.path.exists(output_csv_file) else 'w'
+    with open(output_csv_file, mode, encoding='utf-8', newline='') as f:
         import csv
         writer = csv.writer(f)
-        writer.writerow(["EN", "SV", "PL"])  # Header row
+        if mode == 'w':  # Only write header for new file
+            writer.writerow(["EN", "SV", "PL"])  # Header row
         for text in unique_texts:
-            # Clean up text for CSV output
-            cleaned_text = clean_text_for_csv(text)
-            writer.writerow([cleaned_text, cleaned_text, cleaned_text])  # Same value for all three columns
+            writer.writerow([text, text, text])  # Same value for all three columns
     
     print(f"Found {len(display_texts)} total display texts")
+    print(f"Added {len(unique_texts)} new unique entries to {output_csv_file}")
+    print(f"Skipped {len(seen) - len(unique_texts)} duplicates within current scan")
+    print(f"Skipped {len([t for t in seen if clean_text_for_csv(t) in existing_entries])} entries that already exist in {output_csv_file}")
     print(f"Extracted {len(unique_texts)} unique display texts to {output_txt_file}")
     print(f"Created CSV file {output_csv_file} with {len(unique_texts)} entries")
     print(f"Removed {len(display_texts) - len(unique_texts)} duplicates")
