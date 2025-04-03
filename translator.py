@@ -679,6 +679,58 @@ class KohaTranslator:
 
     # Status functionality moved to improved_status.py
     
+    def find_line_numbers_in_rst(self, rst_file, text):
+        """Find all line numbers where a text appears in an RST file"""
+        try:
+            if not rst_file.exists():
+                return ['0']
+                
+            # Read the RST file content
+            with open(rst_file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+                
+            # Clean the search text (remove RST formatting, normalize whitespace)
+            search_text = text.strip()
+            # Remove RST formatting markers like ^^^^
+            search_text = re.sub(r'\^+', '', search_text)
+            # Remove escaped characters for comparison
+            search_text = re.sub(r'\\(.)', r'\1', search_text)
+            
+            # For very short strings like "Description:" we need to be more precise
+            is_common_string = len(search_text) < 15 and search_text.endswith(':')
+            
+            line_numbers = []
+            
+            # Search for the text in the file
+            for i, line in enumerate(lines):
+                clean_line = line.strip()
+                # Remove RST formatting markers
+                clean_line = re.sub(r'\^+', '', clean_line)
+                # Remove escaped characters for comparison
+                clean_line = re.sub(r'\\(.)', r'\1', clean_line)
+                
+                # For common strings like "Description:", we need an exact match
+                if is_common_string:
+                    if clean_line == search_text:
+                        line_numbers.append(str(i + 1))  # Line numbers are 1-based in PO files
+                elif search_text in clean_line:
+                    line_numbers.append(str(i + 1))
+            
+            # If not found, try with a more flexible approach
+            if not line_numbers:
+                for i, line in enumerate(lines):
+                    clean_line = line.strip().lower()
+                    search_text_lower = search_text.lower()
+                    
+                    # Try to match the beginning of the text
+                    if clean_line and search_text_lower and clean_line.startswith(search_text_lower[:10]):
+                        line_numbers.append(str(i + 1))
+            
+            return line_numbers if line_numbers else ['0']  # Default if not found
+        except Exception as e:
+            logging.error(f"Error finding line numbers: {e}")
+            return ['0']
+    
     def update_po_file_single_entry(self, po_path, msgid, msgstr):
         """Update a single entry in a PO file with a new translation"""
         if po_path.exists():
@@ -725,11 +777,31 @@ class KohaTranslator:
                 # Fix any escaped characters in the msgid before creating the PO entry
                 fixed_msgid = self.fix_escaped_chars_for_po(msgid)
                 
+                # Get the relative path to the RST file for the occurrences
+                rst_path = None
+                line_number = '0'
+                try:
+                    # Extract the file name from the po_path
+                    file_name = po_path.stem
+                    # Find the corresponding RST file
+                    rst_file = self.source_dir / f"{file_name}.rst"
+                    if rst_file.exists():
+                        # Create the relative path for the occurrence
+                        rst_path = f"../../source/{file_name}.rst"
+                        # Find all line numbers in the RST file
+                        line_numbers = self.find_line_numbers_in_rst(rst_file, msgid)
+                except Exception as e:
+                    logging.error(f"Error getting RST path: {e}")
+                
+                # Create occurrences list if we have a valid RST path
+                occurrences = [(rst_path, line_num) for line_num in line_numbers] if rst_path else []
+                
                 entry = polib.POEntry(
                     msgid=fixed_msgid,
                     msgstr=msgstr,
                     # Ensure no fuzzy flag is set for new entries
-                    flags=[]
+                    flags=[],
+                    occurrences=occurrences
                 )
                 po.append(entry)
         
@@ -805,11 +877,31 @@ class KohaTranslator:
                 # Fix any escaped characters in the msgid before creating the PO entry
                 fixed_msgid = self.fix_escaped_chars_for_po(msgid)
                 
+                # Get the relative path to the RST file for the occurrences
+                rst_path = None
+                line_number = '0'
+                try:
+                    # Extract the file name from the po_path
+                    file_name = po_path.stem
+                    # Find the corresponding RST file
+                    rst_file = self.source_dir / f"{file_name}.rst"
+                    if rst_file.exists():
+                        # Create the relative path for the occurrence
+                        rst_path = f"../../source/{file_name}.rst"
+                        # Find all line numbers in the RST file
+                        line_numbers = self.find_line_numbers_in_rst(rst_file, msgid)
+                except Exception as e:
+                    logging.error(f"Error getting RST path: {e}")
+                
+                # Create occurrences list if we have a valid RST path
+                occurrences = [(rst_path, line_num) for line_num in line_numbers] if rst_path else []
+                
                 entry = polib.POEntry(
                     msgid=fixed_msgid,
                     msgstr=fixed_msgstr,
                     # Ensure no fuzzy flag is set for new entries
-                    flags=[]
+                    flags=[],
+                    occurrences=occurrences
                 )
                 po.append(entry)
         
