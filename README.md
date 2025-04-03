@@ -99,34 +99,58 @@ python translator.py --translate --all
 
 ### Command Line Options
 
+**Translator Script:**
 ```bash
 python translator.py [OPTIONS]
 ```
 
-Options:
-- `--status`: Show translation status
+Translator Options:
 - `--translate`: Run the translation process
 - `--lang CODE`: Language code (default: sv)
 - `--file FILENAME`: Process specific file (without .rst extension)
 - `--all`: Process all files (required for bulk translation)
 - `--phrases PATH`: Path to phrases CSV file (default: phrases.csv)
+- `--ref-phrases PATH`: Path to reference phrases CSV file (default: ref_phrases.csv)
 - `--translate-all`: Translate all strings, even if they already exist in PO file
+- `--debug`: Enable debug mode with full text output
+- `--log-file PATH`: Specify custom log file path
+
+**Status Script:**
+```bash
+python status.py [OPTIONS]
+```
+
+Status Options:
+- `--lang CODE`: Language code (default: sv)
+- `--file FILENAME`: Check specific file (without .rst extension)
+- `--source-dir PATH`: Path to RST source files
+- `--po-dir PATH`: Path to PO files directory
 
 ### Examples
 
 Check translation status:
 ```bash
-python translator.py --status
+python status.py
+```
+
+Check status for a specific file:
+```bash
+python status.py --file enhancedcontentpreferences
 ```
 
 Translate a specific file:
 ```bash
-python translator.py --translate --file 01_introduction
+python translator.py --translate --file enhancedcontentpreferences
 ```
 
 Translate all files, including already translated strings:
 ```bash
 python translator.py --translate --all --translate-all
+```
+
+Build the Swedish manual (from within the koha-manual directory):
+```bash
+make -e SPHINXOPTS="-q -D language='sv' -d build/doctrees" BUILDDIR="build/sv" singlehtml
 ```
 
 ## Output
@@ -144,10 +168,17 @@ koha-doc-translator/
 ├── .gitignore            # Git ignore file
 ├── README.md             # English documentation
 ├── README-SV.md          # Swedish documentation
-├── phrases.csv           # Glossary terms
+├── TRANSLATION_PROCESS.md # Documentation for non-technical users
+├── phrases.csv           # Glossary terms for translation
+├── ref_phrases.csv       # Reference phrases for translation
 ├── requirements.txt      # Python dependencies
 ├── setup_repos.py        # Repository setup script
 ├── translator.py         # Main translation script
+├── status.py             # Translation status reporting script
+├── build_sv_manual.py    # Script to build the Swedish manual
+├── extract_ref_display_text_from_rst.py # Utility script for references
+├── remove_fuzzy_flags.py # Utility script for PO files
+├── log/                  # Directory for log files
 └── repos/                # Contains cloned repositories
     └── koha-manual/      # Source RST files
         ├── source/       # Original RST files
@@ -162,6 +193,9 @@ koha-doc-translator/
 4. New or modified content is sent to DeepL for translation
 5. The glossary ensures consistent terminology
 6. Translated content is written back to PO files in the localization repository
+7. The status script can be used to check translation progress and identify missing translations
+
+The translation process handles special cases like escaped characters in RST files (e.g., `\_\_\_`) and ensures all content is properly extracted and translated.
 
 ## Troubleshooting
 

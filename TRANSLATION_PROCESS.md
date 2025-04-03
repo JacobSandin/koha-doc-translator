@@ -8,6 +8,11 @@ The Koha Manual Translator is a tool that automatically translates the Koha Manu
 
 ## The Translation Workflow
 
+The translation process involves two main scripts:
+
+1. **translator.py**: The main script that handles the translation process
+2. **status.py**: A script that analyzes translation status and identifies missing content
+
 Here's what happens when you run the translation tool:
 
 ### 1. Preparation
@@ -78,11 +83,13 @@ The tool keeps detailed records of the translation process:
 
 ### Translation Analysis
 
-The tool can analyze and report on translation progress:
+The status script can analyze and report on translation progress:
 
 - **Per-file statistics**: Shows how much of each file has been translated
 - **Overall progress**: Calculates the total percentage of the manual that's been translated
 - **Visual indicators**: Displays progress bars to easily see translation status
+- **Missing content detection**: Identifies content in RST files that isn't included in PO files
+- **Missing PO files**: Lists RST files without corresponding PO files
 
 ### Smart Handling of Manual Updates
 
@@ -96,9 +103,9 @@ When the English manual is updated, the tool:
 
 ### 1. Preserving Special Formatting
 
-**Challenge**: The Koha manual contains special formatting codes and references that shouldn't be translated.
+**Challenge**: The Koha manual contains special formatting codes, references, and escaped characters (like `\_\_\_`) that shouldn't be translated or need special handling.
 
-**Solution**: The tool recognizes and preserves these special elements, ensuring they work correctly in the translated version.
+**Solution**: The tool recognizes and preserves these special elements, ensuring they work correctly in the translated version. For example, the translator properly handles escaped underscores in strings like "Show Library Thing for Libraries content \_\_\_" to ensure they are correctly translated while maintaining the formatting.
 
 ### 2. Consistent Terminology
 

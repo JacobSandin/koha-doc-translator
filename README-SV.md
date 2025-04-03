@@ -103,30 +103,58 @@ python translator.py --translate --all
 python translator.py [ALTERNATIV]
 ```
 
-Alternativ:
-- `--status`: Visa översättningsstatus
+**Översättningsskript:**
+```bash
+python translator.py [ALTERNATIV]
+```
+
+Översättningsalternativ:
 - `--translate`: Kör översättningsprocessen
 - `--lang KOD`: Språkkod (standard: sv)
 - `--file FILNAMN`: Bearbeta specifik fil (utan .rst-tillägg)
 - `--all`: Bearbeta alla filer (krävs för massöversättning)
 - `--phrases SÖKVÄG`: Sökväg till phrases.csv-fil (standard: phrases.csv)
+- `--ref-phrases SÖKVÄG`: Sökväg till referensfras-CSV-fil (standard: ref_phrases.csv)
 - `--translate-all`: Översätt alla strängar, även om de redan finns i PO-filen
+- `--debug`: Aktivera felsökningsläge med fullständig textutdata
+- `--log-file SÖKVÄG`: Ange anpassad loggfilssökväg
+
+**Statusskript:**
+```bash
+python status.py [ALTERNATIV]
+```
+
+Statusalternativ:
+- `--lang KOD`: Språkkod (standard: sv)
+- `--file FILNAMN`: Kontrollera specifik fil (utan .rst-tillägg)
+- `--source-dir SÖKVÄG`: Sökväg till RST-källfiler
+- `--po-dir SÖKVÄG`: Sökväg till PO-filskatalog
 
 ### Exempel
 
 Kontrollera översättningsstatus:
 ```bash
-python translator.py --status
+python status.py
+```
+
+Kontrollera status för en specifik fil:
+```bash
+python status.py --file enhancedcontentpreferences
 ```
 
 Översätt en specifik fil:
 ```bash
-python translator.py --translate --file 01_introduction
+python translator.py --translate --file enhancedcontentpreferences
 ```
 
 Översätt alla filer, inklusive redan översatta strängar:
 ```bash
 python translator.py --translate --all --translate-all
+```
+
+Bygg den svenska manualen (från koha-manual-katalogen):
+```bash
+make -e SPHINXOPTS="-q -D language='sv' -d build/doctrees" BUILDDIR="build/sv" singlehtml
 ```
 
 ## Utdata
@@ -144,13 +172,21 @@ koha-doc-translator/
 ├── .gitignore            # Git-ignorera fil
 ├── README.md             # Engelsk dokumentation
 ├── README-SV.md          # Svensk dokumentation
-├── phrases.csv           # Ordlistetermer
+├── TRANSLATION_PROCESS.md # Dokumentation för icke-tekniska användare
+├── phrases.csv           # Ordlistetermer för översättning
+├── ref_phrases.csv       # Referensfraser för översättning
 ├── requirements.txt      # Python-beroenden
 ├── setup_repos.py        # Skript för repositorieinställning
 ├── translator.py         # Huvudöversättningsskript
+├── status.py             # Skript för rapportering av översättningsstatus
+├── build_sv_manual.py    # Skript för att bygga den svenska manualen
+├── extract_ref_display_text_from_rst.py # Verktyg för referenser
+├── remove_fuzzy_flags.py # Verktyg för PO-filer
+├── log/                  # Katalog för loggfiler
 └── repos/                # Innehåller klonade repositorier
-    ├── koha-manual/      # Käll-RST-filer
-    └── koha-manual-l10n/ # Lokaliseringsfiler
+    └── koha-manual/      # Käll-RST-filer
+        ├── source/       # Ursprungliga RST-filer
+        └── locales/      # Lokaliseringsfiler (koha-manual-l10n)
 ```
 
 ### Översättningsprocess
@@ -161,6 +197,9 @@ koha-doc-translator/
 4. Nytt eller modifierat innehåll skickas till DeepL för översättning
 5. Ordlistan säkerställer konsekvent terminologi
 6. Översatt innehåll skrivs tillbaka till PO-filer i lokaliseringsrepositoriet
+7. Statusskriptet kan användas för att kontrollera översättningsframsteg och identifiera saknade översättningar
+
+Översättningsprocessen hanterar specialfall som escapade tecken i RST-filer (t.ex. `\_\_\_`) och säkerställer att allt innehåll extraheras och översätts korrekt.
 
 ## Felsökning
 
