@@ -233,6 +233,59 @@ class KohaTranslator:
         
         return translatable_lines
     
+    def fix_escaped_chars_for_po(self, text):
+        """Fix escaped characters for PO file storage"""
+        if not text:
+            return text
+            
+        # In RST files, underscores and other characters are escaped with backslash: \_
+        # When stored in PO files, these should maintain the same escaping
+        
+        import re
+        
+        # First, normalize any existing escaped underscores to ensure consistency
+        # This will convert any \\_ (double-escaped) to \_ (single-escaped)
+        text = re.sub(r'\\\\(_)', r'\\\1', text)
+        
+        # Ensure all underscores that should be escaped are properly escaped
+        # Look for patterns like "Asks: ___" and ensure they have proper escaping
+        
+        # Function to properly escape underscores in specific contexts
+        def escape_underscores(match):
+            prefix = match.group(1)  # Capture the prefix (e.g., "Asks: ")
+            underscores = match.group(2)  # Capture the underscores
+            # Replace each underscore with an escaped underscore
+            escaped = ''.join(['\_' for _ in underscores])
+            return f"{prefix}{escaped}"
+        
+        # Apply the regex to find and escape underscores in specific contexts
+        # This pattern looks for words like "Asks:" followed by one or more underscores
+        text = re.sub(r'((?:Asks|Default|Description):\s+)(_+)', escape_underscores, text)
+        
+        # Ensure that in translated text, we don't have triple backslashes before underscores
+        # This fixes the issue with "\\\_ " in the Swedish translation
+        text = re.sub(r'\\\\\\(_)', r'\\\1', text)
+        
+        return text
+        
+    # This method has been removed as PO files should maintain double-escaped backslashes
+    
+    def fix_swedish_escaping(self, text):
+        """Fix specific escaping issues in Swedish translations"""
+        if not text:
+            return text
+            
+        # Fix the specific issue with extra backslash in Swedish translations
+        # This pattern looks for cases where \_\_\_ becomes \_\_\\_
+        import re
+        
+        # First, look for the specific pattern we know is problematic
+        if "\\\\" in text and "layouten" in text:
+            # This is a direct string replacement for the specific case
+            text = text.replace("\_\_\\\_", "\_\_\_")
+        
+        return text
+    
     def normalize_text(self, text):
         """Normalize text by joining multiline strings and standardizing whitespace"""
         if not text:
@@ -240,7 +293,9 @@ class KohaTranslator:
         
         # Handle escaped underscores (common in RST files)
         # This helps with comparison between RST and PO file content
-        text = text.replace('\_', '_')
+        # We temporarily replace escaped underscores for comparison purposes only
+        # The original format is preserved in the actual PO entries
+        normalized_text = text.replace('\_', '_')
         
         # Split into lines and process each line
         lines = []
@@ -347,6 +402,24 @@ class KohaTranslator:
         # Create a dictionary of placeholders
         placeholders = {}
         preserved_text = text
+        
+        # First, preserve escaped underscores (\_ in RST) to prevent translation issues
+        # This is critical for strings like "Asks: \_\_\_" which need special handling
+        escaped_underscore_pattern = r'\\_(\\)?_*(\\)?_*'
+        escaped_underscore_count = 0
+        
+        def replace_escaped_underscore(match):
+            nonlocal escaped_underscore_count
+            placeholder_id = f"ESCAPED_UNDERSCORE_{escaped_underscore_count}"
+            escaped_underscore_count += 1
+            placeholders[placeholder_id] = {
+                'type': 'escaped_underscore',
+                'original': match.group(0)
+            }
+            return f"[ESC_UNDERSCORE:{placeholder_id}]"
+        
+        # Replace all escaped underscores with placeholders
+        preserved_text = re.sub(escaped_underscore_pattern, replace_escaped_underscore, preserved_text)
         
         # Process all references in a single pass to handle multiple references in the same string
         # First, identify all references in the text
@@ -493,11 +566,17 @@ class KohaTranslator:
                     start, end = match.span()
                     restored_text = restored_text[:start] + full_reference + restored_text[end:]
         
-        # Handle simple references and substitutions
+        # Handle escaped underscores, simple references, and substitutions
         for placeholder, ref_data in placeholders.items():
-            if isinstance(ref_data, dict) and (ref_data['type'] == 'simple' or ref_data['type'] == 'subst'):
-                pattern = re.escape(placeholder)
-                restored_text = re.sub(pattern, lambda m: ref_data['full'], restored_text)
+            if isinstance(ref_data, dict):
+                if ref_data['type'] == 'escaped_underscore':
+                    # Restore escaped underscores exactly as they were in the original text
+                    pattern = re.escape(f"[ESC_UNDERSCORE:{placeholder}]")
+                    original = ref_data.get('original', '\_')
+                    restored_text = re.sub(pattern, lambda m: original, restored_text)
+                elif ref_data['type'] == 'simple' or ref_data['type'] == 'subst':
+                    pattern = re.escape(placeholder)
+                    restored_text = re.sub(pattern, lambda m: ref_data['full'], restored_text)
             elif not isinstance(ref_data, dict):
                 # Handle old-style placeholders for backward compatibility
                 pattern = re.escape(placeholder)
@@ -600,6 +679,63 @@ class KohaTranslator:
 
     # Status functionality moved to improved_status.py
     
+    def update_po_file_single_entry(self, po_path, msgid, msgstr):
+        """Update a single entry in a PO file with a new translation"""
+        if po_path.exists():
+            po = polib.pofile(str(po_path))
+        else:
+            po = polib.POFile()
+            po.metadata = {
+                'Project-Id-Version': 'Koha Manual',
+                'Language': 'sv',
+                'MIME-Version': '1.0',
+                'Content-Type': 'text/plain; charset=UTF-8',
+                'Content-Transfer-Encoding': '8bit',
+            }
+        
+        # Fix any escaped characters in the msgid
+        fixed_msgid = self.fix_escaped_chars_for_po(msgid)
+        
+        # Try to find with both original and fixed msgid
+        entry = po.find(msgid) or po.find(fixed_msgid)
+        if entry:
+            entry.msgstr = msgstr
+            # Update the msgid to ensure it has proper escaping
+            entry.msgid = fixed_msgid
+            # Remove fuzzy flag if present
+            if 'fuzzy' in entry.flags:
+                entry.flags.remove('fuzzy')
+        else:
+            # Try to find using normalized text
+            normalized_msgid = self.normalize_text(msgid)
+            found = False
+            
+            for entry in po:
+                normalized_entry_msgid = self.normalize_text(entry.msgid)
+                if normalized_entry_msgid == normalized_msgid:
+                    entry.msgstr = msgstr
+                    # Remove fuzzy flag if present
+                    if 'fuzzy' in entry.flags:
+                        entry.flags.remove('fuzzy')
+                    found = True
+                    break
+            
+            # If no match found, create a new entry
+            if not found:
+                # Fix any escaped characters in the msgid before creating the PO entry
+                fixed_msgid = self.fix_escaped_chars_for_po(msgid)
+                
+                entry = polib.POEntry(
+                    msgid=fixed_msgid,
+                    msgstr=msgstr,
+                    # Ensure no fuzzy flag is set for new entries
+                    flags=[]
+                )
+                po.append(entry)
+        
+        # Save the file immediately
+        po.save(str(po_path))
+    
     def update_po_file(self, po_path, translations):
         """Update or create PO file with new translations"""
         if po_path.exists():
@@ -619,9 +755,22 @@ class KohaTranslator:
         
         # First pass: Update exact matches
         for msgid, msgstr in translations.items():
-            entry = po.find(msgid)
+            # Fix any escaped characters in the msgid
+            fixed_msgid = self.fix_escaped_chars_for_po(msgid)
+            
+            # Fix escaped underscores in msgstr to ensure consistent escaping
+            # This prevents the extra backslash issue in Swedish translations
+            fixed_msgstr = msgstr
+            # Use regex to find and fix problematic patterns like \_\_\\_
+            import re
+            fixed_msgstr = re.sub(r'\\_(\\)_\\_(\\)_\\\\\\_(\\)_', r'\\_(\\)_\\_(\\)_\\_(\\)_', fixed_msgstr)
+            
+            # Try to find with both original and fixed msgid
+            entry = po.find(msgid) or po.find(fixed_msgid)
             if entry:
-                entry.msgstr = msgstr
+                entry.msgstr = fixed_msgstr
+                # Update the msgid to ensure it has proper escaping
+                entry.msgid = fixed_msgid
                 # Remove fuzzy flag if present
                 if 'fuzzy' in entry.flags:
                     entry.flags.remove('fuzzy')
@@ -635,10 +784,16 @@ class KohaTranslator:
             normalized_msgid = self.normalize_text(msgid)
             found = False
             
+            # Fix escaped underscores in msgstr to ensure consistent escaping
+            fixed_msgstr = msgstr
+            # Use regex to find and fix problematic patterns like \_\_\\_
+            import re
+            fixed_msgstr = re.sub(r'\\_(\\)_\\_(\\)_\\\\\\_(\\)_', r'\\_(\\)_\\_(\\)_\\_(\\)_', fixed_msgstr)
+            
             for entry in po:
                 normalized_entry_msgid = self.normalize_text(entry.msgid)
                 if normalized_entry_msgid == normalized_msgid:
-                    entry.msgstr = msgstr
+                    entry.msgstr = fixed_msgstr
                     # Remove fuzzy flag if present
                     if 'fuzzy' in entry.flags:
                         entry.flags.remove('fuzzy')
@@ -647,9 +802,12 @@ class KohaTranslator:
             
             # If no match found, create a new entry
             if not found:
+                # Fix any escaped characters in the msgid before creating the PO entry
+                fixed_msgid = self.fix_escaped_chars_for_po(msgid)
+                
                 entry = polib.POEntry(
-                    msgid=msgid,
-                    msgstr=msgstr,
+                    msgid=fixed_msgid,
+                    msgstr=fixed_msgstr,
                     # Ensure no fuzzy flag is set for new entries
                     flags=[]
                 )
@@ -746,6 +904,10 @@ class KohaTranslator:
                                             print(f"\nTranslated [{success_count + 1}]: {entry.msgid[:50]}..." if len(entry.msgid) > 50 else f"\nTranslated [{success_count + 1}]: {entry.msgid}")
                                             print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
                                     
+                                    # Save the translation immediately
+                                    self.update_po_file_single_entry(po_path, entry.msgid, translated)
+                                    
+                                    # Still keep track for final statistics
                                     translations[entry.msgid] = translated
                                     success_count += 1
                             except Exception as e:
@@ -825,6 +987,10 @@ class KohaTranslator:
                                                 print(f"\nTranslated [{success_count + 1}]: {text[:50]}..." if len(text) > 50 else f"\nTranslated [{success_count + 1}]: {text}")
                                                 print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
                                         
+                                        # Save the translation immediately
+                                        self.update_po_file_single_entry(po_path, text, translated)
+                                        
+                                        # Still keep track for final statistics
                                         translations[text] = translated
                                         success_count += 1
                             except Exception as e:
@@ -833,26 +999,40 @@ class KohaTranslator:
                                 logging.error(f"Error: {str(e)}")
                                 print(f"\nFailed to translate: {text[:50]}...")
                     
-                    # Check for specific known strings that might be missed by the extraction process
-                    if rst_file.stem == "enhancedcontentpreferences":
-                        # Check for the specific missing string in enhancedcontentpreferences.rst
-                        missing_string = "Asks: Show Library Thing for Libraries content \_\_\_"
-                        if missing_string not in translations:
-                            # Check if this string exists in the RST file
-                            if missing_string in content:
-                                try:
-                                    # Translate the string (using a clean version without escaped underscores)
-                                    clean_string = "Asks: Show Library Thing for Libraries content ___"
-                                    translated = self.translate_text(clean_string, source_lang='en', target_lang='sv')
-                                    if translated:
-                                        translations[missing_string] = translated
-                                        logging.info(f"\nTranslated specific missing string: {missing_string}")
-                                        print(f"\nTranslated specific missing string: {missing_string[:50]}...")
-                                        success_count += 1
-                                except Exception as e:
-                                    logging.error(f"\nFailed to translate specific missing string: {missing_string}")
-                                    logging.error(f"Error: {str(e)}")
-                                    print(f"\nFailed to translate specific missing string: {missing_string[:50]}...")
+                    # Check for patterns that might be missed by the extraction process
+                    # Look for complete sentences/phrases with escaped underscores
+                    import re
+                    
+                    # Only find complete sentences or phrases with escaped underscores
+                    # This regex looks for lines that start with "Asks:", "Default:", or "Description:" 
+                    # followed by escaped underscores, and captures the entire line
+                    # We use word boundaries and end-of-line markers to ensure we get complete content
+                    escaped_patterns = re.findall(r'((?:Asks|Default|Description):\s+\\_+[^\n]+?)(?:\n\n|\Z)', content)
+                    
+                    # Filter out incomplete strings
+                    complete_patterns = []
+                    for pattern in escaped_patterns:
+                        # Only include patterns that look like complete sentences/phrases
+                        # Check if the pattern ends with punctuation or looks complete
+                        if len(pattern) > 10 and not pattern.endswith(' '):
+                            complete_patterns.append(pattern)
+                    
+                    # Process only the complete patterns
+                    for pattern in complete_patterns:
+                        if pattern not in translations:
+                            try:
+                                # Create a clean version without escaped underscores for translation
+                                clean_pattern = re.sub(r'\\_', '_', pattern)
+                                translated = self.translate_text(clean_pattern, source_lang='en', target_lang='sv')
+                                if translated:
+                                    translations[pattern] = translated
+                                    logging.info(f"\nTranslated missed pattern: {pattern}")
+                                    print(f"\nTranslated missed pattern: {pattern[:50]}...")
+                                    success_count += 1
+                            except Exception as e:
+                                logging.error(f"\nFailed to translate missed pattern: {pattern}")
+                                logging.error(f"Error: {str(e)}")
+                                print(f"\nFailed to translate missed pattern: {pattern[:50]}...")
                     
                     # Update PO file
                     if translations:
