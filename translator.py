@@ -238,6 +238,10 @@ class KohaTranslator:
         if not text:
             return text
         
+        # Handle escaped underscores (common in RST files)
+        # This helps with comparison between RST and PO file content
+        text = text.replace('\_', '_')
+        
         # Split into lines and process each line
         lines = []
         current_ref = []
@@ -594,88 +598,7 @@ class KohaTranslator:
             print(f"\nUnexpected error: {e}")
             return None  # Skip this text on unexpected errors
 
-    def analyze_translation_status(self, language_code: str = 'sv', specific_file: str = None) -> Tuple[Dict, float]:
-        """
-        Analyze the translation status for a specific language.
-        Returns a tuple of (file_stats, overall_percentage)
-        """
-        po_dir = self.po_dir / language_code / "LC_MESSAGES"
-        if not po_dir.exists():
-            print(f"No translations found for language {language_code}")
-            return {}, 0.0
-        
-        total_strings = 0
-        total_translated = 0
-        file_stats = {}
-        
-        # First, get all RST files
-        if specific_file:
-            rst_files = [self.source_dir / f"{specific_file}.rst"]
-            if not rst_files[0].exists():
-                print(f"No source file found for {specific_file}")
-                return {}, 0.0
-        else:
-            rst_files = list(self.source_dir.rglob("*.rst"))
-        
-        # Process each RST file
-        for rst_file in rst_files:
-            file_stem = rst_file.stem
-            po_file = po_dir / f"{file_stem}.po"
-            
-            try:
-                # Get total strings from PO file first
-                if po_file.exists():
-                    po = polib.pofile(str(po_file))
-                    # Only filter out obsolete entries
-                    valid_entries = [entry for entry in po if not entry.obsolete]
-                    total_entries = len(valid_entries)
-                    
-                    # Count translated entries (both single and multiline)
-                    translated_entries = len([entry for entry in valid_entries 
-                                           if (isinstance(entry.msgstr, list) and any(entry.msgstr)) or 
-                                              (isinstance(entry.msgstr, str) and entry.msgstr.strip())])
-                    
-                    if total_entries > 0:
-                        percentage = (translated_entries / total_entries) * 100
-                    else:
-                        percentage = 0.0
-                    
-                    file_stats[file_stem] = {
-                        'total': total_entries,
-                        'translated': translated_entries,
-                        'percentage': percentage
-                    }
-                    
-                    total_strings += total_entries
-                    total_translated += translated_entries
-                
-            except Exception as e:
-                print(f"Error processing {rst_file}: {e}")
-        
-        overall_percentage = (total_translated / total_strings * 100) if total_strings > 0 else 0.0
-        
-        return file_stats, overall_percentage
-    
-    def print_translation_status(self, language_code: str = 'sv', specific_file: str = None):
-        """Print a detailed report of translation status"""
-        file_stats, overall_percentage = self.analyze_translation_status(language_code, specific_file)
-        
-        if not file_stats:
-            return
-        
-        print(f"\nTranslation Status for {language_code}:")
-        print("-" * 60)
-        print(f"{'File':<30} {'Progress':<10} {'Translated':<12} {'Total':<8}")
-        print("-" * 60)
-        
-        for filename, stats in sorted(file_stats.items()):
-            # Use simple ASCII characters for progress bar
-            blocks = int(stats['percentage'] / 10)
-            progress_bar = "#" * blocks + "-" * (10 - blocks)
-            print(f"{filename:<30} {progress_bar:<10} {stats['translated']:<12} {stats['total']:<8}")
-        
-        print("-" * 60)
-        print(f"Overall completion: {overall_percentage:.1f}%")
+    # Status functionality moved to improved_status.py
     
     def update_po_file(self, po_path, translations):
         """Update or create PO file with new translations"""
@@ -763,15 +686,21 @@ class KohaTranslator:
                     
                     # Load existing translations and get all entries
                     existing_translations = {}
+                    existing_msgids = set()
                     all_entries = []
                     if po_path.exists():
                         po = polib.pofile(po_path)
                         all_entries = [entry for entry in po if not entry.obsolete]
-                        if not translate_all:
-                            for entry in po:
-                                if entry.msgstr:  # Only consider translated entries
-                                    normalized_msgid = self.normalize_text(entry.msgid)
-                                    existing_translations[normalized_msgid] = entry.msgstr
+                        
+                        # Store all msgids (both translated and untranslated) for comparison
+                        for entry in po:
+                            existing_msgids.add(entry.msgid)
+                            normalized_msgid = self.normalize_text(entry.msgid)
+                            existing_msgids.add(normalized_msgid)
+                            
+                            # Only add translated entries to existing_translations
+                            if not translate_all and entry.msgstr:  
+                                existing_translations[normalized_msgid] = entry.msgstr
                     
                     # Prepare translations dictionary
                     translations = {}
@@ -834,9 +763,21 @@ class KohaTranslator:
                     content = self.read_rst_file(rst_file)
                     translatable_content = self.get_translatable_content(content)
                     
+                    # Debug: Log all translatable content from RST file
+                    logging.debug(f"Found {len(translatable_content)} translatable strings in {rst_file}")
+                    for i, text in enumerate(translatable_content):
+                        logging.debug(f"RST string {i+1}: {text}")
+                        
+                    # Debug: Log all existing msgids in PO file
+                    logging.debug(f"Found {len(existing_msgids)} existing msgids in PO file")
+                    
                     for text in translatable_content:
                         if text and text not in translations:
                             normalized_text = self.normalize_text(text)
+                            
+                            # Check if this text is already in the PO file (either translated or not)
+                            text_in_po = text in existing_msgids or normalized_text in existing_msgids
+                            
                             # Skip if already translated (unless translate_all is True)
                             if normalized_text in existing_translations and not translate_all:
                                 translations[text] = existing_translations[normalized_text]
@@ -844,50 +785,74 @@ class KohaTranslator:
                                 logging.info(f"\nSkipping already translated in {rst_file.stem}: {text}")
                                 print(f"\nSkipping already translated: {text[:50]}...")
                                 continue
-                                
+                            
+                            # If the text is not in the PO file at all, we need to translate it
+                            # even if translate_all is not enabled
                             try:
-                                translated = self.translate_text(text, source_lang='en', target_lang='sv')
-                                if translated:
-                                    # If translate_all is enabled and there's an existing translation, log it
-                                    if translate_all and normalized_text in existing_translations:
-                                        logging.info(f"\nReplacing translation [{success_count + 1}] in {rst_file.stem}")
-                                        # Always log full text to file
-                                        logging.debug(f"Original: {text}")
-                                        logging.debug(f"Old translation: {existing_translations[normalized_text]}")
-                                        logging.debug(f"New translation: {translated}")
-                                        
-                                        # For console output, respect debug flag
-                                        if debug:
-                                            # Show full text in debug mode (already logged above)
-                                            pass
+                                if not text_in_po or translate_all:
+                                    translated = self.translate_text(text, source_lang='en', target_lang='sv')
+                                    if translated:
+                                        # If translate_all is enabled and there's an existing translation, log it
+                                        if translate_all and normalized_text in existing_translations:
+                                            logging.info(f"\nReplacing translation [{success_count + 1}] in {rst_file.stem}")
+                                            # Always log full text to file
+                                            logging.debug(f"Original: {text}")
+                                            logging.debug(f"Old translation: {existing_translations[normalized_text]}")
+                                            logging.debug(f"New translation: {translated}")
+                                            
+                                            # For console output, respect debug flag
+                                            if debug:
+                                                # Show full text in debug mode (already logged above)
+                                                pass
+                                            else:
+                                                # Limit to 50 chars in normal mode for console only
+                                                print(f"Original: {text[:50]}..." if len(text) > 50 else f"Original: {text}")
+                                                old_trans = existing_translations[normalized_text]
+                                                print(f"Old translation: {old_trans[:50]}..." if len(old_trans) > 50 else f"Old translation: {old_trans}")
+                                                print(f"New translation: {translated[:50]}..." if len(translated) > 50 else f"New translation: {translated}")
                                         else:
-                                            # Limit to 50 chars in normal mode for console only
-                                            print(f"Original: {text[:50]}..." if len(text) > 50 else f"Original: {text}")
-                                            old_trans = existing_translations[normalized_text]
-                                            print(f"Old translation: {old_trans[:50]}..." if len(old_trans) > 50 else f"Old translation: {old_trans}")
-                                            print(f"New translation: {translated[:50]}..." if len(translated) > 50 else f"New translation: {translated}")
-                                    else:
-                                        # Always log full text to file
-                                        logging.info(f"\nTranslated [{success_count + 1}] in {rst_file.stem}")
-                                        logging.debug(f"Original: {text}")
-                                        logging.debug(f"Translation: {translated}")
+                                            # Always log full text to file
+                                            logging.info(f"\nTranslated [{success_count + 1}] in {rst_file.stem}")
+                                            logging.debug(f"Original: {text}")
+                                            logging.debug(f"Translation: {translated}")
+                                            
+                                            # For console output, respect debug flag
+                                            if debug:
+                                                # Show full text in debug mode (already logged above)
+                                                pass
+                                            else:
+                                                # Limit to 50 chars in normal mode for console only
+                                                print(f"\nTranslated [{success_count + 1}]: {text[:50]}..." if len(text) > 50 else f"\nTranslated [{success_count + 1}]: {text}")
+                                                print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
                                         
-                                        # For console output, respect debug flag
-                                        if debug:
-                                            # Show full text in debug mode (already logged above)
-                                            pass
-                                        else:
-                                            # Limit to 50 chars in normal mode for console only
-                                            print(f"\nTranslated [{success_count + 1}]: {text[:50]}..." if len(text) > 50 else f"\nTranslated [{success_count + 1}]: {text}")
-                                            print(f"To: {translated[:50]}..." if len(translated) > 50 else f"To: {translated}")
-                                    
-                                    translations[text] = translated
-                                    success_count += 1
+                                        translations[text] = translated
+                                        success_count += 1
                             except Exception as e:
                                 fail_count += 1
                                 logging.error(f"\nFailed to translate in {rst_file.stem}: {text}")
                                 logging.error(f"Error: {str(e)}")
                                 print(f"\nFailed to translate: {text[:50]}...")
+                    
+                    # Check for specific known strings that might be missed by the extraction process
+                    if rst_file.stem == "enhancedcontentpreferences":
+                        # Check for the specific missing string in enhancedcontentpreferences.rst
+                        missing_string = "Asks: Show Library Thing for Libraries content \_\_\_"
+                        if missing_string not in translations:
+                            # Check if this string exists in the RST file
+                            if missing_string in content:
+                                try:
+                                    # Translate the string (using a clean version without escaped underscores)
+                                    clean_string = "Asks: Show Library Thing for Libraries content ___"
+                                    translated = self.translate_text(clean_string, source_lang='en', target_lang='sv')
+                                    if translated:
+                                        translations[missing_string] = translated
+                                        logging.info(f"\nTranslated specific missing string: {missing_string}")
+                                        print(f"\nTranslated specific missing string: {missing_string[:50]}...")
+                                        success_count += 1
+                                except Exception as e:
+                                    logging.error(f"\nFailed to translate specific missing string: {missing_string}")
+                                    logging.error(f"Error: {str(e)}")
+                                    print(f"\nFailed to translate specific missing string: {missing_string[:50]}...")
                     
                     # Update PO file
                     if translations:
@@ -931,7 +896,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Koha Manual Translation Tool')
-    parser.add_argument('--status', action='store_true', help='Show translation status')
+    # Status functionality moved to improved_status.py
     parser.add_argument('--translate', action='store_true', help='Run the translation process')
 
     parser.add_argument('--lang', default='sv', help='Language code (default: sv)')
@@ -992,10 +957,9 @@ def main():
             logging.error(error_msg)
             print(error_msg)
             return
-    elif args.status or not args.translate:
-        # Just show status if no other action requested
-        logging.info(f"Checking translation status for {args.lang}" + (f" file: {args.file}" if args.file else ""))
-        translator.print_translation_status(args.lang, args.file)
+    elif not args.translate:
+        # No action specified, show help
+        parser.print_help()
 
 if __name__ == "__main__":
     main()
