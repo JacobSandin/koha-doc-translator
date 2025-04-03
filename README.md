@@ -197,6 +197,36 @@ koha-doc-translator/
 
 The translation process handles special cases like escaped characters in RST files (e.g., `\_\_\_`) and ensures all content is properly extracted and translated.
 
+## Glossary and Reference Files
+
+### phrases.csv
+
+The `phrases.csv` file contains a glossary of Koha-specific terms and their translations. This ensures consistent terminology throughout the manual. The file has a simple format:
+
+```
+English term,Swedish translation
+```
+
+For example:
+```
+patron,låntagare
+checkout,utlån
+hold,reservation
+```
+
+The translator uses this file as a glossary with the DeepL API to enforce consistent translations of technical terms regardless of context.
+
+### ref_phrases.csv
+
+The `ref_phrases.csv` file specifically handles references within the RST documentation. In RST files, references look like `:ref:`label`` and are used for internal linking. This file helps translate these references correctly.
+
+You might not want to override `ref_phrases.csv` when:
+1. You've carefully curated reference translations that should be preserved
+2. You're working with a specific version of the manual where reference IDs are stable
+3. You want to maintain consistency in how references are translated across updates
+
+The `extract_ref_display_text_from_rst.py` utility script can help generate this file by extracting reference labels and their display text from RST files.
+
 ## Troubleshooting
 
 ### Common Issues

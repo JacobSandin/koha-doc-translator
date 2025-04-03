@@ -201,6 +201,36 @@ koha-doc-translator/
 
 Översättningsprocessen hanterar specialfall som escapade tecken i RST-filer (t.ex. `\_\_\_`) och säkerställer att allt innehåll extraheras och översätts korrekt.
 
+## Ordliste- och Referensfiler
+
+### phrases.csv
+
+Filen `phrases.csv` innehåller en ordlista med Koha-specifika termer och deras översättningar. Detta säkerställer konsekvent terminologi genom hela manualen. Filen har ett enkelt format:
+
+```
+Engelsk term,Svensk översättning
+```
+
+Till exempel:
+```
+patron,låntagare
+checkout,utlån
+hold,reservation
+```
+
+Översättaren använder denna fil som en ordlista med DeepL API för att säkerställa konsekventa översättningar av tekniska termer oavsett sammanhang.
+
+### ref_phrases.csv
+
+Filen `ref_phrases.csv` hanterar specifikt referenser inom RST-dokumentationen. I RST-filer ser referenser ut som `:ref:`etikett`` och används för interna länkar. Denna fil hjälper till att översätta dessa referenser korrekt.
+
+Du kanske inte vill överskriva `ref_phrases.csv` när:
+1. Du har noggrant kurerat referensöversättningar som bör bevaras
+2. Du arbetar med en specifik version av manualen där referens-ID:n är stabila
+3. Du vill behålla konsekvens i hur referenser översätts över uppdateringar
+
+Verktygsskriptet `extract_ref_display_text_from_rst.py` kan hjälpa till att generera denna fil genom att extrahera referensetiketter och deras visningstexts från RST-filer.
+
 ## Felsökning
 
 ### Vanliga problem

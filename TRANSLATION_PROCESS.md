@@ -23,7 +23,9 @@ Before translation begins, the tool:
   - The original English manual files (in RST format)
   - The translation files (in PO format) where translations are stored
 
-- **Loads the glossary**: A glossary of Koha-specific terms is loaded to ensure consistent translations. For example, the term "patron" is always translated as "låntagare" in Swedish.
+- **Loads the glossaries**: Two important glossary files are loaded:
+  - **phrases.csv**: Contains Koha-specific terms and their translations (e.g., "patron" is always translated as "låntagare" in Swedish)
+  - **ref_phrases.csv**: Contains translations for special reference links used throughout the manual
 
 ### 2. Reading the Source Files
 
@@ -46,7 +48,9 @@ Once the tool knows what to translate, it:
 
 - **Sends text to DeepL**: The text is sent to the DeepL translation service
 
-- **Applies the glossary**: The tool uses a special dictionary of Koha terms to ensure consistent translations
+- **Applies the glossaries**: The tool uses special dictionaries to ensure consistent translations:
+  - The main glossary (phrases.csv) ensures technical terms are translated consistently
+  - The reference glossary (ref_phrases.csv) ensures that internal document links are translated correctly
 
 - **Handles technical limitations**: If the DeepL service is busy or has temporary issues, the tool:
   - Waits and tries again
@@ -124,6 +128,27 @@ When the English manual is updated, the tool:
 **Challenge**: When retranslating content, it's important to see what's changing.
 
 **Solution**: When using the `--translate-all` option, the tool shows both the old and new translations, making it easy to review changes.
+
+## Glossary Files
+
+### Main Glossary (phrases.csv)
+
+The main glossary file contains pairs of English terms and their Swedish translations. This ensures that technical terms are always translated consistently throughout the manual.
+
+For example, the glossary might include entries like:
+- patron → låntagare
+- checkout → utlån
+- hold → reservation
+
+This is particularly important for library and Koha-specific terminology that might otherwise be translated differently depending on context.
+
+### Reference Glossary (ref_phrases.csv)
+
+The reference glossary specifically handles internal links within the manual. In technical documentation, these links look like `:ref:`label`` and are used to connect different parts of the manual.
+
+The reference glossary ensures that these links are translated correctly and consistently. This is important because these references often contain technical terms or specific phrases that need special handling.
+
+You generally shouldn't modify the reference glossary unless you're specifically updating how references are translated, as carefully curated translations help maintain the integrity of internal links.
 
 ## Practical Benefits
 

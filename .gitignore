@@ -4,6 +4,8 @@ repos*/
 log/
 *old*
 *.log
+ref_display_text.txt
+
 # Environment variables
 .env
 
