@@ -731,6 +731,81 @@ class KohaTranslator:
             logging.error(f"Error finding line numbers: {e}")
             return ['0']
     
+    def extract_strings_from_rst(self, rst_file):
+        """Extract strings from an RST file in the order they appear"""
+        try:
+            if not rst_file.exists():
+                return []
+                
+            # Read the RST file content
+            with open(rst_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            # Extract strings in order
+            # This is a simplified approach - in a real implementation, you'd need
+            # a more sophisticated parser to handle all RST constructs correctly
+            strings = []
+            lines = content.split('\n')
+            
+            for line in lines:
+                line = line.strip()
+                if line and not line.startswith('..') and not line.startswith(':'):
+                    # Skip lines that are just RST formatting (e.g., ^^^^^^)
+                    if not re.match(r'^[\^\~\=\-\.\*]+$', line):
+                        strings.append(line)
+            
+            return strings
+        except Exception as e:
+            logging.error(f"Error extracting strings from RST: {e}")
+            return []
+    
+    def reorder_po_file(self, po_path, rst_file):
+        """Reorder the PO file entries to match the order of strings in the RST file"""
+        try:
+            if not po_path.exists() or not rst_file.exists():
+                return False
+                
+            # Load the existing PO file
+            po = polib.pofile(str(po_path))
+            
+            # Extract strings from the RST file in order
+            rst_strings = self.extract_strings_from_rst(rst_file)
+            
+            # Create a new PO file with the same metadata
+            new_po = polib.POFile()
+            new_po.metadata = po.metadata
+            
+            # Create a dictionary of existing entries by msgid for quick lookup
+            entries_by_msgid = {entry.msgid: entry for entry in po}
+            
+            # Add entries in the order they appear in the RST file
+            added_msgids = set()
+            for string in rst_strings:
+                # Try to find an exact match
+                if string in entries_by_msgid:
+                    new_po.append(entries_by_msgid[string])
+                    added_msgids.add(string)
+                else:
+                    # Try to find a normalized match
+                    normalized_string = self.normalize_text(string)
+                    for msgid, entry in entries_by_msgid.items():
+                        if self.normalize_text(msgid) == normalized_string and msgid not in added_msgids:
+                            new_po.append(entry)
+                            added_msgids.add(msgid)
+                            break
+            
+            # Add any remaining entries that weren't found in the RST file
+            for entry in po:
+                if entry.msgid not in added_msgids:
+                    new_po.append(entry)
+            
+            # Save the reordered PO file
+            new_po.save(str(po_path))
+            return True
+        except Exception as e:
+            logging.error(f"Error reordering PO file: {e}")
+            return False
+    
     def update_po_file_single_entry(self, po_path, msgid, msgstr):
         """Update a single entry in a PO file with a new translation"""
         if po_path.exists():
@@ -807,6 +882,15 @@ class KohaTranslator:
         
         # Save the file immediately
         po.save(str(po_path))
+        
+        # Reorder the PO file to match the RST file
+        try:
+            file_name = po_path.stem
+            rst_file = self.source_dir / f"{file_name}.rst"
+            if rst_file.exists():
+                self.reorder_po_file(po_path, rst_file)
+        except Exception as e:
+            logging.error(f"Error reordering PO file: {e}")
     
     def update_po_file(self, po_path, translations):
         """Update or create PO file with new translations"""
@@ -907,6 +991,15 @@ class KohaTranslator:
         
         # Save the file
         po.save(str(po_path))
+        
+        # Reorder the PO file to match the RST file
+        try:
+            file_name = po_path.stem
+            rst_file = self.source_dir / f"{file_name}.rst"
+            if rst_file.exists():
+                self.reorder_po_file(po_path, rst_file)
+        except Exception as e:
+            logging.error(f"Error reordering PO file: {e}")
     
     def process_manual(self, specific_file=None, translate_all=False, debug=False):
         """Process RST files and update PO translations"""
