@@ -32,7 +32,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/translator.py",
-            "args": ["--translate", "--file", "acquisitions"],
+            "args": ["--translate", "--file", "whatsnew"],
             "console": "integratedTerminal"
         },
         {

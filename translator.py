@@ -222,18 +222,6 @@ class KohaTranslator:
                 if line.endswith('`'):  # End of reference
                     in_ref = False
                 continue
-
-            
-            if i < len(lines) - 1:  # Check next line for section headers
-                next_line = lines[i + 1].strip()
-                if next_line and all(c == '=' for c in next_line):  # Skip section headers
-                    continue
-                if next_line and all(c == '-' for c in next_line):  # Skip subsection headers
-                    continue
-                if next_line and all(c == '~' for c in next_line):  # Skip subsubsection headers
-                    continue
-            if all(c == '=' for c in line) or all(c == '-' for c in line) or all(c == '~' for c in line):
-                continue  # Skip section header lines
                 
             # Add non-empty lines to current multiline
             if line:
@@ -923,10 +911,12 @@ class KohaTranslator:
             translatable_content = self.get_translatable_content(content)
             
             # Create sets of normalized content for comparison
-            rst_content_set = set()
+            rst_content_set = []
             for text in translatable_content:
                 if text:
-                    rst_content_set.add(self.normalize_text(text))
+                    normalized = self.normalize_text(text)
+                    if normalized not in rst_content_set:
+                        rst_content_set.append(normalized)
             
             # Find entries that no longer exist in the RST file
             entries_to_remove = []
