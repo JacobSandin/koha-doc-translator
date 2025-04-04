@@ -11,9 +11,43 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 import csv
 import logging
 import datetime
+import sqlite3
+import hashlib
 
 # Load environment variables
 load_dotenv()
+
+# Set up translation cache database
+def setup_translation_cache():
+    """Set up SQLite database for caching translations"""
+    cache_dir = Path('cache')
+    try:
+        cache_dir.mkdir(exist_ok=True)
+    except Exception as e:
+        print(f"Warning: Could not create cache directory: {e}")
+        # Fall back to current directory
+        cache_dir = Path('.')
+        
+    db_path = cache_dir / 'translation_cache.db'
+    conn = sqlite3.connect(str(db_path))
+    cursor = conn.cursor()
+    
+    # Create table if it doesn't exist
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS translations (
+        source_text_hash TEXT PRIMARY KEY,
+        source_text TEXT,
+        source_lang TEXT,
+        target_lang TEXT,
+        translated_text TEXT,
+        timestamp DATETIME
+    )
+    ''')
+    
+    conn.commit()
+    conn.close()
+    
+    return db_path
 
 # Set up logging
 def setup_logging(debug_mode=False):
@@ -73,6 +107,9 @@ class KohaTranslator:
             'sv': 'SV',
             'en': 'EN'
         }
+        # Set up translation cache
+        self.cache_db_path = setup_translation_cache()
+        self.cache_hits = 0
 
     def load_or_create_glossary(self, phrases_file, auto_phrases_file=None):
         """Load existing glossary or create a new one from phrases files, or update an existing one
@@ -181,12 +218,8 @@ class KohaTranslator:
             return f.read()
 
     def invalidate_line(self, line):
-        stripped = line.strip()
-        # Check if it only contains allowed characters
-        if re.fullmatch(r'[=\-~\^"\'\:\.\*_]+', stripped):
-            # Check if it only uses a single unique character -> invalid
-            return len(set(stripped)) == 1
-        return False
+        content = line.strip()
+        return bool(re.fullmatch(r'[=\-~\^"\'\:\.\*_\+\|\s0-9]+', content))
 
     def get_translatable_content(self, rst_content):
         """Extract translatable content from RST file"""
@@ -602,12 +635,68 @@ class KohaTranslator:
             
         return restored_text
         
+    def get_cached_translation(self, text, source_lang, target_lang):
+        """Get a translation from the cache if it exists"""
+        # Create a unique hash for this translation request
+        text_hash = hashlib.md5(f"{text}_{source_lang}_{target_lang}".encode('utf-8')).hexdigest()
+        
+        try:
+            conn = sqlite3.connect(str(self.cache_db_path))
+            cursor = conn.cursor()
+            
+            # Look for this translation in the cache
+            cursor.execute(
+                'SELECT translated_text FROM translations WHERE source_text_hash = ?', 
+                (text_hash,)
+            )
+            result = cursor.fetchone()
+            conn.close()
+            
+            if result:
+                self.cache_hits += 1
+                logging.debug(f"Cache hit: {text[:50]}..." if len(text) > 50 else f"Cache hit: {text}")
+                return result[0]
+            else:
+                return None
+        except Exception as e:
+            logging.error(f"Error accessing translation cache: {e}")
+            return None
+    
+    def cache_translation(self, text, source_lang, target_lang, translated_text):
+        """Save a translation to the cache"""
+        # Create a unique hash for this translation request
+        text_hash = hashlib.md5(f"{text}_{source_lang}_{target_lang}".encode('utf-8')).hexdigest()
+        
+        try:
+            conn = sqlite3.connect(str(self.cache_db_path))
+            cursor = conn.cursor()
+            
+            # Store the translation in the cache
+            cursor.execute(
+                'INSERT OR REPLACE INTO translations VALUES (?, ?, ?, ?, ?, ?)',
+                (text_hash, text, source_lang, target_lang, translated_text, datetime.datetime.now().isoformat())
+            )
+            
+            conn.commit()
+            conn.close()
+            logging.debug(f"Cached translation: {text[:50]}..." if len(text) > 50 else f"Cached translation: {text}")
+        except Exception as e:
+            logging.error(f"Error saving to translation cache: {e}")
+    
+    @retry(stop=stop_after_attempt(3), 
+           wait=wait_exponential(multiplier=1, min=4, max=10),
+           retry=lambda retry_state: isinstance(retry_state.outcome.exception(), deepl.exceptions.DeepLException))
     def translate_text(self, text, source_lang='en', target_lang='sv'):
         """Translate a chunk of text using DeepL with retry logic"""
         if not text or text.strip() == '' or text.strip() == '=':
             return None  # Skip empty lines or separator lines
             
         try:
+            # Check if we already have this translation in the cache
+            cached_translation = self.get_cached_translation(text, source_lang, target_lang)
+            if cached_translation:
+                return cached_translation
+                
             # Preserve RST references before translation
             preserved_text, placeholders = self.preserve_rst_references(text)
             
@@ -662,6 +751,8 @@ class KohaTranslator:
                 translated_text = self.restore_rst_references(translated_text, placeholders)
                 # Apply RST formatting fixes to the translated text
                 translated_text = self.fix_rst_formatting(translated_text)
+                # Cache the translation for future use
+                self.cache_translation(text, source_lang, target_lang, translated_text)
                 
             return translated_text
             
@@ -1334,6 +1425,7 @@ class KohaTranslator:
             if total_fail_count > 0:
                 print(f"Failed to translate: {total_fail_count} strings")
             print(f"Removed obsolete entries: {total_obsolete_count} strings")
+            print(f"Cache hits (saved API calls): {translator.cache_hits} strings")
             
         except Exception as e:
             error_msg = f"Error: {e}"

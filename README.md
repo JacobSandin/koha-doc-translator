@@ -32,6 +32,7 @@ The KOHA Manual Translator is designed to facilitate the translation of the KOHA
 - Translates all manual content while preserving document structure
 - Supports incremental translation (only translates new or modified content)
 - Integrates with the official KOHA manual localization workflow
+- Implements a translation caching system to save DeepL API credits
 
 ## Requirements
 
@@ -39,6 +40,7 @@ The KOHA Manual Translator is designed to facilitate the translation of the KOHA
 - DeepL API key (Pro account recommended for large volumes)
 - Git
 - Internet connection for API access
+- SQLite (included in Python standard library)
 
 ## Installation
 
@@ -170,15 +172,17 @@ koha-doc-translator/
 ├── README-SV.md          # Swedish documentation
 ├── TRANSLATION_PROCESS.md # Documentation for non-technical users
 ├── phrases.csv           # Glossary terms for translation
-├── ref_phrases.csv       # Reference phrases for translation
+├── auto_phrases.csv      # Automatically generated phrases for translation
 ├── requirements.txt      # Python dependencies
 ├── setup_repos.py        # Repository setup script
 ├── translator.py         # Main translation script
 ├── status.py             # Translation status reporting script
 ├── build_sv_manual.py    # Script to build the Swedish manual
-├── extract_ref_display_text_from_rst.py # Utility script for references
-├── remove_fuzzy_flags.py # Utility script for PO files
+├── find_auto_phrases.py  # Script to find and extract phrases for auto-translation
+├── clean_translation_cache.py # Utility script to clean the translation cache
 ├── log/                  # Directory for log files
+├── cache/                # Directory for translation cache
+│   └── translation_cache.db # SQLite database for cached translations
 └── repos/                # Contains cloned repositories
     └── koha-manual/      # Source RST files
         ├── source/       # Original RST files
@@ -196,6 +200,25 @@ koha-doc-translator/
 7. The status script can be used to check translation progress and identify missing translations
 
 The translation process handles special cases like escaped characters in RST files (e.g., `\_\_\_`) and ensures all content is properly extracted and translated.
+
+## Translation Caching System
+
+The translator implements a caching system to avoid re-translating content that has already been translated, which helps save DeepL API credits and speeds up the translation process:
+
+- **Automatic Caching**: All translations are automatically cached in an SQLite database (`cache/translation_cache.db`)
+- **Cache Lookup**: Before sending text to DeepL, the system checks if the exact same source text has been translated before
+- **Cache Hits**: The system tracks and reports how many API calls were saved by using cached translations
+- **Cache Cleaning**: The `clean_translation_cache.py` utility allows removing specific translations from the cache:
+  ```bash
+  # Remove translations containing placeholder patterns
+  python clean_translation_cache.py --pattern '%\w+%'
+  
+  # Preview what would be removed without actually deleting
+  python clean_translation_cache.py --pattern 'specific text' --dry-run --verbose
+  ```
+- **Cache Storage**: The cache is stored in a local SQLite database and is excluded from Git version control
+
+This caching system significantly reduces the number of API calls to DeepL, especially when re-running translations or updating the manual with minor changes.
 
 ## Glossary and Reference Files
 

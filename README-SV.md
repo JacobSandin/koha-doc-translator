@@ -32,6 +32,7 @@ KOHA Manuell Översättare är utformad för att underlätta översättningen av
 - Översätter allt manualinnehåll samtidigt som dokumentstrukturen bevaras
 - Stöder inkrementell översättning (översätter endast nytt eller modifierat innehåll)
 - Integrerar med det officiella KOHA-manualens lokaliseringsarbetsflöde
+- Implementerar ett översättningscachesystem för att spara DeepL API-krediter
 
 ## Krav
 
@@ -39,6 +40,7 @@ KOHA Manuell Översättare är utformad för att underlätta översättningen av
 - DeepL API-nyckel (Pro-konto rekommenderas för stora volymer)
 - Git
 - Internetanslutning för API-åtkomst
+- SQLite (ingår i Pythons standardbibliotek)
 
 ## Installation
 
@@ -174,15 +176,17 @@ koha-doc-translator/
 ├── README-SV.md          # Svensk dokumentation
 ├── TRANSLATION_PROCESS.md # Dokumentation för icke-tekniska användare
 ├── phrases.csv           # Ordlistetermer för översättning
-├── ref_phrases.csv       # Referensfraser för översättning
+├── auto_phrases.csv      # Automatiskt genererade fraser för översättning
 ├── requirements.txt      # Python-beroenden
 ├── setup_repos.py        # Skript för repositorieinställning
 ├── translator.py         # Huvudöversättningsskript
 ├── status.py             # Skript för rapportering av översättningsstatus
 ├── build_sv_manual.py    # Skript för att bygga den svenska manualen
-├── extract_ref_display_text_from_rst.py # Verktyg för referenser
-├── remove_fuzzy_flags.py # Verktyg för PO-filer
+├── find_auto_phrases.py  # Skript för att hitta och extrahera fraser för automatisk översättning
+├── clean_translation_cache.py # Verktyg för att rensa översättningscachen
 ├── log/                  # Katalog för loggfiler
+├── cache/                # Katalog för översättningscache
+│   └── translation_cache.db # SQLite-databas för cachade översättningar
 └── repos/                # Innehåller klonade repositorier
     └── koha-manual/      # Käll-RST-filer
         ├── source/       # Ursprungliga RST-filer
@@ -200,6 +204,25 @@ koha-doc-translator/
 7. Statusskriptet kan användas för att kontrollera översättningsframsteg och identifiera saknade översättningar
 
 Översättningsprocessen hanterar specialfall som escapade tecken i RST-filer (t.ex. `\_\_\_`) och säkerställer att allt innehåll extraheras och översätts korrekt.
+
+## Översättningscachesystem
+
+Översättaren implementerar ett cachesystem för att undvika att översätta innehåll som redan har översatts, vilket hjälper till att spara DeepL API-krediter och påskyndar översättningsprocessen:
+
+- **Automatisk cachning**: Alla översättningar cachas automatiskt i en SQLite-databas (`cache/translation_cache.db`)
+- **Cache-sökning**: Innan text skickas till DeepL kontrollerar systemet om exakt samma källtext har översatts tidigare
+- **Cache-träffar**: Systemet spårar och rapporterar hur många API-anrop som sparades genom att använda cachade översättningar
+- **Cache-rensning**: Verktyget `clean_translation_cache.py` gör det möjligt att ta bort specifika översättningar från cachen:
+  ```bash
+  # Ta bort översättningar som innehåller platshållarmönster
+  python clean_translation_cache.py --pattern '%\w+%'
+  
+  # Förhandsgranska vad som skulle tas bort utan att faktiskt ta bort
+  python clean_translation_cache.py --pattern 'specifik text' --dry-run --verbose
+  ```
+- **Cache-lagring**: Cachen lagras i en lokal SQLite-databas och är exkluderad från Git-versionskontroll
+
+Detta cachesystem minskar avsevärt antalet API-anrop till DeepL, särskilt när man kör om översättningar eller uppdaterar manualen med mindre ändringar.
 
 ## Ordliste- och Referensfiler
 

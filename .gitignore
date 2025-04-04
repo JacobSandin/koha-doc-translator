@@ -2,9 +2,11 @@
 repos/
 repos*/
 log/
+cache/
 *old*
 *.log
 ref_display_text.txt
+translation_cache.db
 
 # Environment variables
 .env
