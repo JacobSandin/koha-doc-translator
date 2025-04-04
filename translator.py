@@ -74,10 +74,10 @@ class KohaTranslator:
             'en': 'EN'
         }
 
-    def load_or_create_glossary(self, phrases_file, ref_phrases_file=None):
+    def load_or_create_glossary(self, phrases_file, auto_phrases_file=None):
         """Load existing glossary or create a new one from phrases files, or update an existing one
         
-        If ref_phrases_file is provided, entries from that file will be loaded first,
+        If auto_phrases_file is provided, entries from that file will be loaded first,
         then entries from phrases_file will be added, overriding any duplicates.
         """
         try:
@@ -105,11 +105,11 @@ class KohaTranslator:
                 except Exception as e:
                     logging.error(f"Error loading main phrases file: {e}")
             
-            # Then load entries from ref_phrases.csv, but only if they don't exist in phrases.csv
-            if ref_phrases_file and os.path.exists(ref_phrases_file):
-                logging.info(f"Loading reference phrases from {ref_phrases_file}")
+            # Then load entries from auto_phrases.csv, but only if they don't exist in phrases.csv
+            if auto_phrases_file and os.path.exists(auto_phrases_file):
+                logging.info(f"Loading reference phrases from {auto_phrases_file}")
                 try:
-                    with open(ref_phrases_file, 'r', encoding='utf-8') as f:
+                    with open(auto_phrases_file, 'r', encoding='utf-8') as f:
                         reader = csv.DictReader(f)
                         for row in reader:
                             if row['EN'] and row['SV']:  # Only add if both translations exist
@@ -937,15 +937,15 @@ class KohaTranslator:
                         # Entry no longer exists in the RST file
                         entries_to_remove.append(entry)
             
-            # Mark entries as obsolete or remove them
+            # Remove obsolete entries completely
             removed_count = 0
             for entry in entries_to_remove:
-                entry.obsolete = True  # Mark as obsolete instead of removing
+                po.remove(entry)  # Completely remove the entry
                 removed_count += 1
             
             if removed_count > 0:
-                logging.info(f"Marked {removed_count} obsolete entries in {po_path.name}")
-                print(f"Marked {removed_count} obsolete entries in {po_path.name}")
+                logging.info(f"Removed {removed_count} obsolete entries from {po_path.name}")
+                print(f"Removed {removed_count} obsolete entries from {po_path.name}")
                 # Save the updated PO file
                 po.save(str(po_path))
             
@@ -1343,7 +1343,7 @@ class KohaTranslator:
             print(f"Skipped already translated: {total_skip_count} strings")
             if total_fail_count > 0:
                 print(f"Failed to translate: {total_fail_count} strings")
-            print(f"Marked obsolete entries: {total_obsolete_count} strings")
+            print(f"Removed obsolete entries: {total_obsolete_count} strings")
             
         except Exception as e:
             error_msg = f"Error: {e}"
@@ -1363,7 +1363,7 @@ def main():
     parser.add_argument('--file', help='Process specific file (without .rst extension)')
     parser.add_argument('--all', action='store_true', help='Process all files (required for bulk translation)')
     parser.add_argument('--phrases', default='phrases.csv', help='Path to phrases CSV file (default: phrases.csv)')
-    parser.add_argument('--ref-phrases', default='ref_phrases.csv', help='Path to reference phrases CSV file (default: ref_phrases.csv)')
+    parser.add_argument('--auto-phrases', default='auto_phrases.csv', help='Path to reference phrases CSV file (default: auto_phrases.csv)')
     parser.add_argument('--translate-all', action='store_true', help='Translate all strings, even if they already exist in PO file')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode with full text output')
     parser.add_argument('--log-file', help='Specify custom log file path (default: log/translation_TIMESTAMP.log)')
@@ -1397,7 +1397,7 @@ def main():
     if args.translate:
         try:
             # Load glossary before translation
-            translator.load_or_create_glossary(args.phrases, args.ref_phrases)
+            translator.load_or_create_glossary(args.phrases, args.auto_phrases)
             if not translator.glossary:
                 print("Error: Failed to create or load glossary. Stopping translation process.")
                 return
