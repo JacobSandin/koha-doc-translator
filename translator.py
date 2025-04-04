@@ -904,6 +904,66 @@ class KohaTranslator:
         except Exception as e:
             logging.error(f"Error reordering PO file: {e}")
     
+    def clean_obsolete_entries(self, po_path, rst_file):
+        """Remove entries from PO file that no longer exist in the RST file"""
+        if not po_path.exists() or not rst_file.exists():
+            # Return an object with removed_count attribute
+            class Result:
+                pass
+            result = Result()
+            result.removed_count = 0
+            return result
+            
+        try:
+            # Load the existing PO file
+            po = polib.pofile(str(po_path))
+            
+            # Extract all translatable content from the RST file
+            content = self.read_rst_file(rst_file)
+            translatable_content = self.get_translatable_content(content)
+            
+            # Create sets of normalized content for comparison
+            rst_content_set = set()
+            for text in translatable_content:
+                if text:
+                    rst_content_set.add(self.normalize_text(text))
+            
+            # Find entries that no longer exist in the RST file
+            entries_to_remove = []
+            for entry in po:
+                if not entry.obsolete:  # Skip already marked obsolete entries
+                    normalized_msgid = self.normalize_text(entry.msgid)
+                    if normalized_msgid not in rst_content_set:
+                        # Entry no longer exists in the RST file
+                        entries_to_remove.append(entry)
+            
+            # Mark entries as obsolete or remove them
+            removed_count = 0
+            for entry in entries_to_remove:
+                entry.obsolete = True  # Mark as obsolete instead of removing
+                removed_count += 1
+            
+            if removed_count > 0:
+                logging.info(f"Marked {removed_count} obsolete entries in {po_path.name}")
+                print(f"Marked {removed_count} obsolete entries in {po_path.name}")
+                # Save the updated PO file
+                po.save(str(po_path))
+            
+            # Return an object with removed_count attribute
+            class Result:
+                pass
+            result = Result()
+            result.removed_count = removed_count
+            return result
+        except Exception as e:
+            logging.error(f"Error cleaning obsolete entries: {e}")
+            # Return an object with removed_count attribute
+            class Result:
+                pass
+            result = Result()
+            result.removed_count = 0
+            return result
+    
     def update_po_file(self, po_path, translations):
         """Update or create PO file with new translations"""
         if po_path.exists():
@@ -1015,6 +1075,11 @@ class KohaTranslator:
     
     def process_manual(self, specific_file=None, translate_all=False, debug=False):
         """Process RST files and update PO translations"""
+        # Initialize counters for summary
+        total_obsolete_count = 0
+        total_success_count = 0
+        total_skip_count = 0
+        total_fail_count = 0
         try:
             if specific_file:
                 # Process single file
@@ -1038,6 +1103,12 @@ class KohaTranslator:
                     # Determine corresponding PO file path
                     relative_path = rst_file.relative_to(self.source_dir)
                     po_path = self.po_dir / "sv" / "LC_MESSAGES" / f"{relative_path.stem}.po"
+                    
+                    # Clean obsolete entries first
+                    if po_path.exists():
+                        result = self.clean_obsolete_entries(po_path, rst_file)
+                        # Get the count of obsolete entries from the result
+                        total_obsolete_count += result.removed_count
                     
                     # Load existing translations and get all entries
                     existing_translations = {}
@@ -1244,11 +1315,17 @@ class KohaTranslator:
                         if translate_all:
                             logging.info("Note: --translate-all was enabled, existing translations were replaced with new ones")
                             
-                        # Also print to console
-                        print(f"Successfully translated: {success_count} strings")
-                        print(f"Skipped already translated: {skip_count} strings")
-                        if fail_count > 0:
-                            print(f"Failed to translate: {fail_count} strings")
+                        # Only print per-file stats if debug mode is on
+                        if debug:
+                            print(f"Successfully translated in {rst_file.stem}: {success_count} strings")
+                            print(f"Skipped already translated in {rst_file.stem}: {skip_count} strings")
+                            if fail_count > 0:
+                                print(f"Failed to translate in {rst_file.stem}: {fail_count} strings")
+                        
+                        # Update total counters
+                        total_success_count += success_count
+                        total_skip_count += skip_count
+                        total_fail_count += fail_count
                         if translate_all:
                             print("Note: --translate-all was enabled, existing translations were replaced with new ones")
                         
@@ -1259,8 +1336,14 @@ class KohaTranslator:
                     continue
             
             completion_msg = "\nTranslation process completed successfully"
-            logging.info(completion_msg)
-            print(completion_msg)
+            
+            # Print summary of all operations
+            print(f"\nSummary for all files:")
+            print(f"Successfully translated: {total_success_count} strings")
+            print(f"Skipped already translated: {total_skip_count} strings")
+            if total_fail_count > 0:
+                print(f"Failed to translate: {total_fail_count} strings")
+            print(f"Marked obsolete entries: {total_obsolete_count} strings")
             
         except Exception as e:
             error_msg = f"Error: {e}"
