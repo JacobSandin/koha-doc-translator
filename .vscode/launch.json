@@ -28,11 +28,11 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Translate Intro File",
+            "name": "Translate ?? File",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/translator.py",
-            "args": ["--translate", "--file", "intro", "--lang", "sv"],
+            "args": ["--translate", "--file", "acquisitions"],
             "console": "integratedTerminal"
         },
         {

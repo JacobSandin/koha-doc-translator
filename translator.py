@@ -179,7 +179,15 @@ class KohaTranslator:
         """Read content from an RST file"""
         with open(file_path, 'r', encoding='utf-8') as f:
             return f.read()
-    
+
+    def invalidate_line(self, line):
+        stripped = line.strip()
+        # Check if it only contains allowed characters
+        if re.fullmatch(r'[=\-~\^"\'\:\.\*_]+', stripped):
+            # Check if it only uses a single unique character -> invalid
+            return len(set(stripped)) == 1
+        return False
+
     def get_translatable_content(self, rst_content):
         """Extract translatable content from RST file"""
         lines = rst_content.split('\n')
@@ -189,6 +197,9 @@ class KohaTranslator:
         
         for i, line in enumerate(lines):
             line = line.strip()
+
+            if self.invalidate_line(line):
+                continue
             if not line:  # Skip empty lines
                 if current_line:  # End of multiline
                     translatable_lines.append(' '.join(current_line))
@@ -211,7 +222,8 @@ class KohaTranslator:
                 if line.endswith('`'):  # End of reference
                     in_ref = False
                 continue
-                
+
+            
             if i < len(lines) - 1:  # Check next line for section headers
                 next_line = lines[i + 1].strip()
                 if next_line and all(c == '=' for c in next_line):  # Skip section headers
