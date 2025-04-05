@@ -1,0 +1,76 @@
+{
+  "test_cases": [
+    {
+      "name": "Basic complex reference",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can select items.",
+      "translation": null,
+      "description": "Tests basic complex reference with display text and label"
+    },
+    {
+      "name": "Simple reference",
+      "original": "See the :ref:`item-searching-label` for more information.",
+      "translation": null,
+      "description": "Tests simple reference with just a label"
+    },
+    {
+      "name": "Multiple references",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can select items and send them directly to the :ref:`batch item modification tool <batch-item-modification-label>` or to the :ref:`batch item deletion tool <batch-item-deletion-label>`.",
+      "translation": null,
+      "description": "Tests multiple complex references in the same text"
+    },
+    {
+      "name": "URL reference",
+      "original": "For more information, see `Koha website <https://koha-community.org/>`_.",
+      "translation": null,
+      "description": "Tests URL reference format"
+    },
+    {
+      "name": "Substitution reference",
+      "original": "The current version is |version|.",
+      "translation": null,
+      "description": "Tests substitution reference format"
+    },
+    {
+      "name": "Mixed references",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can select items. For more information, see `Koha website <https://koha-community.org/>`_. The current version is |version|.",
+      "translation": null,
+      "description": "Tests mix of complex, URL, and substitution references"
+    },
+    {
+      "name": "Swedish missing display text",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can now select items and send them directly to the :ref:`batch item modification tool <batch-item-modification-label>` or to the :ref:`batch item deletion tool <batch-item-deletion-label>`.",
+      "translation": "När du använder :ref:`<item-searching-label>` kan du nu välja exemplar och skicka dem direkt till :ref:`<batch-item-modification-label>` eller till :ref:`<batch-item-deletion-label>`.",
+      "description": "Tests the specific issue found in Swedish translations where display text is missing"
+    },
+    {
+      "name": "Extra spaces in references",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can select items.",
+      "translation": "When using the :ref:` item search <item-searching-label> `, you can select items.",
+      "description": "Tests references with extra spaces"
+    },
+    {
+      "name": "Broken references",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can select items.",
+      "translation": "When using the :ref:`item search <item-searching-label>, you can select items.",
+      "description": "Tests references with missing closing backticks"
+    },
+    {
+      "name": "Multiline reference in PO file",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can now select\nitems and send them directly to the :ref:`batch item modification tool\n<batch-item-modification-label>` or to the :ref:`batch item deletion tool\n<batch-item-deletion-label>`.",
+      "translation": null,
+      "description": "Tests handling of references that span multiple lines in PO files"
+    },
+    {
+      "name": "Multiline reference with missing display text",
+      "original": "When using the :ref:`item search <item-searching-label>`, you can now select\nitems and send them directly to the :ref:`batch item modification tool\n<batch-item-modification-label>` or to the :ref:`batch item deletion tool\n<batch-item-deletion-label>`.",
+      "translation": "När du använder :ref:`<item-searching-label>` kan du nu välja exemplar\noch skicka dem direkt till :ref:`<batch-item-modification-\nlabel>` eller till :ref:`<batch-item-deletion-label>`.",
+      "description": "Tests handling of references that span multiple lines and have missing display text"
+    },
+    {
+      "name": "Real PO file example - whatsnew.po",
+      "original": "msgid \"\"\n\"When using the :ref:`item search <item-searching-label>`, you can now select\"\n\" items and send them directly to the :ref:`batch item modification tool \"\n\"<batch-item-modification-label>` or to the :ref:`batch item deletion tool \"\n\"<batch-item-deletion-label>`.\"\nmsgstr \"\"",
+      "translation": "msgid \"\"\n\"When using the :ref:`item search <item-searching-label>`, you can now select\"\n\" items and send them directly to the :ref:`batch item modification tool \"\n\"<batch-item-modification-label>` or to the :ref:`batch item deletion tool \"\n\"<batch-item-deletion-label>`.\"\nmsgstr \"\"\n\"När du använder :ref:`<item-searching-label>` kan du nu välja exemplar och \"\n\"skicka dem direkt till :ref:`<batch-item-modification-label>` eller till \"\n\":ref:`<batch-item-deletion-label>`.\"\n",
+      "description": "Tests handling of actual PO file format with msgid/msgstr and line breaks"
+    }
+  ]
+}

@@ -428,6 +428,13 @@ class KohaTranslator:
                 replacement = f"|{match.group(1)}|"
                 text = text.replace(match.group(0), replacement)
         
+        # Fix URL references with HTML entities: `text &lt;url&gt;`_
+        # This is especially important for URL references that might have been escaped during translation
+        text = re.sub(r'`([^`]+)\s*&lt;([^&>]+)&gt;`_', r'`\1 <\2>`_', text)
+        
+        # Fix missing spaces in URL references: `text<url>`_
+        text = re.sub(r'`([^`<]+)<([^>]+)>`_', r'`\1 <\2>`_', text)
+        
         return text
         
     def preserve_rst_references_with_mustache(self, text):
@@ -458,6 +465,9 @@ class KohaTranslator:
         # Substitution references: |name|
         subst_refs = list(re.finditer(r'\|([^|]+)\|', tagged_text))
         
+        # URL references: `text <url>`_
+        url_refs = list(re.finditer(r'`([^`<]+)\s*<([^>]+)>`_', tagged_text))
+        
         # Process all references and replace them with Mustache tags
         all_refs = []
         for match in complex_refs:
@@ -479,6 +489,14 @@ class KohaTranslator:
         for match in subst_refs:
             all_refs.append({
                 'type': 'subst',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+            
+        for match in url_refs:
+            all_refs.append({
+                'type': 'url',
                 'start': match.start(),
                 'end': match.end(),
                 'match': match
@@ -550,6 +568,27 @@ class KohaTranslator:
                 tagged_text = tagged_text[:match.start()] + \
                              f"{{{{RST_SUBST_{placeholder_id}}}}}" + \
                              tagged_text[match.end():]
+                             
+            elif ref['type'] == 'url':
+                # URL reference: `text <url>`_
+                link_text = match.group(1).strip()  # This is the display text that should be translated
+                url = match.group(2).strip()  # This is the URL that should not be translated
+                
+                # Create a unique placeholder for this reference
+                placeholder_id = f"URL_REF_{i}"
+                
+                placeholders[placeholder_id] = {
+                    'type': 'url',
+                    'link_text': link_text,  # Original link text
+                    'url': url,  # URL that should not be translated
+                    'full_match': full_match  # Store the full original match for reference
+                }
+                
+                # Use Mustache tags for the URL part (which should not be translated)
+                # The link text remains outside the tags so it can be translated
+                tagged_text = tagged_text[:match.start()] + \
+                             f"`{link_text} {{{{RST_URL_{placeholder_id}}}}}`_" + \
+                             tagged_text[match.end():]
             
         return tagged_text, placeholders
         
@@ -576,6 +615,12 @@ class KohaTranslator:
                 pattern = f'([^:]*)(:ref:`[^{{]*)({{{{RST_LABEL_{placeholder_id}}}}})`'
                 matches = list(re.finditer(pattern, restored_text))
                 
+                # Also look for cases where the display text is completely missing
+                # This pattern catches cases like :ref:`{{RST_LABEL_XXX}}`
+                missing_text_pattern = f'([^:]*):ref:`\s*({{{{RST_LABEL_{placeholder_id}}}}})`'
+                missing_text_matches = list(re.finditer(missing_text_pattern, restored_text))
+                
+                # Process normal matches first
                 for match in matches:
                     # Get the translated display text
                     prefix = match.group(1)  # Text before the :ref
@@ -593,6 +638,42 @@ class KohaTranslator:
                         full_reference = f"{prefix}:ref:`{translated_display_text} <{ref_data['label']}>`"
                     else:
                         full_reference = f"{prefix}:ref:`{translated_display_text}<{ref_data['label']}>`"
+                    
+                    # Replace the tagged reference with the properly formatted RST reference
+                    restored_text = restored_text.replace(match.group(0), full_reference)
+                
+                # Process matches where the display text is missing
+                for match in missing_text_matches:
+                    prefix = match.group(1)  # Text before the :ref
+                    
+                    # Use the original display text from the placeholder data
+                    original_display_text = ref_data.get('display_text', '')
+                    
+                    # Format the RST reference properly with the original display text
+                    if ref_data.get('has_space', False):
+                        full_reference = f"{prefix}:ref:`{original_display_text} <{ref_data['label']}>`"
+                    else:
+                        full_reference = f"{prefix}:ref:`{original_display_text}<{ref_data['label']}>`"
+                    
+                    # Replace the tagged reference with the properly formatted RST reference
+                    restored_text = restored_text.replace(match.group(0), full_reference)
+                
+                # Check for a more specific case where we have :ref:`<label>` format
+                # This is the exact format we're seeing in the Swedish translation
+                label_only_pattern = f'([^:]*):ref:`\s*<\s*{ref_data["label"]}\s*>`'
+                label_only_matches = list(re.finditer(label_only_pattern, restored_text))
+                
+                for match in label_only_matches:
+                    prefix = match.group(1)  # Text before the :ref
+                    
+                    # Use the original display text from the placeholder data
+                    original_display_text = ref_data.get('display_text', '')
+                    
+                    # Format the RST reference properly with the original display text
+                    if ref_data.get('has_space', False):
+                        full_reference = f"{prefix}:ref:`{original_display_text} <{ref_data['label']}>`"
+                    else:
+                        full_reference = f"{prefix}:ref:`{original_display_text}<{ref_data['label']}>`"
                     
                     # Replace the tagged reference with the properly formatted RST reference
                     restored_text = restored_text.replace(match.group(0), full_reference)
@@ -614,6 +695,23 @@ class KohaTranslator:
                     f"{{{{RST_SUBST_{placeholder_id}}}}}", 
                     ref_data['full']
                 )
+                
+        # Process URL references
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'url':
+                # Find the translated link text and Mustache tag in the translated text
+                pattern = f'`([^{{]*)({{{{RST_URL_{placeholder_id}}}}})`_'
+                matches = list(re.finditer(pattern, restored_text))
+                
+                for match in matches:
+                    # Get the translated link text
+                    translated_link_text = match.group(1).strip()
+                    
+                    # Format the URL reference properly with the original URL
+                    full_reference = f"`{translated_link_text} <{ref_data['url']}>`_"
+                    
+                    # Replace the tagged reference with the properly formatted URL reference
+                    restored_text = restored_text.replace(match.group(0), full_reference)
         
         # Post-processing fixes for common issues with RST references
         
