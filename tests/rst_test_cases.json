@@ -71,6 +71,18 @@
       "original": "msgid \"\"\n\"When using the :ref:`item search <item-searching-label>`, you can now select\"\n\" items and send them directly to the :ref:`batch item modification tool \"\n\"<batch-item-modification-label>` or to the :ref:`batch item deletion tool \"\n\"<batch-item-deletion-label>`.\"\nmsgstr \"\"",
       "translation": "msgid \"\"\n\"When using the :ref:`item search <item-searching-label>`, you can now select\"\n\" items and send them directly to the :ref:`batch item modification tool \"\n\"<batch-item-modification-label>` or to the :ref:`batch item deletion tool \"\n\"<batch-item-deletion-label>`.\"\nmsgstr \"\"\n\"När du använder :ref:`<item-searching-label>` kan du nu välja exemplar och \"\n\"skicka dem direkt till :ref:`<batch-item-modification-label>` eller till \"\n\":ref:`<batch-item-deletion-label>`.\"\n",
       "description": "Tests handling of actual PO file format with msgid/msgstr and line breaks"
+    },
+    {
+      "name": "HTML entities in translation",
+      "original": "For example: *Get there:* More > Administration > System preferences",
+      "translation": "Till exempel: *Sökväg:* Mer &gt; Administration &gt; Systeminställningar*",
+      "description": "Tests handling of HTML entities in translations (> converted to &gt;)"
+    },
+    {
+      "name": "URL reference with placeholder",
+      "original": "The `Koha manual <http://manual.koha-community.org/>`__ is managed by the documentation team, but that doesn't mean we can't all participate in making the best manual possible.",
+      "translation": "Koha-handboken {{RST_URL_URL_REF_0}}`__ hanteras av dokumentationsteamet, men det betyder inte att vi inte alla kan delta i att göra den bästa möjliga handboken.",
+      "description": "Tests handling of URL references where the placeholder is not properly restored"
     }
   ]
 }

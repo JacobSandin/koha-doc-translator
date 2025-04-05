@@ -367,10 +367,41 @@ class KohaTranslator:
     @retry(stop=stop_after_attempt(3), 
            wait=wait_exponential(multiplier=1, min=4, max=10),
            retry=lambda retry_state: isinstance(retry_state.outcome.exception(), deepl.exceptions.DeepLException))
+    def convert_html_entities(self, text):
+        """Convert HTML entities back to their original characters
+        
+        Args:
+            text (str): The text with HTML entities
+            
+        Returns:
+            str: The text with HTML entities converted back to their original characters
+        """
+        if not text:
+            return text
+            
+        # Common HTML entities to convert
+        entity_map = {
+            '&gt;': '>',
+            '&lt;': '<',
+            '&amp;': '&',
+            '&quot;': '"',
+            '&apos;': "'",
+            '&nbsp;': ' '
+        }
+        
+        # Replace each entity with its corresponding character
+        for entity, char in entity_map.items():
+            text = text.replace(entity, char)
+            
+        return text
+    
     def fix_rst_formatting(self, text):
         """Fix common RST formatting issues in translated text"""
         if not text:
             return text
+            
+        # Convert HTML entities first
+        text = self.convert_html_entities(text)
             
         # Fix italic/emphasis markers (* *)
         # Replace "* text*" with "*text*" (remove space after opening *)
@@ -570,9 +601,12 @@ class KohaTranslator:
                              tagged_text[match.end():]
                              
             elif ref['type'] == 'url':
-                # URL reference: `text <url>`_
+                # URL reference: `text <url>`_ or `text <url>`__
                 link_text = match.group(1).strip()  # This is the display text that should be translated
                 url = match.group(2).strip()  # This is the URL that should not be translated
+                
+                # Check if this is a double underscore URL reference
+                is_double_underscore = full_match.endswith('`__')
                 
                 # Create a unique placeholder for this reference
                 placeholder_id = f"URL_REF_{i}"
@@ -581,13 +615,15 @@ class KohaTranslator:
                     'type': 'url',
                     'link_text': link_text,  # Original link text
                     'url': url,  # URL that should not be translated
-                    'full_match': full_match  # Store the full original match for reference
+                    'full_match': full_match,  # Store the full original match for reference
+                    'is_double_underscore': is_double_underscore  # Flag for double underscore
                 }
                 
                 # Use Mustache tags for the URL part (which should not be translated)
                 # The link text remains outside the tags so it can be translated
+                suffix = '`__' if is_double_underscore else '`_'
                 tagged_text = tagged_text[:match.start()] + \
-                             f"`{link_text} {{{{RST_URL_{placeholder_id}}}}}`_" + \
+                             f"`{link_text} {{{{RST_URL_{placeholder_id}}}}}{suffix}" + \
                              tagged_text[match.end():]
             
         return tagged_text, placeholders
@@ -699,16 +735,58 @@ class KohaTranslator:
         # Process URL references
         for placeholder_id, ref_data in placeholders.items():
             if isinstance(ref_data, dict) and ref_data['type'] == 'url':
+                # Determine if this is a double underscore URL reference
+                is_double_underscore = ref_data.get('is_double_underscore', False)
+                suffix = '`__' if is_double_underscore else '`_'
+                
                 # Find the translated link text and Mustache tag in the translated text
-                pattern = f'`([^{{]*)({{{{RST_URL_{placeholder_id}}}}})`_'
+                # Handle both single and double underscore cases
+                pattern = f'`([^{{]*)({{{{RST_URL_{placeholder_id}}}}})({suffix})'
                 matches = list(re.finditer(pattern, restored_text))
                 
+                # If no matches found with the exact pattern, try a more flexible approach
+                if not matches:
+                    # Look for just the placeholder
+                    placeholder_pattern = f'{{{{RST_URL_{placeholder_id}}}}}`[_]*'
+                    placeholder_matches = list(re.finditer(placeholder_pattern, restored_text))
+                    
+                    for match in placeholder_matches:
+                        # Try to find the backtick before the placeholder
+                        text_before = restored_text[:match.start()]
+                        backtick_pos = text_before.rfind('`')
+                        
+                        if backtick_pos >= 0:
+                            # Extract the link text
+                            link_text = text_before[backtick_pos+1:].strip()
+                            
+                            # Format the URL reference properly with the original URL
+                            full_reference = f"`{link_text} <{ref_data['url']}>`{suffix[1:]}"
+                            
+                            # Replace the entire reference
+                            full_match = restored_text[backtick_pos:match.end()]
+                            restored_text = restored_text.replace(full_match, full_reference)
+                    
+                    # If still no matches, check if the placeholder is at the beginning of text
+                    if "{{RST_URL_" + placeholder_id + "}}" in restored_text:
+                        # Direct replacement with the original link text and URL
+                        placeholder_text = "{{RST_URL_" + placeholder_id + "}}"
+                        link_text = ref_data.get('link_text', 'Koha manual')
+                        url = ref_data.get('url', '')
+                        
+                        # Format the URL reference properly
+                        full_reference = f"`{link_text} <{url}>`{suffix[1:]}"
+                        
+                        # Replace the placeholder with the properly formatted URL reference
+                        pattern = f"{placeholder_text}{suffix}"
+                        restored_text = restored_text.replace(pattern, full_reference)
+                
+                # Process standard matches
                 for match in matches:
                     # Get the translated link text
                     translated_link_text = match.group(1).strip()
                     
                     # Format the URL reference properly with the original URL
-                    full_reference = f"`{translated_link_text} <{ref_data['url']}>`_"
+                    full_reference = f"`{translated_link_text} <{ref_data['url']}>`{suffix[1:]}"
                     
                     # Replace the tagged reference with the properly formatted URL reference
                     restored_text = restored_text.replace(match.group(0), full_reference)

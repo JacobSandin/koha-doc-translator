@@ -36,8 +36,12 @@ po_dir = os.path.join(os.getcwd(), 'repos/koha-manual/locales')
 # Initialize the translator
 translator = KohaTranslator(source_dir, po_dir)
 
-def load_test_cases(json_file='rst_test_cases.json'):
+def load_test_cases(json_file=None):
     """Load test cases from a JSON file"""
+    if json_file is None:
+        # Get the directory of the current script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        json_file = os.path.join(script_dir, 'rst_test_cases.json')
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -165,7 +169,26 @@ def test_reference(test_case):
             print(restored_text)
             
             print("\nVerification:")
-            if ":ref:`<" not in restored_text and "{{RST_LABEL_" not in restored_text:
+            # Check for unrestored references
+            has_unrestored_refs = False
+            
+            # Check for unrestored complex references
+            if ":ref:`<" in restored_text or "{{RST_LABEL_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored URL references
+            if "{{RST_URL_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored simple references
+            if "{{RST_SIMPLEREF_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored substitution references
+            if "{{RST_SUBST_" in restored_text:
+                has_unrestored_refs = True
+                
+            if not has_unrestored_refs:
                 print("✅ SUCCESS: References restored correctly")
             else:
                 print("❌ FAILURE: References not restored correctly")
@@ -230,7 +253,26 @@ def test_reference(test_case):
             print(restored_text)
             
             print("\nVerification:")
-            if ":ref:`<" not in restored_text and "{{RST_LABEL_" not in restored_text:
+            # Check for unrestored references
+            has_unrestored_refs = False
+            
+            # Check for unrestored complex references
+            if ":ref:`<" in restored_text or "{{RST_LABEL_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored URL references
+            if "{{RST_URL_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored simple references
+            if "{{RST_SIMPLEREF_" in restored_text:
+                has_unrestored_refs = True
+                
+            # Check for unrestored substitution references
+            if "{{RST_SUBST_" in restored_text:
+                has_unrestored_refs = True
+                
+            if not has_unrestored_refs:
                 print("✅ SUCCESS: References restored correctly")
             else:
                 print("❌ FAILURE: References not restored correctly")
