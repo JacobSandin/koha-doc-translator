@@ -95,10 +95,11 @@ def setup_logging(debug_mode=False):
     return log_file
 
 class KohaTranslator:
-    def __init__(self, source_dir, po_dir):
+    def __init__(self, source_dir, po_dir, disable_cache=False):
         """Initialize the translator with source and target directories"""
         self.source_dir = Path(source_dir)
         self.po_dir = Path(po_dir)
+        self.disable_cache = disable_cache
         self.translator = deepl.Translator(os.getenv('DEEPL_API_KEY'))
         self.glossary = None
         self.glossary_name = "koha_manual_glossary"
@@ -110,6 +111,8 @@ class KohaTranslator:
         # Set up translation cache
         self.cache_db_path = setup_translation_cache()
         self.cache_hits = 0
+        # Flag to indicate if we should skip reading from cache but still write to it
+        self.skip_cache_read = disable_cache
 
     def load_or_create_glossary(self, phrases_file, auto_phrases_file=None):
         """Load existing glossary or create a new one from phrases files, or update an existing one
@@ -427,6 +430,223 @@ class KohaTranslator:
         
         return text
         
+    def preserve_rst_references_with_mustache(self, text):
+        """Preserve RST references during translation using DeepL's Mustache tag format
+        
+        This uses DeepL's Mustache tag format for placeholders that shouldn't be translated.
+        See: https://developers.deepl.com/docs/learning-how-tos/examples-and-guides/placeholder-tags
+        
+        Args:
+            text (str): The text to process
+            
+        Returns:
+            tuple: (tagged_text, placeholders)
+        """
+        if not text:
+            return text, {}
+            
+        tagged_text = text
+        placeholders = {}
+        
+        # Find all RST references in the text
+        # Complex references with display text: :ref:`display text <label>`
+        complex_refs = list(re.finditer(r':ref:`([^<]*)<([^>]*)>`', tagged_text))
+        
+        # Simple references without display text: :ref:`label`
+        simple_refs = list(re.finditer(r':ref:`([^<`]*)`(?!<)', tagged_text))
+        
+        # Substitution references: |name|
+        subst_refs = list(re.finditer(r'\|([^|]+)\|', tagged_text))
+        
+        # Process all references and replace them with Mustache tags
+        all_refs = []
+        for match in complex_refs:
+            all_refs.append({
+                'type': 'complex',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+        
+        for match in simple_refs:
+            all_refs.append({
+                'type': 'simple',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+            
+        for match in subst_refs:
+            all_refs.append({
+                'type': 'subst',
+                'start': match.start(),
+                'end': match.end(),
+                'match': match
+            })
+        
+        # Sort references by their position in the text (from end to start to avoid offset issues)
+        all_refs.sort(key=lambda x: x['start'], reverse=True)
+        
+        # Process each reference and replace with Mustache tags
+        for i, ref in enumerate(all_refs):
+            match = ref['match']
+            full_match = match.group(0)
+            
+            if ref['type'] == 'complex':
+                # Complex reference: :ref:`text<label>`
+                ref_text = match.group(1)  # This is the display text that should be translated
+                ref_label = match.group(2)  # This is the label that should not be translated
+                
+                # Create a unique placeholder for this reference
+                placeholder_id = f"COMPLEX_REF_{i}"
+                
+                # Store the original reference parts
+                # Determine if there was a space before the label
+                has_space = len(match.group(1)) > 0 and match.group(1)[-1] == ' '
+                
+                placeholders[placeholder_id] = {
+                    'type': 'complex',
+                    'prefix': ':ref:`',
+                    'display_text': ref_text.strip(),  # Original display text
+                    'has_space': has_space,  # Track if there was a space before the label
+                    'suffix': f"<{ref_label}>`",  # Label part that should not be translated
+                    'full_match': full_match,  # Store the full original match for reference
+                    'label': ref_label.strip()  # Store the label separately for validation
+                }
+                
+                # Use Mustache tags for the label part (which should not be translated)
+                # The display text remains outside the tags so it can be translated
+                # We use a special format to ensure the reference structure is preserved
+                tagged_text = tagged_text[:match.start()] + \
+                             f":ref:`{ref_text.strip()}{{{{RST_LABEL_{placeholder_id}}}}}`" + \
+                             tagged_text[match.end():]
+                
+            elif ref['type'] == 'simple':
+                # Simple reference: :ref:`label`
+                ref_label = match.group(1).strip()
+                placeholder_id = f"SIMPLE_REF_{i}"
+                placeholders[placeholder_id] = {
+                    'type': 'simple',
+                    'label': ref_label,
+                    'full': full_match
+                }
+                
+                # Use Mustache tags for the entire simple reference (should not be translated)
+                tagged_text = tagged_text[:match.start()] + \
+                             f"{{{{RST_SIMPLEREF_{placeholder_id}}}}}" + \
+                             tagged_text[match.end():]
+                
+            elif ref['type'] == 'subst':
+                # Substitution reference: |name|
+                subst_name = match.group(1).strip()
+                placeholder_id = f"SUBST_REF_{i}"
+                placeholders[placeholder_id] = {
+                    'type': 'subst',
+                    'name': subst_name,
+                    'full': full_match
+                }
+                
+                # Use Mustache tags for the substitution reference (should not be translated)
+                tagged_text = tagged_text[:match.start()] + \
+                             f"{{{{RST_SUBST_{placeholder_id}}}}}" + \
+                             tagged_text[match.end():]
+            
+        return tagged_text, placeholders
+        
+    def restore_rst_references_from_mustache(self, text, placeholders):
+        """Restore RST references from Mustache tags after translation.
+        
+        Args:
+            text (str): The text with Mustache tags
+            placeholders (dict): The placeholders to restore
+            
+        Returns:
+            str: The text with restored RST references
+        """
+        if not text or not placeholders:
+            return text
+            
+        restored_text = text
+        
+        # Process complex references
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
+                # Find the translated display text and Mustache tag in the translated text
+                # We need a more robust pattern to handle various cases
+                pattern = f'([^:]*)(:ref:`[^{{]*)({{{{RST_LABEL_{placeholder_id}}}}})`'
+                matches = list(re.finditer(pattern, restored_text))
+                
+                for match in matches:
+                    # Get the translated display text
+                    prefix = match.group(1)  # Text before the :ref
+                    ref_part = match.group(2)  # The :ref` part with the translated display text
+                    
+                    # Extract just the display text from the ref_part
+                    display_text_match = re.match(r':ref:`([^`]*)', ref_part)
+                    if display_text_match:
+                        translated_display_text = display_text_match.group(1).strip()
+                    else:
+                        translated_display_text = ref_part.replace(':ref:`', '').strip()
+                    
+                    # Format the RST reference properly
+                    if ref_data.get('has_space', False):
+                        full_reference = f"{prefix}:ref:`{translated_display_text} <{ref_data['label']}>`"
+                    else:
+                        full_reference = f"{prefix}:ref:`{translated_display_text}<{ref_data['label']}>`"
+                    
+                    # Replace the tagged reference with the properly formatted RST reference
+                    restored_text = restored_text.replace(match.group(0), full_reference)
+        
+        # Process simple references
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'simple':
+                # Replace the Mustache tag with the original simple reference
+                restored_text = restored_text.replace(
+                    f"{{{{RST_SIMPLEREF_{placeholder_id}}}}}", 
+                    ref_data['full']
+                )
+        
+        # Process substitution references
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'subst':
+                # Replace the Mustache tag with the original substitution reference
+                restored_text = restored_text.replace(
+                    f"{{{{RST_SUBST_{placeholder_id}}}}}", 
+                    ref_data['full']
+                )
+        
+        # Post-processing fixes for common issues with RST references
+        
+        # Fix missing spaces between references
+        restored_text = re.sub(r'>`(:ref:`)', r'>` \1', restored_text)
+        
+        # Fix double backticks in RST references
+        restored_text = re.sub(r'label>``', r'label>`', restored_text)
+        restored_text = re.sub(r'>``:ref:', r'>` :ref:', restored_text)
+        
+        # Fix missing text between references in specific cases
+        restored_text = re.sub(r'(:ref:`TICKET\_RESOLUTION[^`]+`)(`:ref:`catalog concerns)', 
+                              r'\1 and these will appear when marking \2', 
+                              restored_text)
+        
+        # Apply normalization rules for consistency
+        # Change "notices and slips tool" to "notices and slips"
+        restored_text = re.sub(r':ref:`notices and slips tool <notices-and-slips-label>`', 
+                              r':ref:`notices and slips <notices-and-slips-label>`', 
+                              restored_text)
+        
+        # Change "TICKET_RESOLUTION authorized" to "TICKET_RESOLUTION"
+        restored_text = re.sub(r':ref:`TICKET\_RESOLUTION authorized[^<]*<', 
+                              r':ref:`TICKET\_RESOLUTION <', 
+                              restored_text)
+        
+        # Change "TICKET_STATUS authorized" to "TICKET_STATUS"
+        restored_text = re.sub(r':ref:`TICKET\_STATUS authorized[^<]*<', 
+                              r':ref:`TICKET\_STATUS <', 
+                              restored_text)
+        
+        return restored_text
+    
     def preserve_rst_references(self, text):
         """Preserve RST references during translation by replacing them with placeholders"""
         if not text:
@@ -438,7 +658,7 @@ class KohaTranslator:
         
         # First, preserve escaped underscores (\_ in RST) to prevent translation issues
         # This is critical for strings like "Asks: \_\_\_" which need special handling
-        escaped_underscore_pattern = r'\\_(\\)?_*(\\)?_*'
+        escaped_underscore_pattern = r'\_(_*)'
         escaped_underscore_count = 0
         
         def replace_escaped_underscore(match):
@@ -526,42 +746,45 @@ class KohaTranslator:
                     'prefix': ':ref:`',
                     'display_text': ref_text.strip(),  # Original display text (will be replaced with translation)
                     'has_space': has_space,  # Track if there was a space before the label
-                    'suffix': f"<{ref_label}>`"  # Label part that should not be translated
+                    'suffix': f"<{ref_label}>`",  # Label part that should not be translated
+                    'full_match': full_match,  # Store the full original match for reference
+                    'label': ref_label.strip()  # Store the label separately for validation
                 }
                 
-                # For complex references, use a simpler marker approach to ensure DeepL can properly apply glossary
-                # Instead of special markers that might interfere with translation, just use the text directly
-                # This should help ensure terms like "patron category" get properly translated
+                # Use a unique non-translatable token for the entire reference
+                # This prevents DeepL from modifying or splitting the reference
                 preserved_text = preserved_text[:match.start()] + \
-                                f"[REF:{placeholder_id}]{ref_text.strip()}[/REF:{placeholder_id}]" + \
+                                f"RST_REF_{placeholder_id}" + \
                                 preserved_text[match.end():]
                 
             elif ref['type'] == 'simple':
                 # Simple reference: :ref:`label`
                 ref_label = match.group(1).strip()
-                placeholder = f"SIMPLE_REF_PLACEHOLDER_{i}"
-                placeholders[placeholder] = {
+                placeholder_id = f"SIMPLE_REF_{i}"
+                placeholders[placeholder_id] = {
                     'type': 'simple',
+                    'label': ref_label,
                     'full': full_match
                 }
                 
-                # Replace the entire reference with a placeholder
+                # Use a unique non-translatable token for the simple reference
                 preserved_text = preserved_text[:match.start()] + \
-                                placeholder + \
+                                f"RST_SIMPLEREF_{placeholder_id}" + \
                                 preserved_text[match.end():]
                 
             elif ref['type'] == 'subst':
                 # Substitution reference: |name|
                 subst_name = match.group(1).strip()
-                placeholder = f"SUBST_PLACEHOLDER_{i}"
-                placeholders[placeholder] = {
+                placeholder_id = f"SUBST_REF_{i}"
+                placeholders[placeholder_id] = {
                     'type': 'subst',
+                    'name': subst_name,
                     'full': full_match
                 }
                 
-                # Replace the entire reference with a placeholder
+                # Use a unique non-translatable token for the substitution reference
                 preserved_text = preserved_text[:match.start()] + \
-                                placeholder + \
+                                f"RST_SUBST_{placeholder_id}" + \
                                 preserved_text[match.end():]
             
         return preserved_text, placeholders
@@ -573,45 +796,50 @@ class KohaTranslator:
             
         restored_text = text
         
-        # First handle complex references with the special markers
+        # First handle complex references with the new XML-like tags
         for placeholder_id, ref_data in placeholders.items():
             if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
-                # Find the translated display text between our new markers
-                pattern = re.escape(f"[REF:{placeholder_id}]") + "(.*?)" + re.escape(f"[/REF:{placeholder_id}]")
-                matches = list(re.finditer(pattern, restored_text, re.DOTALL))
+                # Find the placeholder pattern in the translated text
+                pattern = f"RST_REF_{placeholder_id}"
+                matches = list(re.finditer(pattern, restored_text))
                 
-                # Replace each occurrence with the properly formatted reference
-                for match in matches:
-                    translated_display_text = match.group(1).strip()
-                    
-                    # Fix for Swedish translations: remove hyphen before certain words
-                    # This happens when DeepL adds a hyphen before words like "nivån"
-                    if translated_display_text.startswith('-'):
-                        translated_display_text = translated_display_text[1:].strip()
-                    
-                    # Add a space before the label if the original had one
-                    if ref_data.get('has_space', False):
-                        full_reference = f"{ref_data['prefix']}{translated_display_text} {ref_data['suffix']}"
-                    else:
-                        full_reference = f"{ref_data['prefix']}{translated_display_text}{ref_data['suffix']}"
-                    
-                    # Replace the marked text with the full reference
-                    start, end = match.span()
-                    restored_text = restored_text[:start] + full_reference + restored_text[end:]
+                # Use the original display text since we're using a simple token approach
+                display_text = ref_data['display_text']
+                
+                # Add a space before the label if the original had one
+                if ref_data.get('has_space', False):
+                    full_reference = f"{ref_data['prefix']}{display_text} {ref_data['suffix']}"
+                else:
+                    full_reference = f"{ref_data['prefix']}{display_text}{ref_data['suffix']}"
+                
+                # Replace the placeholder with the full reference
+                restored_text = restored_text.replace(pattern, full_reference)
         
-        # Handle escaped underscores, simple references, and substitutions
+        # Handle simple references with the new XML-like tags
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'simple':
+                # Replace the placeholder with the original reference
+                pattern = f"RST_SIMPLEREF_{placeholder_id}"
+                restored_text = re.sub(pattern, ref_data['full'], restored_text)
+        
+        # Handle substitution references with the new XML-like tags
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'subst':
+                # Replace the placeholder with the original reference
+                pattern = f"RST_SUBST_{placeholder_id}"
+                restored_text = re.sub(pattern, ref_data['full'], restored_text)
+        
+        # Handle escaped underscores
+        for placeholder_id, ref_data in placeholders.items():
+            if isinstance(ref_data, dict) and ref_data['type'] == 'escaped_underscore':
+                # Restore escaped underscores exactly as they were in the original text
+                pattern = re.escape(f"[ESC_UNDERSCORE:{placeholder_id}]")
+                original = ref_data.get('original', '\_')
+                restored_text = re.sub(pattern, lambda m: original, restored_text)
+        
+        # Handle old-style placeholders for backward compatibility
         for placeholder, ref_data in placeholders.items():
-            if isinstance(ref_data, dict):
-                if ref_data['type'] == 'escaped_underscore':
-                    # Restore escaped underscores exactly as they were in the original text
-                    pattern = re.escape(f"[ESC_UNDERSCORE:{placeholder}]")
-                    original = ref_data.get('original', '\_')
-                    restored_text = re.sub(pattern, lambda m: original, restored_text)
-                elif ref_data['type'] == 'simple' or ref_data['type'] == 'subst':
-                    pattern = re.escape(placeholder)
-                    restored_text = re.sub(pattern, lambda m: ref_data['full'], restored_text)
-            elif not isinstance(ref_data, dict):
-                # Handle old-style placeholders for backward compatibility
+            if not isinstance(ref_data, dict):
                 pattern = re.escape(placeholder)
                 restored_text = re.sub(pattern, lambda m: ref_data, restored_text)
         
@@ -633,10 +861,70 @@ class KohaTranslator:
             fixed = f":ref:`{match.group(1)}` :ref:`"
             restored_text = restored_text.replace(original, fixed)
             
+        # Fix duplicated label parts in complex references
+        # This can happen if DeepL duplicates part of the reference
+        duplicated_label_pattern = r':ref:`([^<`]+)<([^>`]+)>`([^<`]*)<\2>`'
+        restored_text = re.sub(duplicated_label_pattern, r':ref:`\1<\2>`\3', restored_text)
+        
+        # Fix corrupted complex references with extra characters after the label
+        # Example: :ref:`text<label>`y text
+        restored_text = re.sub(r':ref:`([^<`]+)<([^>`]+)>`([a-zA-Z]+)', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix broken reference with 'ns' suffix
+        # Example: :ref:`catalog concerns <manage-catalog-concerns-label>`ns
+        restored_text = re.sub(r':ref:`([^<`]+)<([^>`]+)>`ns', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix temp prefix before reference
+        # Example: temp:ref:`notices and slips tool <notices-and-slips-label>`
+        restored_text = re.sub(r'temp:ref:`([^<`]+)<([^>`]+)>`', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix a:ref prefix
+        # Example: a:ref:`catalog concerns <manage-catalog-concerns-label>`
+        restored_text = re.sub(r'a:ref:`([^<`]+)<([^>`]+)>`', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix truncated closing bracket in reference
+        # Example: :ref:`text<label`
+        restored_text = re.sub(r':ref:`([^<`]+)<([^>`]+)`', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix Reference with extra text between display and label
+        # Example: :ref:`text y <label>`
+        restored_text = re.sub(r':ref:`([^<`]+)\s+([a-zA-Z]+)\s+<([^>`]+)>`', r':ref:`\1 <\3>`', restored_text)
+        
+        # Fix double closing bracket with text in between
+        # Example: :ref:`text<label>`-text>`
+        restored_text = re.sub(r':ref:`([^<`]+)<([^>`]+)>`([^<`]*?)-[^<`]*?>`', r':ref:`\1<\2>`\3', restored_text)
+        
+        # Fix specific case for duplicate permission-issue-manage-label
+        # Example: :ref:`issue_manage <permission-issue-manage-label>` <permission-issue-manage-label>`
+        restored_text = re.sub(r':ref:`([^<`]+)<([^>`]+)>` <\2>`', r':ref:`\1<\2>`', restored_text)
+        
+        # Fix notices and slips tool with 'tool' suffix
+        # Example: :ref:`notices and slips <notices-and-slips-label>` tool
+        restored_text = re.sub(r':ref:`notices and slips <notices-and-slips-label>` tool', 
+                              r':ref:`notices and slips <notices-and-slips-label>`', restored_text)
+        
+        # Standardize references to maintain consistency
+        # For notices and slips, use a consistent format
+        restored_text = re.sub(r':ref:`notices and slips tool <notices-and-slips-label>`', 
+                              r':ref:`notices and slips <notices-and-slips-label>`', restored_text)
+        
+        # For catalog concerns, use a consistent format
+        restored_text = re.sub(r':ref:`catalog <manage-catalog-concerns-label>`', 
+                              r':ref:`catalog concerns <manage-catalog-concerns-label>`', restored_text)
+        
+        # For TICKET_RESOLUTION, use a consistent format
+        restored_text = re.sub(r':ref:`TICKET\_RESOLUTION authorized value category <ticketresolution-av-category-label>`', 
+                              r':ref:`TICKET\_RESOLUTION <ticketresolution-av-category-label>`', restored_text)
+        
         return restored_text
         
     def get_cached_translation(self, text, source_lang, target_lang):
         """Get a translation from the cache if it exists"""
+        # If cache reading is disabled, always return None
+        if self.skip_cache_read:
+            logging.debug("Cache reading disabled, skipping cache lookup")
+            return None
+            
         # Create a unique hash for this translation request
         text_hash = hashlib.md5(f"{text}_{source_lang}_{target_lang}".encode('utf-8')).hexdigest()
         
@@ -693,32 +981,16 @@ class KohaTranslator:
             
         try:
             # Check if we already have this translation in the cache
+            # Note: get_cached_translation will return None if skip_cache_read is True
             cached_translation = self.get_cached_translation(text, source_lang, target_lang)
             if cached_translation:
                 return cached_translation
                 
-            # Preserve RST references before translation
-            preserved_text, placeholders = self.preserve_rst_references(text)
+            # Preserve RST references using Mustache tags for DeepL's tag handling feature
+            tagged_text, placeholders = self.preserve_rst_references_with_mustache(text)
             
-            # Pre-process complex references to apply glossary terms to display text
-            # This helps ensure terms like "patron category" get properly translated
-            for placeholder_id, ref_data in placeholders.items():
-                if isinstance(ref_data, dict) and ref_data['type'] == 'complex':
-                    display_text = ref_data.get('display_text', '').strip()
-                    if display_text and self.glossary:
-                        # Try to find this exact term in our glossary entries
-                        # We need to check if this is a known glossary term
-                        try:
-                            # Get glossary entries
-                            glossary_entries = self.translator.get_glossary_entries(self.glossary)
-                            if display_text in glossary_entries:
-                                # Replace the display text in the preserved text with the glossary term
-                                pattern = re.escape(f"[REF_START:{placeholder_id}]{display_text}[REF_END:{placeholder_id}]")
-                                # Mark it in a way that DeepL will recognize it as a glossary term
-                                preserved_text = re.sub(pattern, f"[REF_START:{placeholder_id}]{display_text}[REF_END:{placeholder_id}]", preserved_text)
-                        except Exception as e:
-                            # If we can't get glossary entries, just continue
-                            logging.debug(f"Error checking glossary for term '{display_text}': {e}")
+            # With Mustache tags, we don't need to pre-process complex references
+            # as the display text is already outside the tags and will be translated normally
             
             # Add a small delay between requests to avoid rate limiting
             time.sleep(1)  # Increased delay to avoid rate limits
@@ -727,28 +999,32 @@ class KohaTranslator:
             deepl_source = self.deepl_lang_map.get(source_lang.lower(), source_lang.upper())
             deepl_target = self.deepl_lang_map.get(target_lang.lower(), target_lang.upper())
             
-            # Use glossary if available
+            # Use glossary if available and enable tag handling with Mustache format
             if self.glossary:
                 result = self.translator.translate_text(
-                    preserved_text,
+                    tagged_text,
                     source_lang=deepl_source,
                     target_lang=deepl_target,
                     preserve_formatting=True,
+                    tag_handling="html",  # Enable HTML tag handling for Mustache tags
+                    outline_detection=False,  # Disable outline detection to preserve tags
                     glossary=self.glossary
                 )
             else:
                 result = self.translator.translate_text(
-                    preserved_text,
+                    tagged_text,
                     source_lang=deepl_source,
                     target_lang=deepl_target,
-                    preserve_formatting=True
+                    preserve_formatting=True,
+                    tag_handling="html",  # Enable HTML tag handling for Mustache tags
+                    outline_detection=False  # Disable outline detection to preserve tags
                 )
                 
             translated_text = result.text if result else None
             
-            # Restore RST references after translation
+            # Restore RST references from Mustache tags after translation
             if translated_text:
-                translated_text = self.restore_rst_references(translated_text, placeholders)
+                translated_text = self.restore_rst_references_from_mustache(translated_text, placeholders)
                 # Apply RST formatting fixes to the translated text
                 translated_text = self.fix_rst_formatting(translated_text)
                 # Cache the translation for future use
@@ -1449,6 +1725,7 @@ def main():
     parser.add_argument('--translate-all', action='store_true', help='Translate all strings, even if they already exist in PO file')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode with full text output')
     parser.add_argument('--log-file', help='Specify custom log file path (default: log/translation_TIMESTAMP.log)')
+    parser.add_argument('--disable-cache', action='store_true', help='Disable reading from translation cache to force new translations (still updates cache)')
     args = parser.parse_args()
     
     # Set up logging
@@ -1474,7 +1751,7 @@ def main():
     manual_source = "repos/koha-manual/source"  # RST files location
     po_dir = "repos/koha-manual/locales"  # PO files location (inside koha-manual as 'locales')
     
-    translator = KohaTranslator(manual_source, po_dir)
+    translator = KohaTranslator(manual_source, po_dir, disable_cache=args.disable_cache)
     
     if args.translate:
         try:
