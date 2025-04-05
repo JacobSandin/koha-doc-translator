@@ -1694,14 +1694,8 @@ class KohaTranslator:
             
             completion_msg = "\nTranslation process completed successfully"
             
-            # Print summary of all operations
-            print(f"\nSummary for all files:")
-            print(f"Successfully translated: {total_success_count} strings")
-            print(f"Skipped already translated: {total_skip_count} strings")
-            if total_fail_count > 0:
-                print(f"Failed to translate: {total_fail_count} strings")
-            print(f"Removed obsolete entries: {total_obsolete_count} strings")
-            print(f"Cache hits (saved API calls): {translator.cache_hits} strings")
+            # Print summary of all operations using the summary function
+            print_summary(total_success_count, total_skip_count, total_fail_count, total_obsolete_count, self.cache_hits)
             
         except Exception as e:
             error_msg = f"Error: {e}"
@@ -1770,15 +1764,31 @@ def main():
             start_msg = f"\nStarting translation process for {args.lang}..."
             logging.info(start_msg)
             print(start_msg)
-            translator.process_manual(args.file, args.translate_all, args.debug)
+            # Process the manual and get the results
+            result = translator.process_manual(args.file, args.translate_all, args.debug)
+            
+            # If we get here without an exception, the process_manual method will have already
+            # printed a summary using the print_summary function
         except Exception as e:
             error_msg = f"Error during translation process: {e}"
             logging.error(error_msg)
             print(error_msg)
+            # Print a summary with zeros in case of error
+            print_summary(0, 0, 0, 0, translator.cache_hits)
             return
     elif not args.translate:
         # No action specified, show help
         parser.print_help()
+
+def print_summary(total_success_count, total_skipped_count, total_fail_count, total_obsolete_count, cache_hits):
+    """Print a summary of the translation process"""
+    print("\nSummary for all files:")
+    print(f"Successfully translated: {total_success_count} strings")
+    print(f"Skipped already translated: {total_skipped_count} strings")
+    if total_fail_count > 0:
+        print(f"Failed to translate: {total_fail_count} strings")
+    print(f"Removed obsolete entries: {total_obsolete_count} strings")
+    print(f"Cache hits (saved API calls): {cache_hits} strings")
 
 if __name__ == "__main__":
     main()
