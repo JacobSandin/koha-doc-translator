@@ -33,8 +33,8 @@ from translator import KohaTranslator
 source_dir = os.path.join(os.getcwd(), 'repos/koha-manual/source')
 po_dir = os.path.join(os.getcwd(), 'repos/koha-manual/locales')
 
-# Initialize the translator
-translator = KohaTranslator(source_dir, po_dir)
+# Initialize the translator with cache disabled to ensure tests don't use cached translations
+translator = KohaTranslator(source_dir, po_dir, disable_cache=True)
 
 def load_test_cases(json_file=None):
     """Load test cases from a JSON file"""

@@ -19,7 +19,8 @@ class TestUrlReferences(unittest.TestCase):
     
     def setUp(self):
         """Set up the test environment"""
-        self.translator = KohaTranslator(source_dir, po_dir)
+        # Disable cache to ensure tests don't use cached translations
+        self.translator = KohaTranslator(source_dir, po_dir, disable_cache=True)
     
     def test_url_reference_restoration(self):
         """Test that URL references are properly restored from placeholders"""

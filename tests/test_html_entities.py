@@ -19,7 +19,8 @@ class TestHtmlEntities(unittest.TestCase):
     
     def setUp(self):
         """Set up the test environment"""
-        self.translator = KohaTranslator(source_dir, po_dir)
+        # Disable cache to ensure tests don't use cached translations
+        self.translator = KohaTranslator(source_dir, po_dir, disable_cache=True)
     
     def test_html_entity_conversion(self):
         """Test that HTML entities are properly converted back to their original characters"""
