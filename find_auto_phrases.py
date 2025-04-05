@@ -24,12 +24,16 @@ def find_all_refs(rst_dir):
     # Excludes all-caps words like 'XML' or 'HTML'
     pascal_pattern = re.compile(r'\b([A-Z][a-z]+[A-Z][A-Za-z]*|[A-Z][a-z]*[A-Z][A-Za-z]*)\b')
     
+    # Pattern for camelCase words (starts with lowercase letter, has at least one uppercase letter)
+    camel_pattern = re.compile(r'\b([a-z]+[A-Z][A-Za-z]*)\b')
+    
     # Find all RST files
     rst_files = list(Path(rst_dir).rglob("*.rst"))
     print(f"Found {len(rst_files)} RST files to scan")
     
     total_refs = 0
     total_pascal = 0
+    total_camel = 0
     multi_line_refs = 0
     consecutive_refs = 0
     
@@ -105,12 +109,39 @@ def find_all_refs(rst_dir):
                         False      # Not consecutive
                     ))
                     total_pascal += 1
+                
+                # Find all camelCase words
+                camel_matches = list(camel_pattern.finditer(content))
+                
+                # Process each camelCase match
+                for match in camel_matches:
+                    camel_word = match.group(0)
+                    
+                    # Get the line number
+                    line_num = content[:match.start()].count('\n') + 1
+                    
+                    # Get context (up to 100 chars before and after)
+                    start_context = max(0, match.start() - 100)
+                    end_context = min(len(content), match.end() + 100)
+                    context = content[start_context:end_context].replace('\n', ' ')
+                    
+                    # Add to our results
+                    refs_by_file[str(rst_file)].append((
+                        line_num,
+                        context,
+                        camel_word,
+                        'camel',   # Type of match
+                        False,     # Not multi-line
+                        False      # Not consecutive
+                    ))
+                    total_camel += 1
                         
         except Exception as e:
             print(f"Error processing {rst_file}: {e}")
     
     print(f"Found {total_refs} :ref: instances across {len(refs_by_file)} files")
     print(f"Found {total_pascal} PascalCase words")
+    print(f"Found {total_camel} camelCase words")
     print(f"Multi-line references: {multi_line_refs}")
     print(f"Consecutive references: {consecutive_refs}")
     return refs_by_file
@@ -134,8 +165,8 @@ def write_results_to_csv(refs_by_file, output_file):
             # Clean up the text
             cleaned_text = clean_ref_text(text)
             
-            # Only include PascalCase words
-            if match_type == 'pascal':
+            # Only include PascalCase and camelCase words
+            if match_type in ['pascal', 'camel']:
                 unique_phrases.add(cleaned_text)
     
     # Now write to CSV in the required format
@@ -170,6 +201,7 @@ def main():
     multi_line_examples = 0
     consecutive_examples = 0
     pascal_examples = 0
+    camel_examples = 0
     
     # First show some multi-line examples if they exist
     print("\nMulti-line reference examples:")
@@ -199,6 +231,16 @@ def main():
                 print(f"{os.path.basename(filename)}:{line_num} - {text}")
                 pascal_examples += 1
         if pascal_examples >= 10:
+            break
+            
+    # Show some camelCase examples
+    print("\ncamelCase word examples:")
+    for filename, refs in refs_by_file.items():
+        for line_num, context, text, match_type, is_multi_line, is_consecutive in refs:
+            if match_type == 'camel' and camel_examples < 10:
+                print(f"{os.path.basename(filename)}:{line_num} - {text}")
+                camel_examples += 1
+        if camel_examples >= 10:
             break
     
     print(f"\nSee {output_file} for complete results")
