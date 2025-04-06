@@ -1,3 +1,0 @@
-python-dotenv==1.0.0
-docutils==0.20.1
-deepl==1.16.1
