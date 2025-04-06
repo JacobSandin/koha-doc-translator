@@ -120,6 +120,10 @@ def get_from_cache(text, target_lang, source_lang, conn=None):
     
     result = cursor.fetchone()
     
+    # If found, mark this entry as used by updating its timestamp
+    if result:
+        mark_cache_entry_used(cache_hash, conn)
+    
     if close_conn:
         conn.close()
     
@@ -168,6 +172,131 @@ def add_to_cache(text, target_lang, source_lang, translated_text, conn=None):
     
     if close_conn:
         conn.close()
+
+def mark_cache_entry_used(cache_hash, conn=None):
+    """
+    Mark a cache entry as used by updating its timestamp.
+    
+    Args:
+        cache_hash (str): The hash of the cache entry to mark.
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Update the timestamp to mark it as used
+    cursor.execute(
+        "UPDATE translations SET created_at = CURRENT_TIMESTAMP WHERE hash = ?", 
+        (cache_hash,)
+    )
+    conn.commit()
+    
+    if close_conn:
+        conn.close()
+
+def delete_unused_cache_entries(days_old=30, conn=None):
+    """
+    Delete cache entries that haven't been used for a specified number of days.
+    
+    Args:
+        days_old (int): Delete entries older than this many days.
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+                                           
+    Returns:
+        int: Number of entries deleted.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Delete entries older than days_old
+    cursor.execute(
+        "DELETE FROM translations WHERE created_at < datetime('now', ?)", 
+        (f"-{days_old} days",)
+    )
+    
+    # Get the number of rows deleted
+    deleted_count = cursor.rowcount
+    conn.commit()
+    
+    if close_conn:
+        conn.close()
+    
+    return deleted_count
+
+def delete_cache_entries_containing(text, conn=None):
+    """
+    Delete cache entries where source_text or translated_text contains the specified text.
+    
+    Args:
+        text (str): The text to search for.
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+                                           
+    Returns:
+        int: Number of entries deleted.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Delete entries containing the specified text
+    cursor.execute(
+        "DELETE FROM translations WHERE source_text LIKE ? OR translated_text LIKE ?", 
+        (f"%{text}%", f"%{text}%")
+    )
+    
+    # Get the number of rows deleted
+    deleted_count = cursor.rowcount
+    conn.commit()
+    
+    if close_conn:
+        conn.close()
+    
+    return deleted_count
+
+def clear_cache(conn=None):
+    """
+    Clear all entries from the cache.
+    
+    Args:
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+                                           
+    Returns:
+        int: Number of entries deleted.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Get the count before deleting
+    cursor.execute("SELECT COUNT(*) FROM translations")
+    count = cursor.fetchone()[0]
+    
+    # Delete all entries
+    cursor.execute("DELETE FROM translations")
+    conn.commit()
+    
+    if close_conn:
+        conn.close()
+    
+    return count
 
 def translate_text(text, target_lang="SV", source_lang="EN", disable_cache=False, conn=None):
     """
@@ -260,10 +389,19 @@ def parse_args():
         argparse.Namespace: Parsed command line arguments.
     """
     parser = argparse.ArgumentParser(description="Translate text using DeepL API with caching.")
-    parser.add_argument("text", help="Text to translate")
+    parser.add_argument("text", nargs='?', help="Text to translate")
     parser.add_argument("--target-lang", default="SV", help="Target language code (default: SV)")
     parser.add_argument("--source-lang", default="EN", help="Source language code (default: EN)")
     parser.add_argument("--disable-cache", action="store_true", help="Disable caching")
+    
+    # Cache management options
+    cache_group = parser.add_argument_group('Cache Management')
+    cache_group.add_argument("--cache-delete-unused", type=int, metavar="DAYS", 
+                          help="Delete cache entries unused for specified number of days")
+    cache_group.add_argument("--cache-delete-entry-containing", metavar="TEXT",
+                          help="Delete cache entries containing the specified text")
+    cache_group.add_argument("--cache-clear", action="store_true", 
+                          help="Clear all cache entries")
     
     return parser.parse_args()
 
@@ -271,15 +409,39 @@ if __name__ == "__main__":
     args = parse_args()
     
     try:
-        translated_text = translate_text(
-            args.text, 
-            args.target_lang, 
-            args.source_lang, 
-            args.disable_cache
-        )
+        # Handle cache management options
+        if args.cache_clear:
+            count = clear_cache()
+            print(f"Cleared {count} entries from the translation cache.")
+            sys.exit(0)
+            
+        if args.cache_delete_unused is not None:
+            count = delete_unused_cache_entries(args.cache_delete_unused)
+            print(f"Deleted {count} unused entries older than {args.cache_delete_unused} days from the translation cache.")
+            sys.exit(0)
+            
+        if args.cache_delete_entry_containing:
+            count = delete_cache_entries_containing(args.cache_delete_entry_containing)
+            print(f"Deleted {count} entries containing '{args.cache_delete_entry_containing}' from the translation cache.")
+            sys.exit(0)
         
-        print(f"Original: {args.text}")
-        print(f"Translated: {translated_text}")
+        # Handle translation
+        if args.text:
+            translated_text = translate_text(
+                args.text, 
+                args.target_lang, 
+                args.source_lang, 
+                args.disable_cache
+            )
+            
+            print(f"Original: {args.text}")
+            print(f"Translated: {translated_text}")
+        else:
+            # If no text is provided and no cache management options are specified,
+            # show help message
+            parser = argparse.ArgumentParser()
+            parse_args()
+            parser.print_help()
         
     except Exception as e:
         print(f"An error occurred: {e}")
