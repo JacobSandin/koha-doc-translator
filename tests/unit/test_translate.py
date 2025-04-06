@@ -4,7 +4,7 @@ Unit tests for the translate module.
 import pytest
 from unittest.mock import patch, MagicMock
 
-from translate import get_translator, translate_text
+from translate import get_translator, translate_text, init_cache_db
 
 class TestTranslate:
     """Test cases for the translate module."""
@@ -41,7 +41,8 @@ class TestTranslate:
         mock_translator.translate_text.return_value = mock_result
         
         with patch('translate.get_translator', return_value=mock_translator):
-            result = translate_text("Hello world", "SV", "EN")
+            # Disable cache for this test
+            result = translate_text("Hello world", "SV", "EN", disable_cache=True)
             
             # Verify the translator was called with the correct parameters
             mock_translator.translate_text.assert_called_once_with(
@@ -57,21 +58,23 @@ class TestTranslate:
         """Test translating a list of strings."""
         # Create a mock translator
         mock_translator = MagicMock()
-        mock_result1 = MagicMock()
-        mock_result1.text = "Hej"
-        mock_result2 = MagicMock()
-        mock_result2.text = "Världen"
-        mock_translator.translate_text.return_value = [mock_result1, mock_result2]
+        
+        def mock_translate_side_effect(text, **kwargs):
+            mock_result = MagicMock()
+            if text == "Hello":
+                mock_result.text = "Hej"
+            elif text == "World":
+                mock_result.text = "Världen"
+            return mock_result
+        
+        mock_translator.translate_text.side_effect = mock_translate_side_effect
         
         with patch('translate.get_translator', return_value=mock_translator):
-            result = translate_text(["Hello", "World"], "SV", "EN")
+            # Disable cache for this test
+            result = translate_text(["Hello", "World"], "SV", "EN", disable_cache=True)
             
-            # Verify the translator was called with the correct parameters
-            mock_translator.translate_text.assert_called_once_with(
-                ["Hello", "World"], 
-                target_lang="SV", 
-                source_lang="EN"
-            )
+            # With the new implementation, translate_text is called once for each item in the list
+            assert mock_translator.translate_text.call_count == 2
             
             # Verify the result
             assert result == ["Hej", "Världen"]
@@ -84,7 +87,8 @@ class TestTranslate:
         
         with patch('translate.get_translator', return_value=mock_translator):
             with pytest.raises(Exception) as excinfo:
-                translate_text("Hello world", "SV", "EN")
+                # Disable cache for this test
+                translate_text("Hello world", "SV", "EN", disable_cache=True)
             
             assert "API error" in str(excinfo.value)
     
@@ -97,7 +101,8 @@ class TestTranslate:
         mock_translator.translate_text.return_value = mock_result
         
         with patch('translate.get_translator', return_value=mock_translator):
-            result = translate_text("Hello world")
+            # Disable cache for this test
+            result = translate_text("Hello world", disable_cache=True)
             
             # Verify the translator was called with the default parameters
             mock_translator.translate_text.assert_called_once_with(
