@@ -402,7 +402,7 @@ def get_locale_path(repo_path=None):
     locale_path = os.path.join(repo_path, 'build', 'locale')
     return locale_path
 
-def handle_pot_file(filename, repo_path=None):
+def find_pot_file(filename, repo_path=None):
     """
     Check if a file exists as a .pot file under repos/koha-manual/build/locale.
     
@@ -547,7 +547,7 @@ if __name__ == "__main__":
         
         # Handle single file translation
         elif args.file:
-            pot_file = handle_pot_file(args.file)
+            pot_file = find_pot_file(args.file)
             if pot_file:
                 process_pot_file(pot_file, args.target_lang, args.source_lang, args.disable_cache)
             else:

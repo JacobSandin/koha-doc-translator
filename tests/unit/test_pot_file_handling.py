@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 
 from translate import (
     get_locale_path,
-    handle_pot_file,
+    find_pot_file,
     find_all_pot_files,
     process_pot_file
 )
@@ -37,27 +37,27 @@ class TestPotFileHandling:
         result = get_locale_path(mock_repo_path)
         assert result == expected_path
     
-    def test_handle_pot_file_exact_match(self, mock_repo_path):
-        """Test that handle_pot_file finds an exact match."""
-        result = handle_pot_file("test1", mock_repo_path)
+    def test_find_pot_file_exact_match(self, mock_repo_path):
+        """Test that find_pot_file finds an exact match."""
+        result = find_pot_file("test1", mock_repo_path)
         expected_path = os.path.join(mock_repo_path, "build", "locale", "test1.pot")
         assert result == expected_path
     
-    def test_handle_pot_file_partial_match(self, mock_repo_path):
-        """Test that handle_pot_file finds a partial match."""
-        result = handle_pot_file("install", mock_repo_path)
+    def test_find_pot_file_partial_match(self, mock_repo_path):
+        """Test that find_pot_file finds a partial match."""
+        result = find_pot_file("install", mock_repo_path)
         expected_path = os.path.join(mock_repo_path, "build", "locale", "installation.pot")
         assert result == expected_path
     
-    def test_handle_pot_file_no_match(self, mock_repo_path):
-        """Test that handle_pot_file returns None when no match is found."""
-        result = handle_pot_file("nonexistent", mock_repo_path)
+    def test_find_pot_file_no_match(self, mock_repo_path):
+        """Test that find_pot_file returns None when no match is found."""
+        result = find_pot_file("nonexistent", mock_repo_path)
         assert result is None
     
-    def test_handle_pot_file_nonexistent_directory(self, tmp_path):
-        """Test that handle_pot_file handles nonexistent directories."""
+    def test_find_pot_file_nonexistent_directory(self, tmp_path):
+        """Test that find_pot_file handles nonexistent directories."""
         nonexistent_path = tmp_path / "nonexistent"
-        result = handle_pot_file("test", nonexistent_path)
+        result = find_pot_file("test", nonexistent_path)
         assert result is None
     
     def test_find_all_pot_files(self, mock_repo_path):
