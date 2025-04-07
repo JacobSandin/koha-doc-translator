@@ -9,6 +9,7 @@ import sqlite3
 import hashlib
 import argparse
 import deepl
+import glob
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -381,6 +382,101 @@ def translate_text(text, target_lang="SV", source_lang="EN", disable_cache=False
         print(f"Error during translation: {e}")
         raise
 
+def get_locale_path(repo_path=None):
+    """
+    Get the path to the locale directory in the koha-manual repository.
+    
+    Args:
+        repo_path (str, optional): Path to the koha-manual repository.
+                                  If None, uses the default path relative to this script.
+    
+    Returns:
+        str: The path to the locale directory.
+    """
+    if repo_path is None:
+        # Default path is repos/koha-manual relative to this script
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        repo_path = os.path.join(script_dir, 'repos', 'koha-manual')
+    
+    # Construct the path to the locale directory
+    locale_path = os.path.join(repo_path, 'build', 'locale')
+    return locale_path
+
+def handle_pot_file(filename, repo_path=None):
+    """
+    Check if a file exists as a .pot file under repos/koha-manual/build/locale.
+    
+    Args:
+        filename (str): The name of the file to check for (without extension).
+        repo_path (str, optional): Path to the koha-manual repository.
+                                  If None, uses the default path relative to this script.
+    
+    Returns:
+        str or None: The full path to the .pot file if found, None otherwise.
+    """
+    locale_path = get_locale_path(repo_path)
+    
+    # Check if the directory exists
+    if not os.path.isdir(locale_path):
+        print(f"Warning: Locale directory not found at {locale_path}")
+        return None
+    
+    # Look for the .pot file
+    pot_file = os.path.join(locale_path, f"{filename}.pot")
+    
+    if os.path.isfile(pot_file):
+        return pot_file
+    
+    # If not found directly, try to find it using glob
+    pot_files = glob.glob(os.path.join(locale_path, f"*{filename}*.pot"))
+    
+    if pot_files:
+        # Return the first match
+        return pot_files[0]
+    
+    return None
+
+def find_all_pot_files(repo_path=None):
+    """
+    Find all .pot files in the koha-manual repository.
+    
+    Args:
+        repo_path (str, optional): Path to the koha-manual repository.
+                                  If None, uses the default path relative to this script.
+    
+    Returns:
+        list: A list of paths to all .pot files found.
+    """
+    locale_path = get_locale_path(repo_path)
+    
+    # Check if the directory exists
+    if not os.path.isdir(locale_path):
+        print(f"Warning: Locale directory not found at {locale_path}")
+        return []
+    
+    # Find all .pot files
+    pot_files = glob.glob(os.path.join(locale_path, "*.pot"))
+    
+    return pot_files
+
+def process_pot_file(pot_file_path, target_lang="SV", source_lang="EN", disable_cache=False):
+    """
+    Process a single .pot file for translation.
+    
+    Args:
+        pot_file_path (str): Path to the .pot file to process.
+        target_lang (str): Target language code.
+        source_lang (str): Source language code.
+        disable_cache (bool): Whether to disable the translation cache.
+    
+    Returns:
+        bool: True if successful, False otherwise.
+    """
+    print(f"Processing .pot file: {pot_file_path}")
+    # TODO: Implement .pot file translation
+    print(f"Translation of .pot files is not yet implemented.")
+    return True
+
 def parse_args():
     """
     Parse command line arguments.
@@ -390,6 +486,13 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description="Translate text using DeepL API with caching.")
     parser.add_argument("text", nargs='?', help="Text to translate")
+    
+    # File translation options
+    file_group = parser.add_argument_group('File Translation')
+    file_group.add_argument("--file", help="Name of a .pot file in repos/koha-manual/build/locale to translate")
+    file_group.add_argument("--all", action="store_true", help="Process all .pot files in repos/koha-manual/build/locale")
+    
+    # Translation options
     parser.add_argument("--target-lang", default="SV", help="Target language code (default: SV)")
     parser.add_argument("--source-lang", default="EN", help="Source language code (default: EN)")
     parser.add_argument("--disable-cache", action="store_true", help="Disable caching")
@@ -425,8 +528,34 @@ if __name__ == "__main__":
             print(f"Deleted {count} entries containing '{args.cache_delete_entry_containing}' from the translation cache.")
             sys.exit(0)
         
-        # Handle translation
-        if args.text:
+        # Handle all files translation
+        if args.all:
+            pot_files = find_all_pot_files()
+            if not pot_files:
+                print("No .pot files found in repos/koha-manual/build/locale")
+                sys.exit(1)
+            
+            print(f"Found {len(pot_files)} .pot files to process")
+            success_count = 0
+            
+            for pot_file in pot_files:
+                if process_pot_file(pot_file, args.target_lang, args.source_lang, args.disable_cache):
+                    success_count += 1
+            
+            print(f"Successfully processed {success_count} out of {len(pot_files)} .pot files")
+            sys.exit(0)
+        
+        # Handle single file translation
+        elif args.file:
+            pot_file = handle_pot_file(args.file)
+            if pot_file:
+                process_pot_file(pot_file, args.target_lang, args.source_lang, args.disable_cache)
+            else:
+                print(f"Error: Could not find .pot file for '{args.file}' in repos/koha-manual/build/locale")
+                sys.exit(1)
+        
+        # Handle text translation
+        elif args.text:
             translated_text = translate_text(
                 args.text, 
                 args.target_lang, 
@@ -437,7 +566,7 @@ if __name__ == "__main__":
             print(f"Original: {args.text}")
             print(f"Translated: {translated_text}")
         else:
-            # If no text is provided and no cache management options are specified,
+            # If no text/file is provided and no cache management options are specified,
             # show help message
             parser = argparse.ArgumentParser()
             parse_args()
