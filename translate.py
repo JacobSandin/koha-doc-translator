@@ -268,6 +268,91 @@ def delete_cache_entries_containing(text, conn=None):
     
     return deleted_count
 
+def list_all_cache_entries(conn=None):
+    """
+    List all entries in the cache.
+    
+    Args:
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+                                           
+    Returns:
+        list: List of dictionaries containing cache entries.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Get all entries from the cache
+    cursor.execute("""
+        SELECT id, source_text, target_lang, source_lang, translated_text, created_at 
+        FROM translations
+        ORDER BY created_at DESC
+    """)
+    
+    entries = []
+    for row in cursor.fetchall():
+        entries.append({
+            'id': row[0],
+            'source_text': row[1],
+            'target_lang': row[2],
+            'source_lang': row[3],
+            'translated_text': row[4],
+            'created_at': row[5]
+        })
+    
+    if close_conn:
+        conn.close()
+    
+    return entries
+
+def find_cache_translation(text, conn=None):
+    """
+    Find translations in the cache that contain the specified text.
+    Searches in both source_text and translated_text fields.
+    
+    Args:
+        text (str): The text to search for.
+        conn (sqlite3.Connection, optional): Connection to the SQLite database.
+                                           If None, a new connection is created.
+                                           
+    Returns:
+        list: List of dictionaries containing matching cache entries.
+    """
+    close_conn = False
+    if conn is None:
+        conn = init_cache_db()
+        close_conn = True
+    
+    cursor = conn.cursor()
+    
+    # Find entries containing the specified text in either source or translated text
+    cursor.execute("""
+        SELECT id, source_text, target_lang, source_lang, translated_text, created_at 
+        FROM translations
+        WHERE source_text LIKE ? OR translated_text LIKE ?
+        ORDER BY created_at DESC
+    """, (f"%{text}%", f"%{text}%"))
+    
+    entries = []
+    for row in cursor.fetchall():
+        entries.append({
+            'id': row[0],
+            'source_text': row[1],
+            'target_lang': row[2],
+            'source_lang': row[3],
+            'translated_text': row[4],
+            'created_at': row[5]
+        })
+    
+    if close_conn:
+        conn.close()
+    
+    return entries
+
 def clear_cache(conn=None):
     """
     Clear all entries from the cache.
@@ -516,6 +601,10 @@ def parse_args():
                           help="Delete cache entries containing the specified text")
     cache_group.add_argument("--cache-clear", action="store_true", 
                           help="Clear all cache entries")
+    cache_group.add_argument("--cache-list-all", action="store_true",
+                          help="List all entries in the translation cache")
+    cache_group.add_argument("--cache-find-translation", metavar="TEXT",
+                          help="Find translations containing the specified text")
     
     return parser.parse_args()
 
@@ -537,6 +626,90 @@ if __name__ == "__main__":
         if args.cache_delete_entry_containing:
             count = delete_cache_entries_containing(args.cache_delete_entry_containing)
             print(f"Deleted {count} entries containing '{args.cache_delete_entry_containing}' from the translation cache.")
+            sys.exit(0)
+            
+        if args.cache_list_all:
+            entries = list_all_cache_entries()
+            if not entries:
+                print("No entries found in the translation cache.")
+            else:
+                print(f"Found {len(entries)} entries in the translation cache:")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
+            sys.exit(0)
+            
+        if args.cache_find_translation:
+            entries = find_cache_translation(args.cache_find_translation)
+            if not entries:
+                print(f"No translations found containing '{args.cache_find_translation}'.")
+            else:
+                print(f"Found {len(entries)} translations containing '{args.cache_find_translation}':")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
+            sys.exit(0)
+            
+        if args.cache_list_all:
+            entries = list_all_cache_entries()
+            if not entries:
+                print("No entries found in the translation cache.")
+            else:
+                print(f"Found {len(entries)} entries in the translation cache:")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
+            sys.exit(0)
+            
+        if args.cache_find_translation:
+            entries = find_cache_translation(args.cache_find_translation)
+            if not entries:
+                print(f"No translations found containing '{args.cache_find_translation}'.")
+            else:
+                print(f"Found {len(entries)} translations containing '{args.cache_find_translation}':")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
+            sys.exit(0)
+            
+        if args.cache_list_all:
+            entries = list_all_cache_entries()
+            if not entries:
+                print("No entries found in the translation cache.")
+            else:
+                print(f"Found {len(entries)} entries in the translation cache:")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
+            sys.exit(0)
+            
+        if args.cache_find_translation:
+            entries = find_cache_translation(args.cache_find_translation)
+            if not entries:
+                print(f"No translations found containing '{args.cache_find_translation}'.")
+            else:
+                print(f"Found {len(entries)} translations containing '{args.cache_find_translation}':")
+                for entry in entries:
+                    print(f"ID: {entry['id']}")
+                    print(f"Source ({entry['source_lang']}): {entry['source_text'][:100]}{'...' if len(entry['source_text']) > 100 else ''}")
+                    print(f"Translation ({entry['target_lang']}): {entry['translated_text'][:100]}{'...' if len(entry['translated_text']) > 100 else ''}")
+                    print(f"Created: {entry['created_at']}")
+                    print("---")
             sys.exit(0)
         
         # Handle all files translation

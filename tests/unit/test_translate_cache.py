@@ -16,7 +16,9 @@ from translate import (
     mark_cache_entry_used,
     delete_unused_cache_entries,
     delete_cache_entries_containing,
-    clear_cache
+    clear_cache,
+    list_all_cache_entries,
+    find_cache_translation
 )
 
 class TestTranslateCache:
@@ -395,6 +397,127 @@ class TestTranslateCache:
         
         # Verify the timestamp was updated
         assert initial_timestamp != updated_timestamp
+        
+        # Clean up
+        conn.close()
+        
+    def test_list_all_cache_entries(self, test_db_path):
+        """Test listing all entries in the cache."""
+        # Create a database connection
+        conn = init_cache_db(test_db_path)
+        
+        # Add some translations to the cache
+        add_to_cache("Entry 1", "SV", "EN", "Inmatning 1", conn)
+        add_to_cache("Entry 2", "SV", "EN", "Inmatning 2", conn)
+        add_to_cache("Entry 3", "DE", "EN", "Eintrag 3", conn)
+        
+        # Get all entries from the cache
+        entries = list_all_cache_entries(conn)
+        
+        # Verify we have 3 entries
+        assert len(entries) == 3
+        
+        # Verify the entries have the expected structure and content
+        for entry in entries:
+            assert 'id' in entry
+            assert 'source_text' in entry
+            assert 'target_lang' in entry
+            assert 'source_lang' in entry
+            assert 'translated_text' in entry
+            assert 'created_at' in entry
+        
+        # Verify the specific entries are present
+        source_texts = [entry['source_text'] for entry in entries]
+        assert "Entry 1" in source_texts
+        assert "Entry 2" in source_texts
+        assert "Entry 3" in source_texts
+        
+        # Verify the translations are correct
+        for entry in entries:
+            if entry['source_text'] == "Entry 1":
+                assert entry['translated_text'] == "Inmatning 1"
+                assert entry['target_lang'] == "SV"
+            elif entry['source_text'] == "Entry 2":
+                assert entry['translated_text'] == "Inmatning 2"
+                assert entry['target_lang'] == "SV"
+            elif entry['source_text'] == "Entry 3":
+                assert entry['translated_text'] == "Eintrag 3"
+                assert entry['target_lang'] == "DE"
+        
+        # Clean up
+        conn.close()
+        
+    def test_list_all_cache_entries_empty(self, test_db_path):
+        """Test listing entries from an empty cache."""
+        # Create a database connection
+        conn = init_cache_db(test_db_path)
+        
+        # Get all entries from the empty cache
+        entries = list_all_cache_entries(conn)
+        
+        # Verify we have 0 entries
+        assert len(entries) == 0
+        
+        # Clean up
+        conn.close()
+        
+    def test_find_cache_translation(self, test_db_path):
+        """Test finding translations containing specific text."""
+        # Create a database connection
+        conn = init_cache_db(test_db_path)
+        
+        # Add some translations to the cache
+        add_to_cache("Hello world", "SV", "EN", "Hej världen", conn)
+        add_to_cache("Goodbye world", "SV", "EN", "Adjö världen", conn)
+        add_to_cache("Hello universe", "SV", "EN", "Hej universum", conn)
+        add_to_cache("Testing", "SV", "EN", "Testar", conn)
+        
+        # Find entries containing 'Hello' in source text
+        entries = find_cache_translation("Hello", conn)
+        
+        # Verify we found 2 entries
+        assert len(entries) == 2
+        
+        # Verify the entries have the expected structure and content
+        source_texts = [entry['source_text'] for entry in entries]
+        assert "Hello world" in source_texts
+        assert "Hello universe" in source_texts
+        
+        # Find entries containing 'världen' in translated text
+        entries = find_cache_translation("världen", conn)
+        
+        # Verify we found 2 entries
+        assert len(entries) == 2
+        
+        # Verify the entries have the expected structure and content
+        source_texts = [entry['source_text'] for entry in entries]
+        assert "Hello world" in source_texts
+        assert "Goodbye world" in source_texts
+        
+        # Find entries containing 'Test' in source text
+        entries = find_cache_translation("Test", conn)
+        
+        # Verify we found 1 entry
+        assert len(entries) == 1
+        assert entries[0]['source_text'] == "Testing"
+        
+        # Clean up
+        conn.close()
+        
+    def test_find_cache_translation_no_match(self, test_db_path):
+        """Test finding translations with no matches."""
+        # Create a database connection
+        conn = init_cache_db(test_db_path)
+        
+        # Add some translations to the cache
+        add_to_cache("Hello world", "SV", "EN", "Hej världen", conn)
+        add_to_cache("Goodbye world", "SV", "EN", "Adjö världen", conn)
+        
+        # Find entries containing non-existent text
+        entries = find_cache_translation("NonExistentText", conn)
+        
+        # Verify we found 0 entries
+        assert len(entries) == 0
         
         # Clean up
         conn.close()
