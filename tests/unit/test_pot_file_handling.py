@@ -1,6 +1,7 @@
 import os
 import sys
 import pytest
+import shutil
 from unittest.mock import patch, MagicMock
 from pathlib import Path
 
@@ -125,3 +126,49 @@ class TestPotFileHandling:
         pot_file = os.path.join(mock_repo_path, "build", "locale", "test1.pot")
         result = process_pot_file(pot_file)
         assert result is True
+        
+    @pytest.fixture
+    def real_pot_file_dir(self, tmp_path):
+        """Create a temporary directory with a real .pot file."""
+        # Get the path to the fixtures directory
+        script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        fixtures_dir = os.path.join(script_dir, "fixtures")
+        sample_pot = os.path.join(fixtures_dir, "sample.pot")
+        
+        # Create a directory for the test
+        test_dir = tmp_path / "real_pot_files"
+        test_dir.mkdir()
+        
+        # Copy the sample.pot file to the test directory
+        dest_file = test_dir / "sample.pot"
+        shutil.copy(sample_pot, dest_file)
+        
+        return test_dir
+    
+    def test_find_pot_file_with_real_pot_file(self, real_pot_file_dir):
+        """Test that find_pot_file works with a real .pot file."""
+        result = find_pot_file("sample", pot_file_dir=str(real_pot_file_dir))
+        expected_path = os.path.join(str(real_pot_file_dir), "sample.pot")
+        assert result == expected_path
+        
+        # Verify the file exists and has the expected content
+        assert os.path.isfile(result)
+        with open(result, 'r') as f:
+            content = f.read()
+            assert "msgid \"Installation\"" in content
+            assert "msgid \"Prerequisites\"" in content
+    
+    def test_find_all_pot_files_with_real_pot_file(self, real_pot_file_dir):
+        """Test that find_all_pot_files works with real .pot files."""
+        # Add another .pot file
+        second_pot = real_pot_file_dir / "second.pot"
+        with open(second_pot, 'w') as f:
+            f.write('msgid "Second file"\nmsgstr ""')
+        
+        result = find_all_pot_files(pot_file_dir=str(real_pot_file_dir))
+        assert len(result) == 2
+        
+        # Verify both files are found
+        file_names = [os.path.basename(f) for f in result]
+        assert "sample.pot" in file_names
+        assert "second.pot" in file_names
