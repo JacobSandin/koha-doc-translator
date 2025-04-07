@@ -382,17 +382,23 @@ def translate_text(text, target_lang="SV", source_lang="EN", disable_cache=False
         print(f"Error during translation: {e}")
         raise
 
-def get_locale_path(repo_path=None):
+def get_locale_path(pot_file_dir=None, repo_path=None):
     """
-    Get the path to the locale directory in the koha-manual repository.
+    Get the path to the locale directory containing .pot files.
     
     Args:
+        pot_file_dir (str, optional): Direct path to a directory containing .pot files.
+                                     If provided, this takes precedence over repo_path.
         repo_path (str, optional): Path to the koha-manual repository.
-                                  If None, uses the default path relative to this script.
+                                  If None and pot_file_dir is None, uses the default path relative to this script.
     
     Returns:
-        str: The path to the locale directory.
+        str: The path to the directory containing .pot files.
     """
+    if pot_file_dir:
+        # If a specific pot file directory is provided, use it directly
+        return pot_file_dir
+    
     if repo_path is None:
         # Default path is repos/koha-manual relative to this script
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -402,23 +408,25 @@ def get_locale_path(repo_path=None):
     locale_path = os.path.join(repo_path, 'build', 'locale')
     return locale_path
 
-def find_pot_file(filename, repo_path=None):
+def find_pot_file(filename, pot_file_dir=None, repo_path=None):
     """
-    Check if a file exists as a .pot file under repos/koha-manual/build/locale.
+    Check if a file exists as a .pot file in the specified directory.
     
     Args:
         filename (str): The name of the file to check for (without extension).
+        pot_file_dir (str, optional): Direct path to a directory containing .pot files.
+                                     If provided, this takes precedence over repo_path.
         repo_path (str, optional): Path to the koha-manual repository.
-                                  If None, uses the default path relative to this script.
+                                  If None and pot_file_dir is None, uses the default path relative to this script.
     
     Returns:
         str or None: The full path to the .pot file if found, None otherwise.
     """
-    locale_path = get_locale_path(repo_path)
+    locale_path = get_locale_path(pot_file_dir, repo_path)
     
     # Check if the directory exists
     if not os.path.isdir(locale_path):
-        print(f"Warning: Locale directory not found at {locale_path}")
+        print(f"Warning: Directory not found at {locale_path}")
         return None
     
     # Look for the .pot file
@@ -436,22 +444,24 @@ def find_pot_file(filename, repo_path=None):
     
     return None
 
-def find_all_pot_files(repo_path=None):
+def find_all_pot_files(pot_file_dir=None, repo_path=None):
     """
-    Find all .pot files in the koha-manual repository.
+    Find all .pot files in the specified directory.
     
     Args:
+        pot_file_dir (str, optional): Direct path to a directory containing .pot files.
+                                     If provided, this takes precedence over repo_path.
         repo_path (str, optional): Path to the koha-manual repository.
-                                  If None, uses the default path relative to this script.
+                                  If None and pot_file_dir is None, uses the default path relative to this script.
     
     Returns:
         list: A list of paths to all .pot files found.
     """
-    locale_path = get_locale_path(repo_path)
+    locale_path = get_locale_path(pot_file_dir, repo_path)
     
     # Check if the directory exists
     if not os.path.isdir(locale_path):
-        print(f"Warning: Locale directory not found at {locale_path}")
+        print(f"Warning: Directory not found at {locale_path}")
         return []
     
     # Find all .pot files
@@ -489,8 +499,9 @@ def parse_args():
     
     # File translation options
     file_group = parser.add_argument_group('File Translation')
-    file_group.add_argument("--file", help="Name of a .pot file in repos/koha-manual/build/locale to translate")
-    file_group.add_argument("--all", action="store_true", help="Process all .pot files in repos/koha-manual/build/locale")
+    file_group.add_argument("--file", help="Name of a .pot file to translate")
+    file_group.add_argument("--all", action="store_true", help="Process all .pot files in the specified directory")
+    file_group.add_argument("--pot-file-dir", help="Directory containing .pot files (default: repos/koha-manual/build/locale)")
     
     # Translation options
     parser.add_argument("--target-lang", default="SV", help="Target language code (default: SV)")
@@ -530,9 +541,10 @@ if __name__ == "__main__":
         
         # Handle all files translation
         if args.all:
-            pot_files = find_all_pot_files()
+            pot_files = find_all_pot_files(args.pot_file_dir)
             if not pot_files:
-                print("No .pot files found in repos/koha-manual/build/locale")
+                pot_dir = args.pot_file_dir if args.pot_file_dir else "repos/koha-manual/build/locale"
+                print(f"No .pot files found in {pot_dir}")
                 sys.exit(1)
             
             print(f"Found {len(pot_files)} .pot files to process")
@@ -547,11 +559,12 @@ if __name__ == "__main__":
         
         # Handle single file translation
         elif args.file:
-            pot_file = find_pot_file(args.file)
+            pot_file = find_pot_file(args.file, args.pot_file_dir)
             if pot_file:
                 process_pot_file(pot_file, args.target_lang, args.source_lang, args.disable_cache)
             else:
-                print(f"Error: Could not find .pot file for '{args.file}' in repos/koha-manual/build/locale")
+                pot_dir = args.pot_file_dir if args.pot_file_dir else "repos/koha-manual/build/locale"
+                print(f"Error: Could not find .pot file for '{args.file}' in {pot_dir}")
                 sys.exit(1)
         
         # Handle text translation
